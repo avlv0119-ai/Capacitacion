@@ -1,6 +1,6 @@
 # Plataforma de capacitación gamificada para manufactura
 
-> Nombre de trabajo. El nombre comercial y la identidad visual se propondrán en la Etapa 2.
+> Nombre de trabajo propuesto en la Etapa 2: **Oficio** (pendiente de verificación de marca).
 
 Web app de capacitación para operadores de producción, mantenimiento, supervisores, seguridad y contratistas. Combina una experiencia de aprendizaje por niveles, breve y motivante, con una administración rigurosa, medible y trazable: asignaciones, evaluaciones, validaciones prácticas, constancias en PDF, indicadores y exportaciones.
 
@@ -10,8 +10,8 @@ Web app de capacitación para operadores de producción, mantenimiento, supervis
 
 | Etapa | Entregable | Estado |
 |---|---|---|
-| 1. Definición del producto | [`docs/etapa-1/`](docs/etapa-1/README.md) | **Entregada para revisión.** En espera de las respuestas a las preguntas bloqueantes. |
-| 2. Diseño funcional y visual | Mapa de navegación, matriz de permisos, flujos, pantallas y propuesta visual | Por iniciar |
+| 1. Definición del producto | [`docs/etapa-1/`](docs/etapa-1/README.md) | **Entregada.** Preguntas bloqueantes B-1 a B-4 respondidas el 5 nov 2026 e incorporadas. |
+| 2. Diseño funcional y visual | [`docs/etapa-2/`](docs/etapa-2/README.md): mapa de navegación, matriz de permisos, flujos, pantallas, propuesta visual y maquetas | **Entregada para revisión.** |
 | 3. Prototipo funcional | Prototipo navegable con datos ficticios | Por iniciar |
 | 4. Desarrollo para operación real | Módulos con persistencia, autenticación, permisos, trazabilidad, PDF y Excel | Por iniciar |
 | 5. Validación y preparación de lanzamiento | Pruebas de recorridos, permisos, aislamiento, indicadores, documentos y carga | Por iniciar |
@@ -48,5 +48,13 @@ docs/
     05-estados-y-acreditacion.md     Modelo de estados y reglas de transición
     06-indicadores.md         Diccionario preliminar de indicadores
     07-vacios-preguntas-supuestos-riesgos.md
+  etapa-2/                    Diseño funcional y visual
+    README.md                 Resumen, criterios de aceptación y siguiente acción
+    01-mapa-de-navegacion.md
+    02-matriz-de-permisos.md
+    03-flujos-detallados.md
+    04-pantallas.md
+    05-propuesta-visual.md
+    maquetas/                 Maquetas en HTML e imágenes (contenido ficticio)
   registro-de-decisiones.md   Decisiones tomadas, propuestas y pendientes (todas las etapas)
 ```

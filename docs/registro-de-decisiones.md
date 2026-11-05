@@ -11,10 +11,10 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 
 | ID | Decisión | Estado | Afecta | Decide | Referencia |
 |---|---|---|---|---|---|
-| B-1 | Significado de «400 por sesión» y «1,600 al mes»; existencia de sesiones grupales; población total | Bloqueante | Etapas 2, 4 y 5 | Empresa | [07 §2](etapa-1/07-vacios-preguntas-supuestos-riesgos.md#2-preguntas-bloqueantes) |
-| B-2 | Identificación y alta de contratistas | Bloqueante | Etapa 2 | Empresa (RH, Seguridad) | idem |
-| B-3 | Canales de activación y recuperación; costo de mensajería; supervisores que generan códigos | Bloqueante | Etapa 2 | Empresa (RH, TI) | idem |
-| B-4 | Significado de «empresas»: grupo o clientes independientes | Bloqueante | Etapas 2 y 4 | Empresa (dirección) | idem |
+| B-1 | Volumen: 1,600 personas distintas al mes; convocatorias de unas 400 inscritas que avanzan a su ritmo; plantilla de 2,000 | Confirmada (5 nov 2026) | Etapas 2, 4 y 5 | Empresa | [07 §2](etapa-1/07-vacios-preguntas-supuestos-riesgos.md#2-preguntas-bloqueantes) |
+| B-2 | Contratistas con identificador generado por la plataforma (prefijo «C-») y empresa contratista registrada | Confirmada (5 nov 2026) | Etapa 2 | Empresa | idem |
+| B-3 | Costo de mensajería cero: activación con ficha impresa y recuperación solo en persona con el Administrador | Confirmada (5 nov 2026) | Etapa 2 | Empresa | idem |
+| B-4 | «Empresas» son razones sociales de un mismo grupo | Confirmada (5 nov 2026) | Etapas 2 y 4 | Empresa | idem |
 | B-5 | Restricciones de TI e infraestructura | Bloqueante | Etapa 4 | TI | idem |
 | B-6 | Envío de documentos internos a un servicio de IA | Bloqueante | Módulo de IA (V2) | TI y jurídico | idem |
 | B-7 | Responsables de producto, contenido y jurídico; cursos y alcance del piloto | Bloqueante | Contenido y piloto | Dirección | idem |
@@ -29,15 +29,15 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | D-09 | Atribución organizacional: foto según la adscripción al corte; flujo según la adscripción a la fecha del evento | Propuesta | Indicadores | RH | RI-02 |
 | D-10 | Quien tiene hoy a la persona en su alcance ve su historial completo de capacitación | Propuesta | Permisos | RH | RI-03 |
 | D-11 | Tiempo activo con umbral de inactividad de 5 minutos; no se usa para nómina | Propuesta | Indicadores | RH | I-18 |
-| D-12 | Autenticación: contraseña con activación presencial, llave de acceso opcional, segundo factor para Administrador, RH y Auditor | Propuesta (depende de B-3) | Etapas 2 y 4 | TI | [04 §3](etapa-1/04-requisitos-no-funcionales.md#3-autenticación) |
+| D-12 | Autenticación: contraseña con activación presencial, llave de acceso opcional, segundo factor (aplicación gratuita de códigos o llave de acceso) para Administrador, RH y Auditor | Propuesta (ajustada a B-3) | Etapas 2 y 4 | TI | [04 §3](etapa-1/04-requisitos-no-funcionales.md#3-autenticación) |
 | D-13 | Sesión no persistente por defecto; cierre por inactividad de 5 minutos en equipos compartidos | Propuesta | Etapa 2 | TI | RNF-SES-04, RNF-DCO |
-| D-14 | La empresa se determina por la dirección de acceso, no por un campo adicional | Propuesta | Etapa 2 | Producto | RNF-SEP-03 |
+| D-14 | La dirección de acceso identifica al grupo; selector de empresa en el acceso, elegido por el QR de la ficha y recordado en dispositivos personales | Propuesta (ajustada a B-4) | Etapa 2 | Producto | RNF-SEP-03 |
 | D-15 | Identificador interno inmutable; número de empleado como texto con historial | Propuesta | Etapa 4 | Producto | RF-PER-04 |
 | D-16 | Administrador de plataforma separado del Administrador de empresa | Propuesta | Permisos | Producto | [01 §2.2](etapa-1/01-producto-y-alcance.md#22-roles-del-sistema) |
 | D-17 | Aprobador de contenido y validador práctico como permisos por curso | Propuesta | Permisos | Producto | RF-ROL-03 |
 | D-18 | Contenido normativo o de seguridad: fuente obligatoria y aprobador distinto del autor | Confirmada (fuente y revisión) · Propuesta (distinto del autor) | Contenido | Empresa | RF-EDI-03, 04 |
 | D-19 | IA en V2, solo para borradores con referencia a la fuente | Propuesta (depende de B-6) | Plan de versiones | Producto | M07 |
-| D-20 | Notificaciones de V1 solo dentro de la app | Propuesta | V1 | Producto | RF-NOT-01 |
+| D-20 | Notificaciones de V1 solo dentro de la app; en V2, del navegador; nunca SMS ni WhatsApp | Confirmada por B-3 | V1 | Producto | RF-NOT-01 |
 | D-21 | Evidencia mínima de la validación práctica: lista de verificación y confirmación; foto opcional según la política de la planta | Pendiente | Etapa 2 | Seguridad, jurídico | RNF-PRI-04 |
 | D-22 | Verificación de constancias por QR y qué datos muestra | Pendiente (opciones en Etapa 2) | Constancias | RH, jurídico | RF-CTA-07 |
 | D-23 | Firma en constancias: ninguna, imagen de firma autorizada o firma electrónica | Pendiente (opciones en Etapa 2) | Constancias | RH, jurídico | RF-CTA-08 |
@@ -52,3 +52,17 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | D-32 | Navegadores y dispositivos mínimos | Pendiente (requiere inventario) | Etapas 2 y 5 | TI | RNF-COM-01 |
 | D-33 | Tecnología e infraestructura | Pendiente (comparación antes de la Etapa 4) | Etapa 4 | TI | B-5 |
 | D-34 | El prototipo de la Etapa 3 será una aplicación web navegable con datos ficticios en el navegador, sin servidor ni persistencia real, y marcada como prototipo | Propuesta | Etapa 3 | Producto | — |
+| D-35 | Objetivo de prueba de carga: 400 sesiones activas simultáneas, 2,000 cuentas y un año de datos simulados | Propuesta | Etapa 5 | TI | [04 §1](etapa-1/04-requisitos-no-funcionales.md#1-capacidad-y-rendimiento) |
+| D-36 | El Administrador puede delegar el permiso «Restablecer acceso» a personas designadas por planta y turno | Pendiente | Etapa 3 | Empresa | [Etapa 2 · 02 §3](etapa-2/02-matriz-de-permisos.md#3-permisos-especiales-por-curso-o-tema) |
+| D-37 | El grupo es la unidad máxima de separación de datos; alcance «grupo» para roles corporativos; catálogos compartibles entre empresas | Propuesta (deriva de B-4) | Etapas 2 y 4 | Producto | RNF-SEP-01, RF-ORG-05 |
+| D-38 | Administrador y RH dan de alta a los contratistas | Propuesta | Etapa 2 | Empresa | [Etapa 2 · 03 FD-10](etapa-2/03-flujos-detallados.md#fd-10--alta-de-contratista) |
+| D-39 | El rol Auditor no se combina con Administrador ni con RH en el mismo alcance | Propuesta | Permisos | Producto | SoD-04 |
+| D-40 | Nombre de trabajo «Oficio», sujeto a verificación de marca y dominio | Pendiente | Identidad | Empresa | [Etapa 2 · 05 §1](etapa-2/05-propuesta-visual.md#1-concepto-oficio) |
+| D-41 | Tuteo en el espacio del trabajador; trato impersonal en la consola | Propuesta | Textos | RH | [Etapa 2 · 05 §7](etapa-2/05-propuesta-visual.md#7-tono-y-voz) |
+| D-42 | Sin modo oscuro en V1 | Propuesta | Diseño | Producto | idem §11 |
+| D-43 | La evaluación digital no muestra elementos de juego (puntos, animaciones, sonidos) | Propuesta | Diseño | Producto | FD-05 |
+| D-44 | Exportaciones de hasta 5,000 filas se descargan en el momento; las mayores pasan a la cola | Propuesta | Etapa 4 | Producto | FD-09 |
+| D-45 | Una validación práctica sin confirmación del trabajador en 7 días queda marcada y se avisa al supervisor | Propuesta | Etapa 3 | RH | FD-06 |
+| D-46 | Si revocar acreditaciones o anular validaciones requiere una segunda aprobación | Pendiente | Etapa 4 | RH | SoD-05 |
+| D-47 | Los números de empleado pueden repetirse entre empresas del grupo | Supuesto (confirmar) | Etapa 4 | RH | RNF-SEP-03 |
+| D-48 | Si la plantilla de 2,000 incluye contratistas (se supone que no) | Pendiente | Indicadores y pruebas | RH | I-02 |

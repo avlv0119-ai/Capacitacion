@@ -51,18 +51,23 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | D-31 | Objetivos de disponibilidad, RPO y RTO | Pendiente (candidatos propuestos) | Etapa 4 | TI | RNF-DIS |
 | D-32 | Navegadores y dispositivos mínimos | Pendiente (requiere inventario) | Etapas 2 y 5 | TI | RNF-COM-01 |
 | D-33 | Tecnología e infraestructura | Pendiente (comparación antes de la Etapa 4) | Etapa 4 | TI | B-5 |
-| D-34 | El prototipo de la Etapa 3 será una aplicación web navegable con datos ficticios en el navegador, sin servidor ni persistencia real, y marcada como prototipo | Propuesta | Etapa 3 | Producto | — |
+| D-34 | El prototipo de la Etapa 3 es una aplicación web navegable con datos ficticios en el navegador, sin servidor ni persistencia real, marcada como prototipo | Confirmada (implementada el 5 nov 2026) | Etapa 3 | Producto | [Etapa 3](etapa-3/README.md) |
 | D-35 | Objetivo de prueba de carga: 400 sesiones activas simultáneas, 2,000 cuentas y un año de datos simulados | Propuesta | Etapa 5 | TI | [04 §1](etapa-1/04-requisitos-no-funcionales.md#1-capacidad-y-rendimiento) |
 | D-36 | El Administrador puede delegar el permiso «Restablecer acceso» a personas designadas por planta y turno | Pendiente | Etapa 3 | Empresa | [Etapa 2 · 02 §3](etapa-2/02-matriz-de-permisos.md#3-permisos-especiales-por-curso-o-tema) |
 | D-37 | El grupo es la unidad máxima de separación de datos; alcance «grupo» para roles corporativos; catálogos compartibles entre empresas | Propuesta (deriva de B-4) | Etapas 2 y 4 | Producto | RNF-SEP-01, RF-ORG-05 |
 | D-38 | Administrador y RH dan de alta a los contratistas | Propuesta | Etapa 2 | Empresa | [Etapa 2 · 03 FD-10](etapa-2/03-flujos-detallados.md#fd-10--alta-de-contratista) |
 | D-39 | El rol Auditor no se combina con Administrador ni con RH en el mismo alcance | Propuesta | Permisos | Producto | SoD-04 |
-| D-40 | Nombre de trabajo «Oficio», sujeto a verificación de marca y dominio | Pendiente | Identidad | Empresa | [Etapa 2 · 05 §1](etapa-2/05-propuesta-visual.md#1-concepto-oficio) |
-| D-41 | Tuteo en el espacio del trabajador; trato impersonal en la consola | Propuesta | Textos | RH | [Etapa 2 · 05 §7](etapa-2/05-propuesta-visual.md#7-tono-y-voz) |
-| D-42 | Sin modo oscuro en V1 | Propuesta | Diseño | Producto | idem §11 |
+| D-40 | Nombre de trabajo «Oficio», sujeto a verificación de marca y dominio | Pendiente | Identidad | Empresa | [Etapa 2 · 05 §1](etapa-2/05-propuesta-visual.md#1-concepto) |
+| D-41 | Tuteo en el espacio del trabajador; trato impersonal en la consola | Propuesta | Textos | RH | [Etapa 2 · 05 §7](etapa-2/05-propuesta-visual.md#9-tono-y-voz) |
+| D-42 | Tema oscuro: el prototipo lo incluye siguiendo la preferencia del dispositivo; se propone mantenerlo en V1 porque cuesta poco con las variables de diseño | Propuesta (revisada en Etapa 3) | Diseño | Producto | [Etapa 2 · 05 §3.3](etapa-2/05-propuesta-visual.md#33-tema-oscuro) |
 | D-43 | La evaluación digital no muestra elementos de juego (puntos, animaciones, sonidos) | Propuesta | Diseño | Producto | FD-05 |
 | D-44 | Exportaciones de hasta 5,000 filas se descargan en el momento; las mayores pasan a la cola | Propuesta | Etapa 4 | Producto | FD-09 |
 | D-45 | Una validación práctica sin confirmación del trabajador en 7 días queda marcada y se avisa al supervisor | Propuesta | Etapa 3 | RH | FD-06 |
 | D-46 | Si revocar acreditaciones o anular validaciones requiere una segunda aprobación | Pendiente | Etapa 4 | RH | SoD-05 |
 | D-47 | Los números de empleado pueden repetirse entre empresas del grupo | Supuesto (confirmar) | Etapa 4 | RH | RNF-SEP-03 |
 | D-48 | Si la plantilla de 2,000 incluye contratistas (se supone que no) | Pendiente | Indicadores y pruebas | RH | I-02 |
+| D-49 | Dirección visual versión 2: minimalista, plana y juvenil; reemplaza a la versión 1 sobria | Confirmada por la empresa (5 nov 2026); validar en pruebas con usuarios | Diseño | Empresa | [Etapa 2 · 05](etapa-2/05-propuesta-visual.md) |
+| D-50 | Tipografías: Bricolage Grotesque (títulos), Plus Jakarta Sans (texto), JetBrains Mono (identificadores) | Propuesta; confirmar legibilidad en pruebas | Diseño | Producto | idem §4 |
+| D-51 | Al revocar una acreditación se crea una nueva participación con fecha límite a 30 días | Propuesta | Reglas | RH | [Etapa 3 · hallazgos](etapa-3/README.md#hallazgos-para-validar-con-la-empresa) |
+| D-52 | Tope diario de 200 puntos por persona | Propuesta | Motivación | RH | idem |
+| D-53 | El trabajador puede descargar su propio reporte individual | Propuesta | Permisos | RH | idem |

@@ -4,15 +4,15 @@
 
 Web app de capacitación para operadores de producción, mantenimiento, supervisores, seguridad y contratistas. Combina una experiencia de aprendizaje por niveles, breve y motivante, con una administración rigurosa, medible y trazable: asignaciones, evaluaciones, validaciones prácticas, constancias en PDF, indicadores y exportaciones.
 
-**Este repositorio todavía no contiene una aplicación.** Por ahora contiene la documentación de producto y diseño. Ningún entregable de este repositorio debe considerarse listo para producción mientras no complete la Etapa 5 (validación).
+**Este repositorio todavía no contiene la aplicación de producción.** Contiene la documentación de producto y diseño y un prototipo navegable con datos ficticios. Ningún entregable de este repositorio debe considerarse listo para producción mientras no complete la Etapa 5 (validación).
 
 ## Estado por etapa
 
 | Etapa | Entregable | Estado |
 |---|---|---|
 | 1. Definición del producto | [`docs/etapa-1/`](docs/etapa-1/README.md) | **Entregada.** Preguntas bloqueantes B-1 a B-4 respondidas el 5 nov 2026 e incorporadas. |
-| 2. Diseño funcional y visual | [`docs/etapa-2/`](docs/etapa-2/README.md): mapa de navegación, matriz de permisos, flujos, pantallas, propuesta visual y maquetas | **Entregada para revisión.** |
-| 3. Prototipo funcional | Prototipo navegable con datos ficticios | Por iniciar |
+| 2. Diseño funcional y visual | [`docs/etapa-2/`](docs/etapa-2/README.md): mapa de navegación, matriz de permisos, flujos, pantallas y propuesta visual (versión 2: minimalista, plana y juvenil) | **Entregada.** |
+| 3. Prototipo funcional | [`docs/etapa-3/`](docs/etapa-3/README.md) y [`prototipo/`](prototipo/README.md) · [página publicada](https://claude.ai/artifact/WyK8ugJ5isMMT9LU4GJ85p) | **Entregada para revisión.** 53 + 35 comprobaciones automáticas correctas. |
 | 4. Desarrollo para operación real | Módulos con persistencia, autenticación, permisos, trazabilidad, PDF y Excel | Por iniciar |
 | 5. Validación y preparación de lanzamiento | Pruebas de recorridos, permisos, aislamiento, indicadores, documentos y carga | Por iniciar |
 
@@ -55,6 +55,7 @@ docs/
     03-flujos-detallados.md
     04-pantallas.md
     05-propuesta-visual.md
-    maquetas/                 Maquetas en HTML e imágenes (contenido ficticio)
+  etapa-3/                    Prototipo funcional: guía, verificación, hallazgos y capturas
   registro-de-decisiones.md   Decisiones tomadas, propuestas y pendientes (todas las etapas)
+prototipo/                    Prototipo navegable (datos ficticios) y sus pruebas automatizadas
 ```

@@ -1,0 +1,1654 @@
+<title>Prototipo Oficio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Concepto: app plana y minimalista; «Aprender» en una columna móvil de 520 px con navegación inferior,
+   «Administrar» con menú lateral plano y tablas limpias. Barra oscura superior = controles del prototipo. */
+:root{
+  --bg:#F5F6FB; --surface:#FFFFFF; --surface-2:#ECEFF7; --ink:#141A33; --ink-2:#535C77; --line:#E3E7F1; --line-strong:#8B93AB;
+  --primary:#2F4BF0; --on-primary:#FFFFFF; --primary-soft:#E7EBFF; --primary-ink:#2339C9;
+  --coral:#FF6A4D; --coral-soft:#FFE8E1; --coral-ink:#B83A1C;
+  --sun:#FFC53D; --sun-soft:#FFF3D1; --sun-ink:#7A5200;
+  --mint:#2BC37A; --ok-soft:#DCF4E7; --ok-ink:#127547;
+  --warn:#FFB020; --warn-soft:#FFF0C2; --warn-ink:#835400;
+  --danger:#F0484D; --danger-soft:#FDE5E5; --danger-ink:#BF2A2A;
+  --violet:#6B4EFF; --violet-soft:#ECE8FF; --violet-ink:#5537D6;
+  --on-color:#141A33;
+  --bar-bg:#141A33; --bar-ink:#F5F6FB; --bar-soft:#2A3150;
+  --scrim:rgba(20,26,51,.45);
+  --sc-wall:#E7EBFF; --sc-floor:#D5DBEC; --sc-steel:#5B6688; --sc-water:#7CC4FF; --sc-box:#FFC53D; --sc-box-2:#F2A93B;
+  --f-display:"Bricolage Grotesque","Plus Jakarta Sans",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r-lg:22px; --r-md:16px; --r-sm:12px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1324; --surface:#181D33; --surface-2:#20263F; --ink:#EEF1FA; --ink-2:#A6AECA; --line:#2A3152; --line-strong:#6B7392;
+  --primary:#7F93FF; --on-primary:#0F1324; --primary-soft:#222B58; --primary-ink:#AEBBFF;
+  --coral:#FF7A5E; --coral-soft:#3A231F; --coral-ink:#FF9E85; --sun:#FFC53D; --sun-soft:#3A3015; --sun-ink:#FFD877;
+  --mint:#2BC37A; --ok-soft:#14352A; --ok-ink:#5ED89D; --warn:#FFB020; --warn-soft:#3A2E12; --warn-ink:#FFC960;
+  --danger:#F0484D; --danger-soft:#3E1D21; --danger-ink:#FF8F8F; --violet:#8D78FF; --violet-soft:#2A2452; --violet-ink:#BBAAFF;
+  --on-color:#0F1324; --bar-bg:#05070F; --bar-ink:#EEF1FA; --bar-soft:#20263F; --scrim:rgba(0,0,0,.6);
+  --sc-wall:#222B58; --sc-floor:#2A3152; --sc-steel:#8F9ABF; --sc-water:#4AA3E8; --sc-box:#E0A92E; --sc-box-2:#C98A22;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1324; --surface:#181D33; --surface-2:#20263F; --ink:#EEF1FA; --ink-2:#A6AECA; --line:#2A3152; --line-strong:#6B7392;
+  --primary:#7F93FF; --on-primary:#0F1324; --primary-soft:#222B58; --primary-ink:#AEBBFF;
+  --coral:#FF7A5E; --coral-soft:#3A231F; --coral-ink:#FF9E85; --sun:#FFC53D; --sun-soft:#3A3015; --sun-ink:#FFD877;
+  --mint:#2BC37A; --ok-soft:#14352A; --ok-ink:#5ED89D; --warn:#FFB020; --warn-soft:#3A2E12; --warn-ink:#FFC960;
+  --danger:#F0484D; --danger-soft:#3E1D21; --danger-ink:#FF8F8F; --violet:#8D78FF; --violet-soft:#2A2452; --violet-ink:#BBAAFF;
+  --on-color:#0F1324; --bar-bg:#05070F; --bar-ink:#EEF1FA; --bar-soft:#20263F; --scrim:rgba(0,0,0,.6);
+  --sc-wall:#222B58; --sc-floor:#2A3152; --sc-steel:#8F9ABF; --sc-water:#4AA3E8; --sc-box:#E0A92E; --sc-box-2:#C98A22;
+  color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--primary);outline-offset:2px;border-radius:8px}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;line-height:1.15;text-wrap:balance;letter-spacing:-.01em}
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:middle}
+.ic.s{width:16px;height:16px}.ic.l{width:28px;height:28px}.ic.xl{width:40px;height:40px}
+.mono{font-family:var(--f-mono);font-size:.92em;letter-spacing:.01em}
+.muted{color:var(--ink-2)}
+.num{font-variant-numeric:tabular-nums}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ===== Barra del prototipo ===== */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bar-bg)}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bar-bg);color:var(--bar-ink);color-scheme:dark}
+.bar-ctrls{display:contents}
+.bar-btn.bar-toggle{display:none}
+.bar-who{display:none;font-size:12.5px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-block:8px}
+.proto-tag{background:var(--sun);color:#141A33;font:800 11px/1 var(--f-body);letter-spacing:.08em;padding:6px 10px;border-radius:99px;white-space:nowrap}
+.bar-brand{display:flex;align-items:center;gap:8px;font:800 16px var(--f-display)}
+.bar-grp{display:flex;align-items:center;gap:6px;font-size:13px}
+.bar-grp label{opacity:.8}
+.bar select,#bar select{-webkit-appearance:none;appearance:none;background-color:var(--bar-soft);color:var(--bar-ink);border:0;border-radius:99px;padding:6px 30px 6px 12px;font-size:13px;font-weight:600;max-width:260px;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+.bar-btn{background:var(--bar-soft);color:var(--bar-ink);border:0;border-radius:99px;padding:6px 12px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.bar-btn.hl{background:var(--sun);color:#141A33}
+.bar-date{font-weight:700;font-variant-numeric:tabular-nums}
+.bar-sp{flex:1}
+
+/* ===== Elementos comunes ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:99px;min-height:48px;padding:0 22px;font:700 16px var(--f-body);text-decoration:none;white-space:nowrap}
+.btn.block{display:flex;width:100%}
+.btn.pri{background:var(--primary);color:var(--on-primary)}
+.btn.soft{background:var(--primary-soft);color:var(--primary-ink)}
+.btn.ghost{background:transparent;color:var(--primary-ink)}
+.btn.dark{background:var(--ink);color:var(--bg)}
+.btn.danger{background:var(--danger-soft);color:var(--danger-ink)}
+.btn.sm{min-height:36px;padding:0 14px;font-size:14px}
+.btn[disabled]{background:var(--surface-2);color:var(--ink-2);cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:4px 11px 4px 9px;font:700 12.5px/1.25 var(--f-body);white-space:nowrap}
+.chip.ok{background:var(--ok-soft);color:var(--ok-ink)}
+.chip.warn{background:var(--warn-soft);color:var(--warn-ink)}
+.chip.danger{background:var(--danger-soft);color:var(--danger-ink)}
+.chip.violet{background:var(--violet-soft);color:var(--violet-ink)}
+.chip.primary{background:var(--primary-soft);color:var(--primary-ink)}
+.chip.neutral{background:var(--surface-2);color:var(--ink-2)}
+.chip.coral{background:var(--coral-soft);color:var(--coral-ink)}
+.card{background:var(--surface);border-radius:var(--r-lg);padding:18px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;align-items:center;gap:12px}
+.grow{flex:1;min-width:0}
+.tile{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;flex:none;color:var(--on-color)}
+.tile.sm{width:40px;height:40px;border-radius:13px}
+.t-primary{background:var(--primary);color:var(--on-primary)}.t-coral{background:var(--coral)}.t-sun{background:var(--sun)}.t-violet{background:var(--violet);color:#fff}.t-mint{background:var(--mint)}
+.bar-p{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar-p>i{display:block;height:100%;border-radius:99px;background:var(--primary)}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>span{font-weight:700;font-size:14px}
+.input,select.input,textarea.input{width:100%;min-height:50px;border:1.5px solid var(--line-strong);border-radius:var(--r-md);background:var(--surface);padding:10px 14px;font-size:16px}
+textarea.input{min-height:84px;resize:vertical}
+.notice{display:flex;gap:10px;align-items:flex-start;border-radius:var(--r-md);padding:12px 14px;font-size:14.5px;line-height:1.45}
+.notice.info{background:var(--primary-soft);color:var(--primary-ink)}
+.notice.warn{background:var(--warn-soft);color:var(--warn-ink)}
+.notice.violet{background:var(--violet-soft);color:var(--violet-ink)}
+.notice.ok{background:var(--ok-soft);color:var(--ok-ink)}
+.notice.danger{background:var(--danger-soft);color:var(--danger-ink)}
+.notice b{color:inherit}
+.eyebrow{font:800 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.demo-note{font-size:12.5px;color:var(--ink-2)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ===== Acceso ===== */
+.login{min-height:calc(100vh - 60px);display:grid;place-items:center;padding-block:28px}
+.login-card{width:min(440px,100%);display:flex;flex-direction:column;gap:16px}
+.brand-lg{display:flex;align-items:center;gap:12px}
+.brand-lg b{font:800 30px/1 var(--f-display)}
+.demo-accounts{display:flex;flex-wrap:wrap;gap:8px}
+.acc-chip{border:0;background:var(--surface-2);border-radius:99px;padding:8px 14px;font-weight:700;font-size:13.5px;text-align:left;line-height:1.25}
+.acc-chip small{display:block;font-weight:500;color:var(--ink-2);font-size:12px}
+.acc-chip[aria-pressed="true"]{background:var(--primary-soft);color:var(--primary-ink)}
+
+/* ===== Aprender ===== */
+.learn{max-width:520px;margin:0 auto;padding-block:16px 104px;display:flex;flex-direction:column;gap:16px}
+.lhead{display:flex;align-items:center;gap:12px}
+.lhead h1{font-size:26px}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--coral);color:var(--on-color);display:grid;place-items:center;font:800 16px var(--f-display);flex:none;border:0}
+.salir{display:inline-flex;align-items:center;gap:6px;border:0;background:var(--surface);border-radius:99px;padding:0 14px;min-height:44px;font-weight:700;font-size:14px}
+.mode-sw{display:inline-flex;background:var(--surface-2);border-radius:99px;padding:3px}
+.mode-sw button{border:0;background:transparent;border-radius:99px;padding:6px 12px;font-weight:700;font-size:13px;color:var(--ink-2)}
+.mode-sw button[aria-pressed="true"]{background:var(--surface);color:var(--ink)}
+.hero{background:var(--primary);color:var(--on-primary);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.hero .eyebrow{color:inherit;opacity:.85}
+.hero h2{font-size:24px}
+.hero .bar-p{background:color-mix(in srgb,var(--on-primary) 25%,transparent)}
+.hero .bar-p>i{background:var(--on-primary)}
+.hero .btn{background:var(--on-primary);color:var(--primary)}
+.hero>*{position:relative}
+.hero>.hero-dots{position:absolute;right:-30px;top:-30px;width:104px;height:104px;border-radius:50%;background:var(--coral)}
+.hero>.hero-dots::after{content:"";position:absolute;left:-22px;top:66px;width:34px;height:34px;border-radius:10px;background:var(--sun);transform:rotate(18deg)}
+.hero .eyebrow,.hero h2{padding-right:64px}
+.ccard{display:flex;gap:14px;align-items:center;background:var(--surface);border-radius:var(--r-lg);padding:14px;border:0;text-align:left;width:100%}
+.ccard .t{font-weight:800;font-size:16px;line-height:1.25}
+.ccard .m{font-size:13.5px;color:var(--ink-2);margin-top:2px}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px}
+.sec-h h3{font-size:19px}
+.lnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(520px,100%);background:var(--surface);display:flex;padding:6px max(8px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));z-index:20;border-radius:22px 22px 0 0}
+.lnav button{flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0;font-size:12.5px;font-weight:700;color:var(--ink-2);border-radius:14px;min-height:56px}
+.lnav button[aria-current="page"]{color:var(--primary-ink);background:var(--primary-soft)}
+.route{display:flex;flex-direction:column;gap:10px;position:relative;padding-left:30px}
+.route::before{content:"";position:absolute;left:13px;top:8px;bottom:8px;width:4px;border-radius:4px;background:var(--surface-2)}
+.lvl{font:800 13px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin:10px 0 2px -30px;padding-left:30px}
+.st{position:relative;display:flex;align-items:center;gap:12px;background:var(--surface);border-radius:var(--r-md);padding:12px 14px;border:0;text-align:left;width:100%;min-height:58px}
+.st .node{position:absolute;left:-30px;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2)}
+.st.done .node{background:var(--mint);color:var(--on-color)}
+.st.cur{outline:3px solid var(--primary);outline-offset:-3px}
+.st.cur .node{background:var(--primary);color:var(--on-primary)}
+.st .nm{flex:1;font-weight:700;line-height:1.25}
+.st .nm small{display:block;font-weight:500;color:var(--ink-2);font-size:13px}
+.st[disabled]{cursor:default}
+.st[disabled] .nm{color:var(--ink-2)}
+.crit{display:flex;align-items:center;gap:10px;padding:8px 0}
+.dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex:none}
+
+/* Reproductor */
+.player{max-width:560px;margin:0 auto;padding-block:16px 24px;display:flex;flex-direction:column;gap:16px;min-height:calc(100vh - 60px)}
+.ptop{display:flex;align-items:center;gap:12px}
+.ptop .bar-p{flex:1;height:12px}
+.iconbtn{border:0;background:var(--surface);border-radius:50%;width:44px;height:44px;display:grid;place-items:center;flex:none}
+.q{font:800 22px/1.3 var(--f-display)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;background:var(--surface);border:2.5px solid transparent;border-radius:var(--r-md);padding:14px 16px;text-align:left;font-weight:600;font-size:16px;min-height:58px;width:100%}
+.opt .k{width:30px;height:30px;border-radius:10px;background:var(--surface-2);display:grid;place-items:center;font-weight:800;flex:none}
+.opt[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.opt[aria-pressed="true"] .k{background:var(--primary);color:var(--on-primary)}
+.opt.good{border-color:var(--mint);background:var(--ok-soft)}
+.opt.bad{border-color:var(--danger);background:var(--danger-soft)}
+.imgopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.imgopt{background:var(--surface);border:2.5px solid transparent;border-radius:var(--r-md);padding:8px;display:flex;flex-direction:column;gap:6px;font-weight:700;text-align:center}
+.imgopt svg{width:100%;height:auto;border-radius:12px;display:block}
+.imgopt[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.tf{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tf .opt{justify-content:center;font-size:18px;min-height:72px}
+.seq{display:flex;flex-direction:column;gap:8px}
+.slot{min-height:54px;border:2px dashed var(--line-strong);border-radius:var(--r-md);display:flex;align-items:center;gap:10px;padding:8px 12px;color:var(--ink-2)}
+.pool{display:flex;flex-wrap:wrap;gap:8px}
+.pool .opt{width:auto;min-height:48px;font-size:15px}
+.scene{background:var(--surface);border-radius:var(--r-md);padding:8px}
+.scene svg{width:100%;height:auto;display:block;border-radius:12px;touch-action:manipulation}
+.hs-hit{fill:transparent;cursor:pointer}
+.hs-hit:focus-visible{outline:none;stroke:var(--primary);stroke-width:4;stroke-dasharray:6 4}
+.fb{border-radius:var(--r-lg);padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.fb.good{background:var(--ok-soft);color:var(--ok-ink)}
+.fb.bad{background:var(--danger-soft);color:var(--danger-ink)}
+.fb h3{display:flex;align-items:center;gap:8px;font-size:20px}
+.fb p{margin:0;color:var(--ink);font-size:15.5px}
+.pfoot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.done-hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:24px}
+.big-num{font:800 56px/1 var(--f-display);color:var(--coral-ink)}
+.burst{position:relative;width:120px;height:120px}
+.burst i{position:absolute;width:16px;height:16px;border-radius:5px;animation:pop 900ms cubic-bezier(.2,.8,.2,1) both}
+.burst .core{position:absolute;inset:22px;border-radius:50%;background:var(--mint);display:grid;place-items:center;color:var(--on-color)}
+@keyframes pop{from{transform:translate(0,0) scale(.2);opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.burst i{animation:none}}
+
+/* Logros */
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.badge{background:var(--surface);border-radius:var(--r-md);padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-size:12.5px;font-weight:700;line-height:1.25}
+.hex{width:54px;height:60px;display:grid;place-items:center;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.hex.off{background:var(--surface-2);color:var(--ink-2)}
+.rank{display:flex;flex-direction:column}
+.rank .r{display:flex;align-items:center;gap:12px;padding:10px 4px;font-weight:600}
+.rank .r+.r{border-top:1px solid var(--line)}
+.rank .p{width:30px;height:30px;border-radius:10px;background:var(--surface-2);display:grid;place-items:center;font-weight:800;font-size:13px}
+.rank .r.me{background:var(--primary-soft);border-radius:14px;color:var(--primary-ink);border-top-color:transparent}
+.switch{width:54px;height:32px;border-radius:99px;background:var(--surface-2);border:0;position:relative;flex:none}
+.switch::after{content:"";position:absolute;left:4px;top:4px;width:24px;height:24px;border-radius:50%;background:var(--ink-2);transition:transform .15s}
+.switch[aria-checked="true"]{background:var(--primary)}
+.switch[aria-checked="true"]::after{transform:translateX(22px);background:var(--on-primary)}
+
+/* ===== Administrar ===== */
+.adm{display:grid;grid-template-columns:232px minmax(0,1fr);gap:0;min-height:calc(100vh - var(--bar-h,52px))}
+.side{background:var(--surface);padding:18px 12px;display:flex;flex-direction:column;gap:2px;position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--bar-h,52px));align-self:start;height:calc(100vh - var(--bar-h,52px));overflow:auto}
+.side .who{display:flex;align-items:center;gap:10px;padding:6px 8px 14px}
+.side .who b{display:block;font-size:14px;line-height:1.2}
+.side .who small{color:var(--ink-2);font-size:12px}
+.side .g{font:800 11px var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin:14px 10px 4px}
+.navb{display:flex;align-items:center;gap:10px;border:0;background:transparent;border-radius:12px;padding:9px 10px;font-weight:600;font-size:14px;text-align:left;width:100%}
+.navb[aria-current="page"]{background:var(--primary-soft);color:var(--primary-ink);font-weight:800}
+.amain{padding-block:22px 48px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.atop{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.atop h1{font-size:28px;flex:1;min-width:220px}
+.scope{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--ink-2)}
+.scope .chip{font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpis.six{grid-template-columns:repeat(6,minmax(0,1fr))}
+.kpis.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.kpi{background:var(--surface);border-radius:var(--r-lg);padding:16px}
+.kpi .l{font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.kpi .v{font:800 34px/1.1 var(--f-display);margin-top:6px;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.kpi.main{background:var(--primary);color:var(--on-primary)}
+.kpi.main .l,.kpi.main .d{color:inherit;opacity:.85}
+.v-ok{color:var(--ok-ink)}.v-warn{color:var(--warn-ink)}.v-danger{color:var(--danger-ink)}.v-violet{color:var(--violet-ink)}
+.panel{background:var(--surface);border-radius:var(--r-lg);overflow:hidden;min-width:0}
+.panel>.ph{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:14px 18px;font:800 16px var(--f-display)}
+.panel>.ph .sp{flex:1}
+.panel>.pb{padding:0 18px 16px}
+.tw{overflow-x:auto}
+table.t{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+table.t th{text-align:left;font-weight:700;font-size:12px;color:var(--ink-2);padding:10px 12px;background:var(--surface-2);white-space:nowrap}
+table.t td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:middle}
+table.t td.r,table.t th.r{text-align:right}
+table.t tr.click{cursor:pointer}
+table.t tr.click:hover td{background:var(--bg)}
+table.t tfoot td{font-weight:800;background:var(--surface-2)}
+.hbar{display:flex;align-items:center;gap:8px;min-width:160px}
+.hbar .bar-p{flex:1;height:8px}
+.cell{display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+.cell small{font-size:11.5px;color:var(--ink-2)}
+.cols2{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{border:0;background:var(--surface);border-radius:99px;padding:8px 14px;font-weight:700;font-size:14px;color:var(--ink-2)}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.filters .field{min-width:160px}
+.filters .input{min-height:42px;font-size:14px;padding:8px 12px}
+.steps{display:flex;gap:8px;flex-wrap:wrap}
+.steps span{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:99px;background:var(--surface);font-weight:700;font-size:13.5px;color:var(--ink-2)}
+.steps span.on{background:var(--primary);color:var(--on-primary)}
+.steps span.done{background:var(--ok-soft);color:var(--ok-ink)}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.ck{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border-radius:99px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer}
+.ck input{width:18px;height:18px;accent-color:var(--primary)}
+.vrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 0;border-top:1px solid var(--line)}
+.vrow .grow{min-width:220px}
+.seg{display:inline-flex;gap:6px;flex-wrap:wrap}
+.seg button{border:0;border-radius:99px;min-height:44px;padding:0 16px;font-weight:700;background:var(--surface-2);color:var(--ink-2)}
+.seg button[aria-pressed="true"].y{background:var(--mint);color:var(--on-color)}
+.seg button[aria-pressed="true"].n{background:var(--danger);color:#fff}
+.seg button[aria-pressed="true"].na{background:var(--ink);color:var(--bg)}
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:36px 18px}
+.empty .shape{width:72px;height:72px;border-radius:22px;background:var(--sun);display:grid;place-items:center;color:#141A33;transform:rotate(-8deg)}
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.tl li{display:flex;gap:12px}
+.tl .d{width:12px;height:12px;border-radius:50%;background:var(--surface-2);margin-top:5px;flex:none}
+.tl li.cur .d{background:var(--primary)}
+
+/* Superposiciones */
+#ov:empty{display:none}
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:50;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.dialog{background:var(--surface);border-radius:var(--r-lg);width:min(560px,100%);max-height:100%;overflow:auto;padding:22px;display:flex;flex-direction:column;gap:14px}
+.dialog.wide{width:min(860px,100%)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);z-index:60;overflow:auto;padding:max(20px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 20px 20px;display:flex;flex-direction:column;gap:14px}
+.gstep{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:var(--r-md);background:var(--bg)}
+.gstep .n{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-weight:800;background:var(--surface-2);flex:none}
+.gstep.ok .n{background:var(--mint);color:var(--on-color)}
+.gstep.next{outline:2.5px solid var(--primary)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:99px;font-weight:700;z-index:70;max-width:calc(100% - 32px);text-align:center}
+.cert{background:#FFFFFF;color:#141A33;border-radius:12px;padding:28px 30px;position:relative;overflow:hidden;font-family:var(--f-body)}
+.cert .wm{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font:800 38px var(--f-display);color:rgba(255,106,77,.13);transform:rotate(-28deg);white-space:nowrap}
+.cert .top{display:flex;justify-content:space-between;gap:10px;border-bottom:3px solid #2F4BF0;padding-bottom:12px;flex-wrap:wrap}
+.cert h3{font-size:26px;text-align:center;margin-top:22px}
+.cert .who{text-align:center;font:800 24px var(--f-display);margin:8px 0}
+.cert .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;margin:18px 0;font-size:13.5px}
+.cert .fields span{display:block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#535C77}
+.cert .ph{border:1.5px dashed #8B93AB;border-radius:10px;display:grid;place-items:center;text-align:center;color:#535C77;font-size:12px;padding:12px;min-height:70px}
+.cert .legal{font-size:11px;color:#535C77;border-top:1px solid #E3E7F1;padding-top:10px;margin-top:16px}
+
+@media (max-width:1380px){.cols2.dash{grid-template-columns:minmax(0,1fr)}.kpis.six{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){
+  .bar-ctrls{display:none;width:100%;flex-wrap:wrap;align-items:center;gap:8px}
+  .bar-ctrls.open{display:flex}
+  .bar-btn.bar-toggle{display:inline-flex;margin-left:auto}
+  .bar-who{display:block;flex:1 1 100%;order:3}
+  .bar-in{padding-block:6px}
+  .proto-tag{font-size:10px;padding:5px 8px}
+}
+@media (max-width:900px){
+  .adm{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;height:auto;flex-direction:row;overflow-x:auto;padding:10px 12px;gap:6px}
+  .side .who,.side .g{display:none}
+  .navb{width:auto;white-space:nowrap;background:var(--surface-2)}
+  .cols2{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:480px){.lhead .tile{display:none}.lhead h1{font-size:22px}}
+@media (max-width:560px){
+  .kpis.six,.kpis.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bar-brand span{display:none}
+  .atop h1{font-size:24px}
+  .kpi .v{font-size:28px}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h5v-6h4v6h5V9"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><path d="M12 2 20 6.5v9L12 20l-8-4.5v-9z"/><path d="m8.5 11 2.5 2.5 4.5-4.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M10 4H5v16h5"/><path d="m15 8 4 4-4 4M19 12H9"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 13.5a7 7 0 0 1 4 6.5"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20V11M11 20V5M17 20v-7M3 20h18"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+  <symbol id="i-guide" viewBox="0 0 24 24"><path d="M4 4h12a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4z"/><path d="M8 9h8M8 13h6"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7"/><path d="M4 4v4h4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h14l-3-3M20 16H6l3 3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
+  <symbol id="logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="var(--primary)" stroke="none"/><path d="M9 29h7v-6h7v-6h8" fill="none" stroke="var(--on-primary)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="10.5" r="4" fill="var(--coral)" stroke="none"/></symbol>
+</svg>
+
+<header id="bar"></header>
+<main id="app"></main>
+<div id="ov"></div>
+<div id="live" class="sr" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+'use strict';
+/* =====================================================================
+   Prototipo Oficio · Etapa 3. DEMO · DATOS FICTICIOS.
+   Real: navegación, actividades, reglas de estado y cumplimiento,
+   indicadores, PDF y Excel generados en el navegador.
+   Simulado: inicio de sesión, persistencia (solo en este navegador),
+   permisos de servidor, procesos en segundo plano y avisos.
+   ===================================================================== */
+const BASE = '2026-11-05';
+const STORE_KEY = 'oficio-prototipo-v1';
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const ic = (n, c = '') => '<svg class="ic ' + c + '" aria-hidden="true"><use href="#i-' + n + '"/></svg>';
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---------- Fechas (cadenas AAAA-MM-DD; la hora oficial sería la del servidor) ---------- */
+const D = {
+  t: s => { const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); },
+  s: t => new Date(t).toISOString().slice(0, 10),
+  add: (s, n) => D.s(D.t(s) + n * 864e5),
+  months: (s, n) => { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1 + n, d)).toISOString().slice(0, 10); },
+  diff: (a, b) => Math.round((D.t(a) - D.t(b)) / 864e5)
+};
+const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+const MESL = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const fmt = s => { if (!s) return '—'; const [y, m, d] = s.split('-').map(Number); return d + ' ' + MES[m - 1] + ' ' + y; };
+const fmtL = s => { if (!s) return '—'; const [y, m, d] = s.split('-').map(Number); return d + ' de ' + MESL[m - 1] + ' de ' + y; };
+const hora = () => { const n = new Date(); return String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0'); };
+const hoy = () => D.add(BASE, S.offset);
+const pct = (a, b) => b ? (a / b * 100) : 0;
+const pctTxt = (a, b) => b ? pct(a, b).toFixed(1) + ' %' : '—';
+
+/* ---------- Catálogo de cursos (DEMO) ---------- */
+const CRIT_C2 = ['Explica con sus palabras el objetivo de la tarea', 'Ejecuta los pasos en el orden aprendido', 'Identifica al menos una situación a reportar en su estación', 'Deja el área como la encontró'];
+const CURSOS = {
+  C1: { id: 'C1', nombre: 'Inducción a la planta', version: 2, color: 'primary', icon: 'flag', lecciones: 4, eval: { min: 80, intentos: 3, preguntas: 5 }, practica: null, vigencia: 12, clasif: 'Interno', jugable: false },
+  C2: { id: 'C2', nombre: 'Orden y limpieza del área', version: 3, color: 'coral', icon: 'sparkle', eval: { min: 80, intentos: 3, preguntas: 5 }, practica: { criterios: CRIT_C2 }, vigencia: 12, clasif: 'Interno', jugable: true },
+  C3: { id: 'C3', nombre: 'Manejo de materiales', version: 1, color: 'sun', icon: 'box', lecciones: 5, eval: { min: 80, intentos: 3, preguntas: 5 }, practica: null, vigencia: 12, clasif: 'Seguridad', jugable: false },
+  C4: { id: 'C4', nombre: 'Uso de la prensa demo', version: 1, color: 'violet', icon: 'gear', lecciones: 4, eval: { min: 80, intentos: 3, preguntas: 5 }, practica: { criterios: ['Explica el objetivo de la tarea', 'Prepara su estación como se indicó en el curso', 'Ejecuta la tarea en el orden aprendido', 'Entrega el área en condiciones'] }, vigencia: 12, clasif: 'Seguridad', jugable: false },
+  C5: { id: 'C5', nombre: 'Comunicación en el turno', version: 1, color: 'mint', icon: 'chat', lecciones: 3, eval: { min: 80, intentos: 3, preguntas: 5 }, practica: null, vigencia: 12, clasif: 'Interno', jugable: false }
+};
+CURSOS.C2.niveles = [
+  { titulo: 'Nivel 1 · Lo básico', lecciones: [
+    { id: 'L1', titulo: '¿Para qué sirve el orden?', min: 3, acts: [
+      { t: 'img', q: '¿Qué estación está lista para empezar el turno?', ops: ['Estación A', 'Estación B'], imgs: ['tidy', 'messy'], ok: 0, exp: 'En la estación A cada herramienta tiene su lugar y el piso está libre. Así encuentras rápido lo que necesitas.' },
+      { t: 'tf', q: 'Ordenar el área solo sirve para que se vea bien.', ok: false, exp: 'El orden también ayuda a encontrar rápido lo que necesitas y a notar a tiempo lo que está fuera de lugar.' },
+      { t: 'mc', q: 'Encuentras una herramienta que no es de tu estación. ¿Qué haces?', ops: ['La guardo en mi cajón', 'La identifico y la llevo a su lugar, o aviso a mi supervisor', 'La dejo donde está'], ok: 1, exp: 'Si la guardas o la ignoras, alguien más la buscará sin encontrarla.' }
+    ] },
+    { id: 'L2', titulo: 'Un lugar para cada cosa', min: 4, acts: [
+      { t: 'order', q: 'Ordena los pasos para registrar la entrega de turno en la bitácora demo.', items: ['Revisar los pendientes del turno', 'Anotar las novedades', 'Firmar la entrega', 'Confirmar la recepción con quien llega'], exp: 'Primero se anotan las novedades y después se firma, para que la firma cubra todo lo anotado.' },
+      { t: 'mc', q: '¿Cuál es la mejor señal de que algo tiene un lugar asignado?', ops: ['Tiene una etiqueta o una marca en su sitio', 'Está cerca de la máquina', 'Lo usa mucha gente'], ok: 0, exp: 'Una etiqueta o una marca deja claro a todos dónde va cada cosa.' },
+      { t: 'tf', q: 'Si algo no se usa en tu estación, conviene identificarlo antes de retirarlo.', ok: true, exp: 'Identificarlo evita que se pierda algo que otra área sí necesita.' }
+    ] }
+  ] },
+  { titulo: 'Nivel 2 · En tu estación', lecciones: [
+    { id: 'L3', titulo: 'Identifica lo que estorba', min: 4, acts: [
+      { t: 'hotspot', q: 'Toca las 3 situaciones que deberías reportar en esta estación.', exp: 'El líquido en el piso, las cajas inclinadas y el cable que cruza el paso pueden provocar un tropiezo o una caída. Repórtalos.' },
+      { t: 'mc', q: '¿Cuándo conviene revisar el orden de tu estación?', ops: ['Solo cuando viene una auditoría', 'Al iniciar y al terminar el turno', 'Una vez al mes'], ok: 1, exp: 'Revisar al inicio y al cierre ayuda a recibir y entregar el área en buenas condiciones.' }
+    ] },
+    { id: 'L4', titulo: 'Decisiones en el turno', min: 3, acts: [
+      { t: 'decision', q: 'Al iniciar tu turno encuentras material de otro turno en tu estación. ¿Qué haces primero?', ops: ['Lo reporto a mi supervisor antes de empezar', 'Lo muevo a un lado y empiezo', 'Espero a que alguien lo recoja'], res: ['Tu supervisor puede ubicar de quién es el material y evitar que se mezcle con el tuyo.', 'El material podría mezclarse con el tuyo y nadie sabría de dónde vino.', 'Pierdes tiempo y el problema sigue ahí.'], ok: 0, exp: 'Reportar primero evita confusiones y deja registro.' },
+      { t: 'tf', q: 'Al terminar el turno, dejar el área como la encontraste ayuda a quien llega.', ok: true, exp: 'Quien llega puede empezar a trabajar sin buscar ni acomodar.' }
+    ] }
+  ] }
+];
+CURSOS.C2.banco = [
+  { t: 'mc', q: '¿Para qué sirve, sobre todo, el orden en tu estación?', ops: ['Para que se vea bien', 'Para encontrar rápido lo que necesitas y notar lo que está fuera de lugar', 'Para cumplir con una auditoría'], ok: 1, tema: 'Lección 1' },
+  { t: 'tf', q: 'Una herramienta sin lugar asignado debe guardarse en el cajón personal.', ok: false, tema: 'Lección 1' },
+  { t: 'mc', q: '¿Qué haces con un objeto que no se usa en tu estación?', ops: ['Lo identifico antes de retirarlo', 'Lo tiro a la basura', 'Lo dejo donde está'], ok: 0, tema: 'Lección 2' },
+  { t: 'mc', q: '¿Cuándo conviene revisar el orden de tu estación?', ops: ['Al iniciar y al terminar el turno', 'Solo cuando viene una auditoría', 'Una vez al mes'], ok: 0, tema: 'Lección 3' },
+  { t: 'tf', q: 'Si encuentras material de otro turno, lo correcto es reportarlo antes de empezar.', ok: true, tema: 'Lección 4' },
+  { t: 'mc', q: 'En la entrega de turno, ¿qué va antes de firmar?', ops: ['Confirmar la recepción', 'Anotar las novedades', 'Nada: se firma primero'], ok: 1, tema: 'Lección 2' },
+  { t: 'tf', q: 'Un cable que cruza el paso es una situación que conviene reportar.', ok: true, tema: 'Lección 3' }
+];
+const lessonIds = c => c.jugable ? c.niveles.flatMap(n => n.lecciones.map(l => l.id)) : Array.from({ length: c.lecciones }, (_, i) => 'L' + (i + 1));
+const findLesson = id => CURSOS.C2.niveles.flatMap(n => n.lecciones).find(l => l.id === id);
+
+const AREAS = [{ id: 'ENS', nombre: 'Ensamble', n: 36 }, { id: 'PIN', nombre: 'Pintura', n: 18 }, { id: 'ALM', nombre: 'Almacén', n: 14 }, { id: 'MAN', nombre: 'Mantenimiento', n: 16 }, { id: 'CAL', nombre: 'Calidad', n: 12 }, { id: 'LOG', nombre: 'Logística', n: 16 }, { id: 'OFI', nombre: 'Oficinas', n: 4 }];
+const AREA = Object.fromEntries(AREAS.map(a => [a.id, a.nombre]));
+const TURNOS = ['T1', 'T2', 'T3'];
+const PUESTO_AREA = { ENS: 'Operador(a)', PIN: 'Operador(a)', ALM: 'Almacenista', MAN: 'Técnico(a) de mantenimiento', CAL: 'Inspector(a) de calidad', LOG: 'Auxiliar de logística', OFI: 'Administrativo(a)' };
+
+const CUENTAS = [
+  { id: 'rosa', persona: 'p-rosa', roles: ['trabajador'], etiqueta: 'Trabajadora · Ensamble T2' },
+  { id: 'laura', persona: 'p-laura', roles: ['supervisor', 'trabajador'], valida: ['C2', 'C4'], etiqueta: 'Supervisora y validadora' },
+  { id: 'ana', persona: 'p-ana', roles: ['rh'], etiqueta: 'Recursos Humanos' },
+  { id: 'carlos', persona: 'p-carlos', roles: ['admin'], etiqueta: 'Administrador' },
+  { id: 'ines', persona: 'p-ines', roles: ['instructor', 'trabajador'], cursos: ['C2'], etiqueta: 'Instructora' },
+  { id: 'raul', persona: 'p-raul', roles: ['auditor'], etiqueta: 'Auditor · solo lectura' },
+  { id: 'pedro', persona: 'p-pedro', roles: ['trabajador'], etiqueta: 'Contratista' }
+];
+const ROL = { admin: 'Administrador', rh: 'Recursos Humanos', instructor: 'Instructora', supervisor: 'Supervisora', auditor: 'Auditor', trabajador: 'Trabajador(a)' };
+
+/* ---------- Estado ---------- */
+let S = null;
+let U = { user: null, space: 'aprender', view: 'inicio', p: {}, player: null, exam: null, modal: null, guide: false, toast: null, inact: null, loginSel: null, loginErr: '', loginMsg: '' };
+let seq = 0;
+const uid = p => p + '-' + (++S.seq).toString(36);
+
+function seed() {
+  S = { v: 1, offset: 0, seq: 0, cfg: { aviso: 30 }, personas: [], reglas: [], asigs: [], parts: [], acreds: [], consts: [], puntos: [], bit: [], exports: [], folios: {}, rank: {}, guiaVista: false, nuevaConst: {} };
+  const R = rng(20261105);
+  const pick = a => a[Math.floor(R() * a.length)];
+  const nombres = ['Adriana', 'Alberto', 'Alejandra', 'Andrés', 'Beatriz', 'Carmen', 'César', 'Daniel', 'Diana', 'Eduardo', 'Elena', 'Fernando', 'Gabriela', 'Gerardo', 'Guadalupe', 'Iván', 'Jaime', 'Javier', 'Karla', 'Leticia', 'Lorena', 'Manuel', 'Mariana', 'Martín', 'Miguel', 'Mónica', 'Norma', 'Óscar', 'Patricia', 'Ricardo', 'Rocío', 'Sergio', 'Silvia', 'Teresa', 'Ulises', 'Verónica', 'Yolanda', 'Zaira'];
+  const apellidos = ['Aguilar', 'Benítez', 'Cabrera', 'Delgado', 'Escobar', 'Fuentes', 'Guerrero', 'Herrera', 'Ibáñez', 'Juárez', 'Lozano', 'Medina', 'Navarro', 'Ochoa', 'Pacheco', 'Quiroz', 'Ramos', 'Salinas', 'Tapia', 'Urbina', 'Valdez', 'Zamora', 'Campos', 'Rangel'];
+  const usados = new Set();
+  const nums = new Set();
+  const nuevoNum = () => { let n; do { n = String(Math.floor(R() * 9000) + 600).padStart(6, '0'); } while (nums.has(n)); nums.add(n); return n; };
+  const P = (o) => { nums.add(o.num); usados.add(o.nombre); const p = Object.assign({ tipo: 'empleado', cuenta: 'activa', ingreso: '2024-03-04', rankOptIn: R() < .65, ultimo: null }, o); p.adscripciones = p.adscripciones || [{ area: p.area, turno: p.turno, puesto: p.puesto, desde: p.ingreso, hasta: null }]; S.personas.push(p); return p; };
+  P({ id: 'p-rosa', num: '004817', nombre: 'Rosa Elena Ibarra', area: 'ENS', turno: 'T2', puesto: 'Operadora', ingreso: '2025-01-10', rankOptIn: true, ultimo: BASE, adscripciones: [{ area: 'ALM', turno: 'T1', puesto: 'Auxiliar de almacén', desde: '2025-01-10', hasta: '2026-02-28' }, { area: 'ENS', turno: 'T2', puesto: 'Operadora', desde: '2026-03-01', hasta: null }] });
+  P({ id: 'p-laura', num: '001920', nombre: 'Laura Peña', area: 'ENS', turno: 'T2', puesto: 'Supervisora', ingreso: '2019-06-17', rankOptIn: true });
+  P({ id: 'p-jorge', num: '003102', nombre: 'Jorge Torres', area: 'ENS', turno: 'T2', puesto: 'Operador', rankOptIn: true });
+  P({ id: 'p-marisol', num: '005530', nombre: 'Marisol Vega', area: 'ENS', turno: 'T2', puesto: 'Operadora', rankOptIn: true });
+  P({ id: 'p-hector', num: '002219', nombre: 'Héctor Salas', area: 'ENS', turno: 'T2', puesto: 'Líder de línea', rankOptIn: true });
+  P({ id: 'p-luis', num: '004455', nombre: 'Luis Cano', area: 'ENS', turno: 'T2', puesto: 'Operador', rankOptIn: false });
+  P({ id: 'p-adriana', num: '006041', nombre: 'Adriana Paz', area: 'ENS', turno: 'T1', puesto: 'Operadora' });
+  P({ id: 'p-pedro', num: 'C-000123', nombre: 'Pedro Núñez', tipo: 'contratista', contratista: 'Servicios Industriales Demo', vence: '2027-03-31', area: 'ENS', turno: 'T2', puesto: 'Contratista', ingreso: '2025-11-03', rankOptIn: false });
+  P({ id: 'p-ines', num: '001377', nombre: 'Inés Lara', area: 'CAL', turno: 'T1', puesto: 'Instructora de calidad', ingreso: '2018-02-05' });
+  P({ id: 'p-ana', num: '000412', nombre: 'Ana Ruiz', area: 'OFI', turno: 'T1', puesto: 'Analista de RH', ingreso: '2017-08-21', rankOptIn: false });
+  P({ id: 'p-carlos', num: '000215', nombre: 'Carlos Mora', area: 'OFI', turno: 'T1', puesto: 'Administrador de la plataforma', ingreso: '2016-01-11', rankOptIn: false });
+  P({ id: 'p-raul', num: '000533', nombre: 'Raúl Ortiz', area: 'OFI', turno: 'T1', puesto: 'Auditor interno', ingreso: '2020-09-14', rankOptIn: false });
+  for (const a of AREAS) {
+    let have = S.personas.filter(p => p.area === a.id).length;
+    while (have < a.n) {
+      let nm; do { nm = pick(nombres) + ' ' + pick(apellidos) + ' ' + pick(apellidos); } while (usados.has(nm)); usados.add(nm);
+      const turno = a.id === 'ENS' ? (have < 20 ? 'T2' : pick(['T1', 'T3'])) : pick(TURNOS);
+      const ingreso = D.add('2026-10-01', -Math.floor(R() * 2400));
+      P({ id: 'p' + (S.personas.length + 1), num: nuevoNum(), nombre: nm, area: a.id, turno, puesto: PUESTO_AREA[a.id], ingreso, cuenta: R() < .08 ? 'sin_activar' : 'activa' });
+      have++;
+    }
+  }
+  // Reglas iniciales (por área). La regla del curso C2 se crea durante la demostración.
+  const reglasIni = [
+    { id: 'R1', curso: 'C1', areas: AREAS.map(a => a.id), turnos: TURNOS, dias: 30, creada: '2025-01-15', autor: 'Ana Ruiz' },
+    { id: 'R2', curso: 'C5', areas: ['ENS', 'PIN', 'ALM', 'MAN', 'CAL', 'LOG'], turnos: TURNOS, dias: 45, creada: '2025-01-15', autor: 'Ana Ruiz' },
+    { id: 'R3', curso: 'C3', areas: ['ENS', 'ALM', 'LOG'], turnos: TURNOS, dias: 30, creada: '2025-01-15', autor: 'Ana Ruiz' },
+    { id: 'R4', curso: 'C4', areas: ['ENS', 'MAN'], turnos: TURNOS, dias: 30, creada: '2025-01-15', autor: 'Ana Ruiz' }
+  ];
+  S.reglas = reglasIni.map(r => Object.assign({ tipo: 'obligatorio', contratistas: true, estado: 'activa' }, r));
+  for (const r of S.reglas) for (const p of S.personas) if (r.areas.includes(p.area) && r.turnos.includes(p.turno)) histAsig(p, r, R);
+  // Personas con historial fijo para la demostración
+  fijar('p-rosa', 'C1', { acred: '2026-08-14', calif: 92 });
+  fijar('p-rosa', 'C5', { acred: '2025-11-20', calif: 88 });
+  fijar('p-rosa', 'C3', { acred: '2025-11-02', calif: 84, renov: true });
+  fijar('p-rosa', 'C4', { pv: '2026-10-30', calif: 86, intentoPrevio: 72, limite: '2026-11-30' });
+  fijar('p-jorge', 'C4', { acred: '2025-12-01', calif: 90 });
+  fijar('p-marisol', 'C3', { acred: '2025-11-27', calif: 82 });
+  fijar('p-marisol', 'C4', { pend: true, limite: '2026-11-30' });
+  fijar('p-hector', 'C1', { acred: '2025-11-22', calif: 95 });
+  fijar('p-hector', 'C5', { noaprob: true, limite: '2026-11-12' });
+  fijar('p-pedro', 'C1', { acred: '2025-11-24', calif: 85 });
+  fijar('p-pedro', 'C3', { pend: true, limite: '2026-11-15' });
+  fijar('p-luis', 'C4', { pv: '2026-11-04', calif: 88, limite: '2026-11-30' });
+  fijar('p-adriana', 'C4', { pv: '2026-11-02', calif: 90, limite: '2026-11-30' });
+  for (const id of ['p-laura', 'p-jorge']) for (const c of ['C1', 'C3', 'C5']) fijar(id, c, { acred: D.add(BASE, -40 - Math.floor(R() * 200)), calif: 90 });
+  fijar('p-laura', 'C4', { acred: '2026-03-10', calif: 94 });
+  // Puntos y ranking del equipo Ensamble · T2 (motivación, separado del registro oficial)
+  const equipo = S.personas.filter(p => p.area === 'ENS' && p.turno === 'T2');
+  for (const p of equipo) S.rank[p.id] = p.id === 'p-rosa' ? 0 : Math.round((40 + R() * 300) / 10) * 10;
+  S.rank['p-jorge'] = 310; S.rank['p-marisol'] = 280; S.rank['p-hector'] = 250;
+  S.puntos.push({ persona: 'p-rosa', fecha: D.add(BASE, -2), pts: 120, motivo: 'Lecciones de «Uso de la prensa demo»' });
+  S.puntos.push({ persona: 'p-rosa', fecha: '2026-08-10', pts: 1220, motivo: 'Actividades anteriores' });
+  // Bitácora inicial
+  log('Carga desde Excel', 'Personas', S.personas.length + ' personas importadas (DEMO)', 'Ana Ruiz', 'RH', '2025-01-14 10:12');
+  for (const r of S.reglas) log('Crear regla de asignación', 'Regla ' + r.id, CURSOS[r.curso].nombre + ' · ' + r.areas.length + ' áreas', 'Ana Ruiz', 'RH', r.creada + ' 11:30');
+  log('Publicar versión', 'Curso C2', 'Orden y limpieza del área · versión 3 (cambio menor)', 'Inés Lara', 'Instructora', '2026-09-30 16:05');
+  // Folios consecutivos por año (el historial fijo reemplazó algunos registros generados)
+  S.folios = {}; S.consts.sort((a, b) => a.emitida.localeCompare(b.emitida) || a.id.localeCompare(b.id)).forEach(k => { const y = k.emitida.slice(0, 4); S.folios[y] = (S.folios[y] || 0) + 1; k.folio = 'DN-' + y + '-' + String(S.folios[y]).padStart(6, '0'); });
+}
+
+function crearAsig(p, curso, reglaId, creada, limite) {
+  const a = { id: uid('as'), persona: p.id, curso, regla: reglaId, creada, limite, estado: 'activa', exencion: null, tipo: 'obligatorio' };
+  S.asigs.push(a); return a;
+}
+function crearPart(a, extra) {
+  const p = Object.assign({ id: uid('pa'), asig: a.id, persona: a.persona, curso: a.curso, version: null, inicio: null, hechas: [], intentos: [], vals: [], extra: 0, cancelada: null, acred: null, renov: false, pvDesde: null }, extra || {});
+  S.parts.push(p); return p;
+}
+function crearAcred(part, fecha) {
+  const c = CURSOS[part.curso];
+  const apr = part.intentos.find(i => i.aprobado);
+  const a = { id: uid('ac'), part: part.id, persona: part.persona, curso: part.curso, version: part.version || c.version, fecha, vence: c.vigencia ? D.months(fecha, c.vigencia) : null, calif: apr ? apr.calif : null, estado: 'vigente', tipo: 'plataforma' };
+  S.acreds.push(a); part.acred = a.id; return a;
+}
+function emitir(acred, fecha, motivo, anterior) {
+  if (!anterior) { const ya = S.consts.find(k => k.acred === acred.id && k.estado !== 'revocada' && k.estado !== 'sustituida'); if (ya) return ya; } // idempotente
+  const y = fecha.slice(0, 4); S.folios[y] = (S.folios[y] || 0) + 1;
+  const k = { id: uid('ct'), folio: 'DN-' + y + '-' + String(S.folios[y]).padStart(6, '0'), acred: acred.id, persona: acred.persona, curso: acred.curso, version: acred.version, emitida: fecha, estado: 'vigente', anterior: anterior || null, motivo: motivo || null, plantilla: 'v1', huella: null };
+  S.consts.push(k); return k;
+}
+function partCompleta(part, c, fin, calif, previo) {
+  part.version = c.version; part.inicio = D.add(fin, -6); part.hechas = lessonIds(c);
+  if (previo) part.intentos.push({ n: 1, inicio: D.add(fin, -2), fecha: D.add(fin, -2), calif: previo, aprobado: false, resp: null });
+  part.intentos.push({ n: part.intentos.length + 1, inicio: D.add(fin, -1), fecha: D.add(fin, -1), calif, aprobado: true, resp: null });
+}
+function histAsig(p, r, R) {
+  const c = CURSOS[r.curso];
+  const x = R();
+  if (x < .70) { // acreditado (vigente o vencido)
+    const fa = D.add(BASE, -(5 + Math.floor(R() * 420)));
+    const a = crearAsig(p, r.curso, r.id, D.add(fa, -25), D.add(fa, 5));
+    const part = crearPart(a); partCompleta(part, c, fa, 80 + Math.floor(R() * 21), R() < .2 ? 60 + Math.floor(R() * 19) : null);
+    if (c.practica) part.vals.push({ id: uid('va'), fecha: fa, registro: fa, validador: p.area === 'ENS' ? 'Laura Peña' : 'Supervisor(a) de ' + AREA[p.area] + ' (DEMO)', crit: c.practica.criterios.map(() => 'cumple'), res: 'competente', obs: '', foto: R() < .3, conf: true });
+    const ac = crearAcred(part, fa); emitir(ac, fa);
+    if (ac.vence && D.diff(ac.vence, BASE) <= 30) { const ren = crearPart(a, { renov: true }); if (R() < .3) { ren.inicio = D.add(BASE, -3); ren.version = c.version; ren.hechas = ['L1']; } }
+  } else if (x < .76) { // exenta
+    const a = crearAsig(p, r.curso, r.id, D.add(BASE, -60), D.add(BASE, -30)); a.exencion = { hasta: D.add(BASE, 60 + Math.floor(R() * 90)), motivo: 'Capacitación equivalente acreditada externamente (DEMO)', por: 'Ana Ruiz' };
+  } else { // en proceso o atrasada
+    const lim = D.add(BASE, -25 + Math.floor(R() * 50));
+    const a = crearAsig(p, r.curso, r.id, D.add(lim, -30), lim); const part = crearPart(a);
+    const y = R(); const L = lessonIds(c);
+    if (y < .3) { /* sin iniciar */ } else if (y < .7) { part.inicio = D.add(BASE, -Math.floor(R() * 15)); part.version = c.version; part.hechas = L.slice(0, 1 + Math.floor(R() * (L.length - 1))); }
+    else if (y < .85) { part.inicio = D.add(BASE, -12); part.version = c.version; part.hechas = L.slice(); }
+    else { part.inicio = D.add(BASE, -15); part.version = c.version; part.hechas = L.slice(); part.intentos = [1, 2, 3].map(n => ({ n, inicio: D.add(BASE, -10 + n), fecha: D.add(BASE, -10 + n), calif: 40 + n * 10, aprobado: false, resp: null })); }
+  }
+}
+function fijar(pid, curso, o) {
+  // Reemplaza el historial generado de una persona y curso por uno fijo
+  for (const a of S.asigs.filter(a => a.persona === pid && a.curso === curso)) {
+    const parts = S.parts.filter(p => p.asig === a.id).map(p => p.id);
+    S.acreds = S.acreds.filter(x => { if (parts.includes(x.part)) { S.consts = S.consts.filter(k => k.acred !== x.id); return false; } return true; });
+    S.parts = S.parts.filter(p => p.asig !== a.id);
+  }
+  S.asigs = S.asigs.filter(a => !(a.persona === pid && a.curso === curso));
+  const per = S.personas.find(p => p.id === pid); const c = CURSOS[curso];
+  const regla = S.reglas.find(r => r.curso === curso);
+  if (o.acred) {
+    const a = crearAsig(per, curso, regla ? regla.id : null, D.add(o.acred, -25), D.add(o.acred, 5));
+    const part = crearPart(a); partCompleta(part, c, o.acred, o.calif);
+    if (c.practica) part.vals.push({ id: uid('va'), fecha: o.acred, registro: o.acred, validador: 'Laura Peña', crit: c.practica.criterios.map(() => 'cumple'), res: 'competente', obs: '', foto: false, conf: true });
+    const ac = crearAcred(part, o.acred); emitir(ac, o.acred);
+    if (o.renov) crearPart(a, { renov: true });
+  } else {
+    const a = crearAsig(per, curso, regla ? regla.id : null, D.add(o.limite, -30), o.limite); const part = crearPart(a);
+    if (o.pv) { partCompleta(part, c, D.add(o.pv, 1), o.calif, o.intentoPrevio); part.intentos.forEach(i => { i.fecha = i.aprobado ? o.pv : D.add(o.pv, -1); }); part.pvDesde = o.pv; }
+    if (o.noaprob) { part.inicio = D.add(BASE, -15); part.version = c.version; part.hechas = lessonIds(c); part.intentos = [1, 2, 3].map(n => ({ n, inicio: D.add(BASE, -8 + n), fecha: D.add(BASE, -8 + n), calif: 50 + n * 8, aprobado: false, resp: null })); }
+  }
+}
+
+/* ---------- Motor de estados (reglas de la Etapa 1, documento 05) ---------- */
+const EST = { pendiente: 'Pendiente', en_curso: 'En curso', contenido_completado: 'Contenido completado', pendiente_validacion: 'Pendiente de validación', no_aprobada: 'No aprobada', acreditada: 'Acreditada', cancelada: 'Cancelada' };
+function partEstado(p) {
+  if (p.cancelada) return 'cancelada';
+  if (p.acred) return 'acreditada';
+  const c = CURSOS[p.curso];
+  if (!p.inicio && !p.intentos.length) return 'pendiente';
+  if (p.hechas.length < lessonIds(c).length) return 'en_curso';
+  const cerrados = p.intentos.filter(i => i.fecha);
+  if (c.eval && !cerrados.some(i => i.aprobado)) return cerrados.length >= c.eval.intentos + p.extra ? 'no_aprobada' : 'contenido_completado';
+  if (c.practica && !p.vals.some(v => v.res === 'competente' && !v.anulada)) return 'pendiente_validacion';
+  return 'acreditada';
+}
+function acredVigente(pid, curso, f) {
+  return S.acreds.filter(a => a.persona === pid && a.curso === curso && a.estado === 'vigente' && a.fecha <= f && (!a.vence || a.vence >= f)).sort((x, y) => y.fecha.localeCompare(x.fecha))[0] || null;
+}
+function partActual(asig) {
+  const ps = S.parts.filter(p => p.asig === asig.id);
+  return ps.filter(p => !p.cancelada && !p.acred).slice(-1)[0] || ps.slice(-1)[0] || null;
+}
+function cumplimiento(asig, f) {
+  f = f || hoy();
+  if (asig.estado === 'cancelada') return { k: 'cancelada' };
+  if (asig.exencion && asig.exencion.hasta >= f) return { k: 'exenta', fecha: asig.exencion.hasta };
+  const v = acredVigente(asig.persona, asig.curso, f);
+  if (v) { const dias = v.vence ? D.diff(v.vence, f) : null; return { k: dias !== null && dias <= S.cfg.aviso ? 'por_vencer' : 'al_dia', fecha: v.vence, acred: v }; }
+  const prev = S.acreds.filter(a => a.persona === asig.persona && a.curso === asig.curso && a.estado === 'vigente' && a.vence && a.vence < f).map(a => a.vence).sort().pop();
+  const p = partActual(asig); const sub = p ? partEstado(p) : 'pendiente';
+  if (prev) return { k: 'vencida', fecha: prev, sub, part: p };
+  if (asig.limite < f) return { k: 'atrasada', fecha: asig.limite, sub, part: p };
+  return { k: 'pendiente', fecha: asig.limite, sub, part: p };
+}
+const CUM = { al_dia: ['Al día', 'ok', 'check'], por_vencer: ['Por vencer', 'warn', 'clock'], vencida: ['Vencida', 'danger', 'alert'], atrasada: ['Atrasada', 'danger', 'alert'], pendiente: ['Pendiente', 'neutral', null], exenta: ['Exenta', 'neutral', null], cancelada: ['Cancelada', 'neutral', null] };
+function chipCum(c, corto) {
+  const [t, cl, i] = CUM[c.k];
+  let txt = t, color = cl, icon = i;
+  if (c.k === 'pendiente' && c.sub && c.sub !== 'pendiente') { txt = 'Pendiente · ' + (corto && c.sub === 'pendiente_validacion' ? 'Validación' : EST[c.sub]); if (c.sub === 'pendiente_validacion') { color = 'violet'; icon = 'users'; } if (c.sub === 'no_aprobada') color = 'danger'; }
+  return '<span class="chip ' + color + '">' + (icon ? ic(icon, 's') : '') + esc(txt) + '</span>';
+}
+function cumFecha(c) {
+  if (c.k === 'al_dia' || c.k === 'por_vencer') return c.fecha ? 'vence ' + fmt(c.fecha) : 'sin vencimiento';
+  if (c.k === 'vencida') return 'venció ' + fmt(c.fecha);
+  if (c.k === 'exenta') return 'hasta ' + fmt(c.fecha);
+  if (c.k === 'atrasada' || c.k === 'pendiente') return 'límite ' + fmt(c.fecha);
+  return '';
+}
+
+/* ---------- Alcance por rol (en producción lo aplica el servidor) ---------- */
+const persona = id => S.personas.find(p => p.id === id);
+const cuenta = () => CUENTAS.find(c => c.id === U.user);
+const yo = () => persona(cuenta().persona);
+const tiene = r => cuenta() && cuenta().roles.includes(r);
+const esAdminSpace = () => ['admin', 'rh', 'auditor', 'supervisor', 'instructor'].some(tiene);
+const soloLectura = () => tiene('auditor');
+function alcance() {
+  const c = cuenta();
+  if (tiene('admin') || tiene('rh') || tiene('auditor')) return { personas: S.personas.map(p => p.id), cursos: null, etiqueta: 'Empresa Demo Norte', nivel: 'empresa' };
+  if (tiene('supervisor')) return { personas: S.personas.filter(p => p.area === 'ENS' && p.turno === 'T2').map(p => p.id), cursos: null, etiqueta: 'Ensamble · Turno 2', nivel: 'equipo' };
+  if (tiene('instructor')) { const ids = new Set(S.asigs.filter(a => c.cursos.includes(a.curso)).map(a => a.persona)); return { personas: [...ids], cursos: c.cursos, etiqueta: 'Mis cursos: ' + c.cursos.map(x => CURSOS[x].nombre).join(', '), nivel: 'cursos' }; }
+  return { personas: [c.persona], cursos: null, etiqueta: 'Mis datos', nivel: 'propio' };
+}
+function puede(acc) {
+  const m = { regla: ['admin', 'rh'], excepcion: ['admin', 'rh'], acceso: ['admin'], reemitir: ['admin', 'rh'], revocar: ['admin', 'rh'], bitacora: ['admin', 'rh', 'auditor'] };
+  if (acc === 'validar') return !!(cuenta().valida && cuenta().valida.length);
+  return (m[acc] || []).some(tiene);
+}
+
+/* ---------- Indicadores (Etapa 1, documento 06) ---------- */
+function filas(alc, filtro) {
+  const set = new Set(alc.personas); const f = hoy();
+  return S.asigs.filter(a => set.has(a.persona) && a.estado === 'activa' && a.tipo === 'obligatorio' && (!alc.cursos || alc.cursos.includes(a.curso)) && (!filtro || filtro(a))).map(a => ({ a, c: cumplimiento(a, f), p: persona(a.persona) }));
+}
+function indicadores(rows) {
+  const n = { al_dia: 0, por_vencer: 0, vencida: 0, atrasada: 0, pendiente: 0, exenta: 0 };
+  rows.forEach(r => n[r.c.k]++);
+  const den = rows.length - n.exenta; const cumplen = n.al_dia + n.por_vencer;
+  const porPersona = {}; rows.filter(r => r.c.k !== 'exenta').forEach(r => { const x = porPersona[r.a.persona] = porPersona[r.a.persona] || { t: 0, ok: 0 }; x.t++; if (r.c.k === 'al_dia' || r.c.k === 'por_vencer') x.ok++; });
+  const pers = Object.values(porPersona); const total = pers.filter(x => x.ok === x.t).length;
+  const pv = rows.filter(r => (r.c.k === 'pendiente' || r.c.k === 'atrasada') && r.c.sub === 'pendiente_validacion');
+  const pv7 = pv.filter(r => r.c.part && r.c.part.pvDesde && D.diff(hoy(), r.c.part.pvDesde) > 7).length;
+  return { n, den, cumplen, personas: pers.length, total, pv: pv.length, pv7 };
+}
+
+/* ---------- Bitácora y persistencia ---------- */
+function log(accion, entidad, detalle, actor, rol, ts) {
+  const c = U.user ? cuenta() : null;
+  S.bit.unshift({ ts: ts || (hoy() + ' ' + hora()), actor: actor || (c ? persona(c.persona).nombre : 'Sistema'), rol: rol || (c ? c.roles.map(r => ROL[r]).join(', ') : 'Proceso automático'), accion, entidad, detalle });
+}
+let saveTimer = null;
+function save() { clearTimeout(saveTimer); saveTimer = setTimeout(() => { try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); localStorage.setItem(STORE_KEY + '-ui', JSON.stringify({ user: U.user, space: U.space, view: U.view, p: U.p })); } catch (e) { /* sin almacenamiento: la demo funciona igual */ } }, 250); }
+function load() {
+  try { const raw = localStorage.getItem(STORE_KEY); if (raw) { const x = JSON.parse(raw); if (x && x.v === 1) { S = x; const u = JSON.parse(localStorage.getItem(STORE_KEY + '-ui') || 'null'); if (u && u.user && CUENTAS.some(c => c.id === u.user)) Object.assign(U, u); return; } } } catch (e) { /* ignorar */ }
+  seed();
+}
+
+/* ---------- Acciones de dominio ---------- */
+function procesoDiario() {
+  // Simula el proceso en segundo plano: crea participaciones de renovación dentro de la ventana de aviso
+  const f = hoy(); let n = 0;
+  for (const a of S.asigs.filter(a => a.estado === 'activa')) {
+    const v = acredVigente(a.persona, a.curso, f) || S.acreds.filter(x => x.persona === a.persona && x.curso === a.curso && x.estado === 'vigente').sort((x, y) => y.fecha.localeCompare(x.fecha))[0];
+    if (!v || !v.vence || D.diff(v.vence, f) > S.cfg.aviso) continue;
+    const abiertas = S.parts.filter(p => p.asig === a.id && !p.cancelada && !p.acred);
+    if (!abiertas.length) { crearPart(a, { renov: true }); a.limite = v.vence > a.limite ? v.vence : a.limite; n++; }
+  }
+  if (n) log('Proceso diario (simulado)', 'Renovaciones', n + ' participaciones de renovación creadas', 'Sistema', 'Proceso automático');
+}
+function aplicarRegla(r) {
+  let creadas = 0, vig = 0;
+  for (const p of S.personas) {
+    if (!r.areas.includes(p.area) || !r.turnos.includes(p.turno)) continue;
+    if (p.tipo === 'contratista' && !r.contratistas) continue;
+    if (S.asigs.some(a => a.persona === p.id && a.curso === r.curso && a.estado === 'activa')) continue; // una sola asignación por persona y curso
+    const a = crearAsig(p, r.curso, r.id, hoy(), D.add(hoy(), r.dias)); a.nueva = true;
+    if (acredVigente(p.id, r.curso, hoy())) vig++; else crearPart(a);
+    creadas++;
+  }
+  return { creadas, vig };
+}
+function vistaPreviaRegla(r) {
+  const out = [];
+  for (const p of S.personas) {
+    if (!r.areas.includes(p.area) || !r.turnos.includes(p.turno)) continue;
+    if (p.tipo === 'contratista' && !r.contratistas) continue;
+    const ya = S.asigs.some(a => a.persona === p.id && a.curso === r.curso && a.estado === 'activa');
+    out.push({ p, ya, vig: !!acredVigente(p.id, r.curso, hoy()) });
+  }
+  return out;
+}
+function asigDe(pid, curso) { return S.asigs.find(a => a.persona === pid && a.curso === curso && a.estado === 'activa'); }
+function marcarInicio(part) { if (!part.inicio) { part.inicio = hoy(); part.version = CURSOS[part.curso].version; log('Iniciar curso', 'Participación', CURSOS[part.curso].nombre + ' · versión ' + part.version); } }
+function puntosHoy(pid) { return S.puntos.filter(x => x.persona === pid && x.fecha === hoy()).reduce((s, x) => s + x.pts, 0); }
+function darPuntos(pid, pts, motivo) { const tope = 200; const ya = puntosHoy(pid); const dar = Math.max(0, Math.min(pts, tope - ya)); if (dar) S.puntos.push({ persona: pid, fecha: hoy(), pts: dar, motivo }); return dar; }
+function acreditar(part, fecha) {
+  const ac = crearAcred(part, fecha);
+  log('Acreditación', 'Participación', persona(part.persona).nombre + ' · ' + CURSOS[part.curso].nombre + ' v' + ac.version + ' · vence ' + fmt(ac.vence), 'Sistema', 'Regla automática');
+  const k = emitir(ac, hoy()); k.estado = 'generando';
+  setTimeout(() => { k.estado = 'vigente'; S.nuevaConst[part.persona] = k.id; huella(k).then(h => { k.huella = h; save(); render(); }); log('Emitir constancia', 'Constancia ' + k.folio, persona(k.persona).nombre + ' · ' + CURSOS[k.curso].nombre + ' (emisión automática)', 'Sistema', 'Proceso automático'); save(); render(); }, 1200);
+  return ac;
+}
+async function huella(k) {
+  const datos = JSON.stringify({ folio: k.folio, persona: persona(k.persona).num, curso: k.curso, version: k.version, emitida: k.emitida, acred: k.acred });
+  try { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(datos)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); } catch (e) { return null; }
+}
+
+/* ---------- Descargas: capacidad «downloads» en la página publicada; enlace normal en local ---------- */
+const dlPromise = (window.claude && window.claude.use) ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null);
+async function guardar(nombre, blob) {
+  const dl = await dlPromise;
+  if (dl) {
+    try { await dl.save({ filename: nombre, data: blob }); toast('Listo: ' + nombre); }
+    catch (e) { toast(e && e.code === 'declined' ? 'Descarga cancelada' : 'No se pudo descargar en esta vista (' + (e && e.code || 'error') + ')'); }
+    return;
+  }
+  const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = nombre; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000);
+  toast('Descargado: ' + nombre);
+}
+
+/* ---------- Ilustraciones planas ---------- */
+function svgEstacion(tipo) {
+  const ord = tipo === 'tidy';
+  return '<svg viewBox="0 0 160 110" role="img" aria-label="' + (ord ? 'Estación con herramientas colgadas en su lugar y piso libre' : 'Estación con herramientas y cajas en desorden') + '">' +
+    '<rect width="160" height="110" fill="var(--sc-wall)"/><rect y="80" width="160" height="30" fill="var(--sc-floor)"/>' +
+    '<rect x="20" y="18" width="120" height="34" rx="6" fill="var(--surface)"/>' +
+    (ord ? '<rect x="32" y="24" width="6" height="22" rx="3" fill="var(--primary)"/><rect x="50" y="24" width="6" height="22" rx="3" fill="var(--coral)"/><rect x="68" y="24" width="6" height="22" rx="3" fill="var(--violet)"/><circle cx="96" cy="35" r="9" fill="var(--sun)"/><rect x="114" y="26" width="16" height="18" rx="4" fill="var(--mint)"/>'
+      : '<rect x="40" y="30" width="6" height="22" rx="3" fill="var(--primary)" transform="rotate(35 43 41)"/><circle cx="110" cy="44" r="8" fill="var(--sun)"/>') +
+    '<rect x="14" y="62" width="132" height="8" rx="4" fill="var(--sc-steel)"/><rect x="24" y="70" width="6" height="14" fill="var(--sc-steel)"/><rect x="130" y="70" width="6" height="14" fill="var(--sc-steel)"/>' +
+    (ord ? '' : '<rect x="48" y="84" width="22" height="16" rx="3" fill="var(--sc-box)"/><rect x="58" y="72" width="16" height="12" rx="3" fill="var(--sc-box-2)" transform="rotate(-12 66 78)"/><rect x="96" y="92" width="26" height="6" rx="3" fill="var(--coral)" transform="rotate(14 109 95)"/><rect x="62" y="50" width="20" height="12" rx="3" fill="var(--violet)"/>') +
+    '</svg>';
+}
+const HS = [
+  { id: 'derrame', label: 'Líquido derramado en el piso', ok: true, cx: 92, cy: 208, r: 36 },
+  { id: 'cajas', label: 'Cajas apiladas inclinadas', ok: true, cx: 292, cy: 118, r: 50 },
+  { id: 'cable', label: 'Cable cruzando el paso', ok: true, cx: 270, cy: 200, r: 36 },
+  { id: 'bote', label: 'Bote de basura con tapa', ok: false },
+  { id: 'reloj', label: 'Reloj en la pared', ok: false },
+  { id: 'caja', label: 'Caja de herramientas sobre la mesa', ok: false }
+];
+function svgEscena(found) {
+  const mark = h => found.includes(h.id) ? '<circle cx="' + h.cx + '" cy="' + h.cy + '" r="' + (h.r - 6) + '" fill="none" stroke="var(--mint)" stroke-width="5"/><circle cx="' + (h.cx + h.r - 12) + '" cy="' + (h.cy - h.r + 12) + '" r="12" fill="var(--mint)"/><path d="m' + (h.cx + h.r - 18) + ' ' + (h.cy - h.r + 12) + ' 4 4 8-8" stroke="var(--on-color)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' : '';
+  return '<svg viewBox="0 0 360 250" role="group" aria-label="Estación de trabajo ilustrada (DEMO)" data-act="hsMiss">' +
+    '<rect width="360" height="250" fill="var(--sc-wall)"/><rect y="168" width="360" height="82" fill="var(--sc-floor)"/>' +
+    '<circle cx="320" cy="34" r="16" fill="var(--surface)"/><path d="M320 26v8l6 4" stroke="var(--sc-steel)" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+    '<rect x="34" y="96" width="176" height="12" rx="6" fill="var(--sc-steel)"/><rect x="46" y="108" width="9" height="62" rx="3" fill="var(--sc-steel)"/><rect x="190" y="108" width="9" height="62" rx="3" fill="var(--sc-steel)"/>' +
+    '<rect x="62" y="68" width="50" height="28" rx="7" fill="var(--coral)"/><rect x="72" y="60" width="30" height="10" rx="4" fill="var(--coral-ink)"/>' +
+    '<rect x="128" y="76" width="58" height="20" rx="6" fill="var(--primary)"/>' +
+    '<rect x="222" y="128" width="30" height="42" rx="6" fill="var(--mint)"/><rect x="218" y="122" width="38" height="9" rx="4" fill="var(--ok-ink)"/>' +
+    '<g transform="rotate(-7 292 120)"><rect x="262" y="128" width="64" height="42" rx="6" fill="var(--sc-box)"/><rect x="268" y="88" width="58" height="40" rx="6" fill="var(--sc-box-2)"/><rect x="272" y="52" width="54" height="36" rx="6" fill="var(--sc-box)"/></g>' +
+    '<path d="M196 176c30 16 66 6 88 28s44 12 76 8" fill="none" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/>' +
+    '<ellipse cx="92" cy="210" rx="46" ry="12" fill="var(--sc-water)"/>' +
+    HS.filter(h => h.ok).map(mark).join('') +
+    HS.filter(h => h.ok).map(h => '<circle class="hs-hit" cx="' + h.cx + '" cy="' + h.cy + '" r="' + h.r + '" data-act="hs" data-id="' + h.id + '" tabindex="0" role="button" aria-label="' + esc(h.label) + '"/>').join('') +
+    '</svg>';
+}
+
+/* =====================================================================
+   RENDER
+   ===================================================================== */
+function render() {
+  const ae = document.activeElement; const fid = ae && ae.id; const sel = fid && ae.selectionStart != null ? [ae.selectionStart, ae.selectionEnd] : null;
+  $('#bar').innerHTML = renderBar();
+  const app = $('#app');
+  if (!U.user) app.innerHTML = renderLogin();
+  else if (U.player) app.innerHTML = renderPlayer();
+  else if (U.exam) app.innerHTML = renderExam();
+  else if (U.space === 'admin') app.innerHTML = renderAdmin();
+  else app.innerHTML = renderLearn();
+  $('#ov').innerHTML = renderOverlay();
+  if (fid) { const el = document.getElementById(fid); if (el) { el.focus(); if (sel && el.setSelectionRange) try { el.setSelectionRange(sel[0], sel[1]); } catch (e) { } } }
+  document.documentElement.style.setProperty('--bar-h', $('#bar').offsetHeight + 'px');
+}
+function renderBar() {
+  const opts = '<option value="">— Pantalla de acceso —</option>' + CUENTAS.map(c => '<option value="' + c.id + '"' + (U.user === c.id ? ' selected' : '') + '>' + esc(persona(c.persona).nombre + ' · ' + c.etiqueta) + '</option>').join('');
+  return '<div class="bar-in wrap">' +
+    '<span class="bar-brand"><svg class="ic" style="width:26px;height:26px"><use href="#logo"/></svg><span>Oficio</span></span><span class="proto-tag">PROTOTIPO · DATOS FICTICIOS</span>' +
+    '<button class="bar-btn bar-toggle" data-act="barToggle" aria-expanded="' + !!U.barOpen + '" aria-controls="bar-ctrls">' + ic(U.barOpen ? 'x' : 'sliders', 's') + 'Controles</button>' +
+    '<span class="bar-who">' + (U.user ? esc(yo().nombre) + ' · ' : '') + fmt(hoy()) + '</span>' +
+    '<div class="bar-ctrls' + (U.barOpen ? ' open' : '') + '" id="bar-ctrls">' +
+    '<span class="bar-grp"><label for="ver-como">Ver como</label><select id="ver-como" data-chg="verComo">' + opts + '</select></span>' +
+    '<span class="bar-grp"><span>Fecha simulada</span><span class="bar-date">' + fmt(hoy()) + '</span>' +
+    '<button class="bar-btn" data-act="dia" data-n="1">+1 día</button><button class="bar-btn" data-act="dia" data-n="30">+30 días</button><button class="bar-btn" data-act="dia" data-n="365">+1 año</button>' + (S.offset ? '<button class="bar-btn" data-act="dia" data-n="0">Volver al 5 nov</button>' : '') + '</span>' +
+    '<span class="bar-sp"></span>' +
+    '<button class="bar-btn hl" data-act="guia">' + ic('guide', 's') + 'Guía de la demo</button>' +
+    '<button class="bar-btn" data-act="inactividad" title="Probar el cierre por inactividad de un equipo compartido">' + ic('clock', 's') + 'Inactividad</button>' +
+    '<button class="bar-btn" data-act="reiniciar">' + ic('reset', 's') + 'Reiniciar</button></div></div>';
+}
+
+/* ---------- Acceso ---------- */
+function renderLogin() {
+  const sel = U.loginSel ? CUENTAS.find(c => c.id === U.loginSel) : null;
+  return '<div class="login wrap"><form class="login-card" data-submit="entrar" novalidate>' +
+    '<div class="brand-lg"><svg style="width:52px;height:52px"><use href="#logo"/></svg><div><b>Oficio</b><div class="muted">Capacitación · Grupo Demo</div></div></div>' +
+    (U.loginMsg ? '<div class="notice ok">' + ic('shield') + '<span>' + esc(U.loginMsg) + '</span></div>' : '') +
+    '<div class="notice info">' + ic('users') + '<span><b>Equipo compartido.</b> Tu sesión se cerrará si dejas de usarlo.</span></div>' +
+    '<h1 style="font-size:30px">Entra a tu cuenta</h1>' +
+    '<label class="field"><span>Empresa</span><select class="input" id="l-emp" name="emp"><option>Empresa Demo Norte</option></select></label>' +
+    '<label class="field"><span>Número de empleado</span><input class="input mono" id="l-num" name="num" autocomplete="off" inputmode="text" value="' + esc(sel ? persona(sel.persona).num : '') + '"></label>' +
+    '<label class="field"><span>Frase de acceso</span><input class="input" id="l-pass" name="pass" type="password" autocomplete="off" value="' + (sel ? 'frase de ejemplo' : '') + '"></label>' +
+    (U.loginErr ? '<div class="notice danger" role="alert">' + ic('alert') + '<span>' + esc(U.loginErr) + '</span></div>' : '') +
+    '<button class="btn pri block" type="submit">Entrar</button>' +
+    '<div class="card" style="display:flex;gap:10px">' + ic('key') + '<div><b>¿Olvidaste tu frase de acceso?</b><div class="muted">Acude con el administrador de tu planta con tu gafete o identificación.</div></div></div>' +
+    '<div class="stack"><span class="eyebrow">Cuentas de demostración</span><div class="demo-accounts">' + CUENTAS.map(c => '<button type="button" class="acc-chip" data-act="pickAcc" data-id="' + c.id + '" aria-pressed="' + (U.loginSel === c.id) + '">' + esc(persona(c.persona).nombre) + '<small>' + esc(c.etiqueta) + '</small></button>').join('') + '</div>' +
+    '<p class="demo-note" style="margin:0">Inicio de sesión simulado: cualquier frase funciona. En la versión real habrá activación con ficha, frase de acceso y segundo factor para roles administrativos.</p></div>' +
+    '</form></div>';
+}
+
+/* ---------- Aprender ---------- */
+function headerLearn(titulo, sub) {
+  const p = yo(); const ini = p.nombre.split(' ').map(x => x[0]).slice(0, 2).join('');
+  return '<div class="lhead"><span class="avatar" aria-hidden="true">' + esc(ini) + '</span><div class="grow"><h1>' + esc(titulo) + '</h1><div class="muted">' + esc(sub) + '</div></div>' +
+    (esAdminSpace() ? '<span class="mode-sw" role="group" aria-label="Espacio"><button aria-pressed="true">Aprender</button><button data-act="space" data-s="admin" aria-pressed="false">Administrar</button></span>' : '') +
+    '<button class="salir" data-act="salir">' + ic('out', 's') + 'Salir</button></div>';
+}
+function misAsigs(pid) { return S.asigs.filter(a => a.persona === pid && a.estado === 'activa').map(a => ({ a, c: cumplimiento(a), part: partActual(a) })); }
+function lnav(cur) {
+  const it = [['inicio', 'home', 'Inicio'], ['cursos', 'book', 'Mis cursos'], ['logros', 'award', 'Logros'], ['historial', 'doc', 'Historial']];
+  return '<nav class="lnav" aria-label="Navegación">' + it.map(([v, i, t]) => '<button data-act="go" data-v="' + v + '"' + (cur === v ? ' aria-current="page"' : '') + '>' + ic(i) + t + '</button>').join('') + '</nav>';
+}
+function courseCard(x, extra) {
+  const c = CURSOS[x.a.curso]; const L = lessonIds(c).length; const done = x.part ? x.part.hechas.length : L;
+  const pr = (x.c.k === 'al_dia' || x.c.k === 'por_vencer') ? 100 : Math.round(done / L * 100);
+  return '<button class="ccard" data-act="curso" data-a="' + x.a.id + '"><span class="tile t-' + c.color + '">' + ic(c.icon) + '</span><span class="grow"><span class="t">' + esc(c.nombre) + '</span><span class="m" style="display:block">' + (extra || ((x.part && x.part.renov ? 'Renovación · ' : '') + pr + ' % · ' + cumFecha(x.c))) + '</span><span style="display:block;margin-top:8px">' + chipCum(x.c) + '</span></span>' + ic('chev', 'muted') + '</button>';
+}
+function urg(x) { const o = { vencida: 0, atrasada: 1, pendiente: 2, por_vencer: 3, exenta: 5, al_dia: 6 }; return o[x.c.k] * 1e6 + (x.c.fecha ? D.t(x.c.fecha) / 864e5 : 9e5); }
+function renderLearn() {
+  const v = U.view; const p = yo();
+  let body = '';
+  if (v === 'curso') body = viewCurso();
+  else if (v === 'cursos') body = viewMisCursos();
+  else if (v === 'logros') body = viewLogros();
+  else if (v === 'historial') body = viewHistorial();
+  else if (v === 'resultado') body = viewResultado();
+  else body = viewInicio();
+  return '<div class="learn wrap">' + body + '</div>' + (v === 'curso' || v === 'resultado' ? '' : lnav(v === 'inicio' ? 'inicio' : v));
+}
+function viewInicio() {
+  const p = yo(); const xs = misAsigs(p.id);
+  const pend = xs.filter(x => ['vencida', 'atrasada', 'pendiente', 'por_vencer'].includes(x.c.k)).sort((a, b) => urg(a) - urg(b));
+  const cont = xs.filter(x => x.part && CURSOS[x.a.curso].jugable && ['en_curso', 'pendiente', 'contenido_completado'].includes(partEstado(x.part)) && x.c.k !== 'al_dia').sort((a, b) => (b.part.inicio ? 1 : 0) - (a.part.inicio ? 1 : 0))[0];
+  let h = headerLearn('Hola, ' + p.nombre.split(' ')[0], AREA[p.area] + ' · Turno ' + p.turno.slice(1) + (p.tipo === 'contratista' ? ' · ' + p.num : ''));
+  if (cont) {
+    const c = CURSOS[cont.a.curso]; const L = lessonIds(c); const sig = L.find(id => !cont.part.hechas.includes(id)); const ls = sig ? findLesson(sig) : null; const pr = Math.round(cont.part.hechas.length / L.length * 100);
+    h += '<section class="hero"><span class="hero-dots" aria-hidden="true"></span><span class="eyebrow">' + (cont.part.inicio ? 'Continúa donde te quedaste' : 'Nuevo para ti') + '</span><h2>' + esc(c.nombre) + '</h2><div>' + (ls ? 'Lección ' + (L.indexOf(sig) + 1) + ' de ' + L.length + ' · ' + esc(ls.titulo) + ' · ' + ls.min + ' min' : 'Lecciones terminadas: falta la evaluación') + '</div><div class="bar-p" role="progressbar" aria-valuenow="' + pr + '" aria-valuemin="0" aria-valuemax="100"><i style="width:' + pr + '%"></i></div>' +
+      '<button class="btn" data-act="' + (sig ? 'leccion' : 'curso') + '" data-a="' + cont.a.id + '" data-l="' + (sig || '') + '">' + ic('play') + (sig ? (cont.part.inicio ? 'Continuar' : 'Empezar') : 'Ver curso') + '</button></section>';
+  }
+  const porConf = S.parts.filter(x => x.persona === p.id).flatMap(x => x.vals.filter(v => !v.conf && !v.disp && !v.anulada).map(v => ({ x, v })));
+  for (const { x, v } of porConf) h += '<div class="notice violet">' + ic('flag') + '<div class="grow"><b>Confirma tu práctica.</b> ' + esc(v.validador) + ' registró tu práctica de «' + esc(CURSOS[x.curso].nombre) + '» el ' + fmt(v.fecha) + '. ¿Ocurrió así?<div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn pri sm" data-act="confPractica" data-p="' + x.id + '" data-v="' + v.id + '">Sí, la realicé</button><button class="btn ghost sm" data-act="dispPractica" data-p="' + x.id + '" data-v="' + v.id + '">No reconozco este registro</button></div></div></div>';
+  const nk = S.nuevaConst[p.id] && S.consts.find(k => k.id === S.nuevaConst[p.id]);
+  if (nk && nk.estado === 'vigente') h += '<div class="notice ok">' + ic('award') + '<div class="grow"><b>¡Nueva constancia!</b> Acreditaste «' + esc(CURSOS[nk.curso].nombre) + '». Folio <span class="mono">' + nk.folio + '</span>.<div style="margin-top:8px"><button class="btn pri sm" data-act="verConst" data-k="' + nk.id + '">Ver constancia</button></div></div></div>';
+  h += '<div class="sec-h"><h3>Pendientes</h3><span class="muted">' + pend.length + (pend.length === 1 ? ' curso' : ' cursos') + '</span></div>';
+  if (!pend.length) h += '<div class="card empty"><span class="shape">' + ic('check', 'xl') + '</span><h3>Estás al día</h3><p class="muted" style="margin:0">No tienes cursos pendientes. Cuando te asignen uno, aparecerá aquí.</p><button class="btn soft" data-act="go" data-v="historial">Ver mi historial</button></div>';
+  else h += '<div class="stack">' + pend.map(x => courseCard(x)).join('') + '</div>';
+  const sem = S.puntos.filter(x => x.persona === p.id && D.diff(hoy(), x.fecha) < 7 && x.fecha <= hoy()).reduce((s, x) => s + x.pts, 0);
+  h += '<button class="ccard" data-act="go" data-v="logros"><span class="tile t-sun">' + ic('star') + '</span><span class="grow"><span class="t">' + sem + ' puntos esta semana</span><span class="m" style="display:block">Los puntos motivan; no cuentan para acreditar.</span></span>' + ic('chev', 'muted') + '</button>';
+  return h;
+}
+function viewMisCursos() {
+  const p = yo(); const xs = misAsigs(p.id); const tab = U.p.tab || 'hacer';
+  const lista = tab === 'hacer' ? xs.filter(x => !['al_dia', 'exenta'].includes(x.c.k)) : xs.filter(x => ['al_dia', 'por_vencer'].includes(x.c.k));
+  return headerLearn('Mis cursos', xs.length + ' asignados') +
+    '<div class="tabs" role="group"><button data-act="tab" data-t="hacer" aria-pressed="' + (tab === 'hacer') + '">Por hacer</button><button data-act="tab" data-t="ok" aria-pressed="' + (tab === 'ok') + '">Acreditados</button></div>' +
+    (lista.length ? '<div class="stack">' + lista.sort((a, b) => urg(a) - urg(b)).map(x => courseCard(x)).join('') + '</div>' : '<div class="card empty"><span class="shape">' + ic('book', 'xl') + '</span><h3>Nada por aquí</h3><p class="muted" style="margin:0">' + (tab === 'hacer' ? 'No tienes cursos por hacer.' : 'Aún no acreditas cursos vigentes.') + '</p></div>');
+}
+function viewCurso() {
+  const a = S.asigs.find(x => x.id === U.p.a); if (!a) return '';
+  const c = CURSOS[a.curso]; const cu = cumplimiento(a); const part = partActual(a); const est = part ? partEstado(part) : 'pendiente';
+  const L = lessonIds(c); const hechas = part ? part.hechas : []; const pr = (cu.k === 'al_dia' || cu.k === 'por_vencer') ? 100 : Math.round(hechas.length / L.length * 100);
+  const vigente = cu.k === 'al_dia' || cu.k === 'por_vencer';
+  let h = '<div class="lhead"><button class="iconbtn" data-act="go" data-v="inicio" aria-label="Volver">' + ic('back') + '</button><span class="tile t-' + c.color + '">' + ic(c.icon) + '</span><div class="grow"><h1 style="font-size:22px">' + esc(c.nombre) + '</h1><div class="muted">Versión ' + (part && part.version || c.version) + ' · ' + cumFecha(cu) + '</div></div><button class="salir" data-act="salir">' + ic('out', 's') + 'Salir</button></div>';
+  h += '<div class="card stack"><div class="row"><b class="grow">Avance del curso</b><b class="num">' + pr + ' %</b></div><div class="bar-p"><i style="width:' + pr + '%"></i></div>' + chipCum(cu).replace('<span', '<span style="align-self:flex-start"') +
+    '<div class="muted" style="font-size:14px">Para acreditar: termina las lecciones' + (c.eval ? ', aprueba la evaluación con ' + c.eval.min + ' o más' : '') + (c.practica ? ' y realiza tu práctica con un validador autorizado' : '') + '. <span class="demo-note">(Criterios ficticios de ejemplo.)</span></div></div>';
+  if (!c.jugable) {
+    h += '<div class="notice info">' + ic('info') + '<span>El contenido de este curso no está incluido en el prototipo. Para el recorrido completo usa «Orden y limpieza del área».</span></div>';
+  }
+  h += '<div class="route">';
+  const niveles = c.jugable ? c.niveles : [{ titulo: 'Lecciones', lecciones: L.map((id, i) => ({ id, titulo: 'Lección ' + (i + 1) + ' (contenido no incluido)', min: 4 })) }];
+  let primera = true;
+  for (const n of niveles) {
+    h += '<div class="lvl">' + esc(n.titulo) + '</div>';
+    for (const l of n.lecciones) {
+      const done = hechas.includes(l.id) || (vigente && !part) || (vigente && part && part.acred);
+      const cur = !done && primera && c.jugable && part && !part.acred && !part.cancelada; if (cur) primera = false;
+      const lock = !done && !cur;
+      h += '<button class="st ' + (done ? 'done' : cur ? 'cur' : '') + '" ' + (lock || !c.jugable ? 'disabled' : '') + ' data-act="leccion" data-a="' + a.id + '" data-l="' + l.id + '"><span class="node">' + ic(done ? 'check' : cur ? 'play' : 'lock', 's') + '</span><span class="nm">' + esc(l.titulo) + '<small>' + (done ? 'Completada' : l.min + ' min') + '</small></span>' + (cur ? '<span class="chip primary">' + (hechas.length ? 'Continuar' : 'Empezar') + '</span>' : '') + '</button>';
+    }
+  }
+  h += '<div class="lvl">Acreditación</div>';
+  if (c.eval) {
+    const closed = part ? part.intentos.filter(i => i.fecha) : []; const ok = closed.some(i => i.aprobado) || (vigente && (!part || part.acred));
+    const disp = part && est === 'contenido_completado' && c.jugable;
+    h += '<button class="st ' + (ok ? 'done' : disp ? 'cur' : '') + '" ' + (disp ? '' : 'disabled') + ' data-act="preExamen" data-a="' + a.id + '"><span class="node">' + ic(ok ? 'check' : disp ? 'play' : 'doc', 's') + '</span><span class="nm">Evaluación<small>' + (ok ? 'Aprobada' : est === 'no_aprobada' ? 'Intentos agotados: tu instructor revisará tu caso' : disp ? 'Lista para presentar · intentos restantes: ' + (c.eval.intentos + part.extra - closed.length) : 'Se habilita al terminar las lecciones') + '</small></span>' + (disp ? '<span class="chip primary">Presentar</span>' : '') + '</button>';
+  }
+  if (c.practica) {
+    const ok = part && part.vals.some(v => v.res === 'competente' && !v.anulada) || (vigente && (!part || part.acred));
+    h += '<div class="st ' + (ok ? 'done' : est === 'pendiente_validacion' ? 'cur' : '') + '"><span class="node">' + ic(ok ? 'check' : 'users', 's') + '</span><span class="nm">Validación práctica<small>' + (ok ? 'Competente' : est === 'pendiente_validacion' ? 'Pendiente: un validador autorizado la registrará en tu estación' : 'Con un validador autorizado') + '</small></span></div>';
+  }
+  h += '</div>';
+  return h;
+}
+function viewResultado() {
+  const part = S.parts.find(x => x.id === U.p.part); const c = CURSOS[part.curso]; const it = part.intentos.filter(i => i.fecha).slice(-1)[0];
+  const est = partEstado(part); const restantes = c.eval.intentos + part.extra - part.intentos.filter(i => i.fecha).length;
+  let h = '<div class="lhead"><button class="iconbtn" data-act="go" data-v="inicio" aria-label="Volver">' + ic('back') + '</button><div class="grow"><h1 style="font-size:22px">Resultado</h1><div class="muted">' + esc(c.nombre) + ' · versión ' + part.version + '</div></div></div>';
+  if (it.aprobado) {
+    h += '<div class="card done-hero"><div class="burst" aria-hidden="true">' + confeti() + '<span class="core">' + ic('check', 'xl') + '</span></div><h2 style="font-size:28px">Aprobaste la evaluación</h2><div class="muted">Calificación <b style="color:var(--ink)">' + Math.round(it.calif) + '</b> · mínima ' + c.eval.min + ' · intento ' + it.n + '</div></div>';
+    h += '<div class="card"><div class="crit"><span class="dot" style="background:var(--ok-soft);color:var(--ok-ink)">' + ic('check', 's') + '</span><span class="grow">Lecciones</span><span class="chip ok">Completadas</span></div><div class="crit"><span class="dot" style="background:var(--ok-soft);color:var(--ok-ink)">' + ic('check', 's') + '</span><span class="grow">Evaluación</span><span class="chip ok">Aprobada</span></div>' +
+      (c.practica ? '<div class="crit"><span class="dot" style="background:var(--violet-soft);color:var(--violet-ink)">' + ic('users', 's') + '</span><span class="grow">Validación práctica</span><span class="chip violet">Pendiente</span></div>' : '') + '</div>';
+    h += est === 'acreditada' ? '<div class="notice ok">' + ic('award') + '<span><b>Acreditaste el curso.</b> Tu constancia se está generando.</span></div>' : '<div class="notice violet">' + ic('info') + '<span><b>Aún no acreditas el curso.</b> Un validador autorizado registrará tu práctica en tu estación. Te avisaremos para que la confirmes.</span></div>';
+  } else {
+    const temas = [...new Set((it.resp || []).filter(r => !r.ok).map(r => r.tema))];
+    h += '<div class="card done-hero"><span class="tile t-sun" style="width:72px;height:72px;border-radius:22px">' + ic('target', 'xl') + '</span><h2 style="font-size:26px">Aún no apruebas</h2><div class="muted">Calificación <b style="color:var(--ink)">' + Math.round(it.calif) + '</b> · mínima ' + c.eval.min + '</div></div>';
+    h += '<div class="card stack"><b>Repasa estos temas</b>' + (temas.length ? temas.map(t => '<span class="chip coral" style="align-self:flex-start">' + esc(t) + '</span>').join('') : '<span class="muted">Revisa las lecciones del curso.</span>') + '</div>';
+    h += est === 'no_aprobada' ? '<div class="notice danger">' + ic('alert') + '<span><b>Agotaste tus intentos.</b> Tu instructor revisará tu caso y podrá autorizar intentos adicionales.</span></div>' : '<div class="notice info">' + ic('info') + '<span>Te quedan <b>' + restantes + '</b> ' + (restantes === 1 ? 'intento' : 'intentos') + '. Repasa y vuelve a intentarlo cuando estés listo.</span></div>';
+  }
+  h += '<button class="btn pri block" data-act="go" data-v="inicio">Volver al inicio</button>';
+  return h;
+}
+function confeti() { const cols = ['var(--coral)', 'var(--sun)', 'var(--primary)', 'var(--violet)', 'var(--mint)']; let o = ''; for (let i = 0; i < 10; i++) { const ang = i / 10 * Math.PI * 2; const r = 52 + (i % 3) * 6; o += '<i style="left:' + (52 + Math.cos(ang) * r) + 'px;top:' + (52 + Math.sin(ang) * r) + 'px;background:' + cols[i % 5] + ';border-radius:' + (i % 2 ? '50%' : '4px') + ';animation-delay:' + (i * 30) + 'ms"></i>'; } return o; }
+function insignias(pid) {
+  const parts = S.parts.filter(x => x.persona === pid);
+  const lecciones = S.puntos.some(x => x.persona === pid && /Lección/.test(x.motivo));
+  const perfecta = S.puntos.some(x => x.persona === pid && /perfecta/.test(x.motivo));
+  const acreditado = S.acreds.some(a => a.persona === pid && a.estado === 'vigente');
+  const primera = parts.some(x => { const i = x.intentos.filter(t => t.fecha); return i.length && i[0].aprobado; });
+  const puntual = S.acreds.some(a => { const as = S.asigs.find(s => s.persona === pid && s.curso === a.curso); return a.persona === pid && as && a.fecha <= as.limite; });
+  return [['Primera lección', 'flag', 't-coral', lecciones], ['Lección perfecta', 'star', 't-sun', perfecta], ['Curso acreditado', 'award', 't-primary', acreditado], ['A la primera', 'target', 't-violet', primera], ['Puntual', 'cal', 't-mint', puntual], ['Renovación a tiempo', 'reset', 't-coral', false]];
+}
+function viewLogros() {
+  const p = yo(); const sem = S.puntos.filter(x => x.persona === p.id && D.diff(hoy(), x.fecha) < 7 && x.fecha <= hoy()).reduce((s, x) => s + x.pts, 0);
+  const total = S.puntos.filter(x => x.persona === p.id).reduce((s, x) => s + x.pts, 0);
+  const ins = insignias(p.id);
+  let h = headerLearn('Logros', 'Puntos e insignias') +
+    '<div class="row" style="align-items:stretch"><div class="card grow"><div class="eyebrow">Esta semana</div><div class="big-num num">' + sem + '</div><div class="muted">puntos</div></div><div class="card grow"><div class="eyebrow">Total</div><div class="big-num num" style="color:var(--ink)">' + total.toLocaleString('es-MX') + '</div><div class="muted">puntos</div></div></div>' +
+    '<div class="sec-h"><h3>Insignias</h3><span class="muted">' + ins.filter(x => x[3]).length + ' de ' + ins.length + '</span></div><div class="badges">' +
+    ins.map(([t, i, cl, ok]) => '<div class="badge"><span class="hex ' + (ok ? cl : 'off') + '">' + ic(ok ? i : 'lock', 'l') + '</span>' + esc(t) + '</div>').join('') + '</div>';
+  const equipo = S.personas.filter(x => x.area === p.area && x.turno === p.turno && x.rankOptIn);
+  const lista = equipo.map(x => ({ x, pts: x.id === p.id ? sem : (S.rank[x.id] || 0) })).sort((a, b) => b.pts - a.pts);
+  h += '<div class="sec-h"><h3>Ranking del equipo</h3><span class="muted">' + esc(AREA[p.area]) + ' · T' + p.turno.slice(1) + ' · semana</span></div>';
+  if (lista.length < 5) h += '<div class="card muted">El ranking se muestra cuando participan al menos 5 personas de tu equipo.</div>';
+  else {
+    const top = lista.slice(0, 3); const pos = lista.findIndex(r => r.x.id === p.id);
+    const nombre = x => x.id === p.id ? 'Tú' : x.nombre.split(' ')[0] + ' ' + x.nombre.split(' ')[1][0] + '.';
+    h += '<div class="card"><div class="rank">' + top.map((r, i) => '<div class="r' + (r.x.id === p.id ? ' me' : '') + '"><span class="p">' + (i + 1) + '</span><span class="grow">' + esc(nombre(r.x)) + '</span><b class="num">' + r.pts + '</b></div>').join('') +
+      (p.rankOptIn && pos >= 3 ? '<div class="r me"><span class="p">' + (pos + 1) + '</span><span class="grow"><b>Tú</b> · de ' + lista.length + ' participantes</span><b class="num">' + sem + '</b></div>' : '') +
+      (!p.rankOptIn ? '<div class="r"><span class="muted">No apareces en el ranking. Tu progreso es privado.</span></div>' : '') + '</div></div>';
+  }
+  h += '<div class="card row"><div class="grow"><b>Mostrarme en el ranking</b><div class="muted" style="font-size:14px">Si lo apagas, nadie verá tus puntos ni tu posición. Tus cursos y resultados siguen visibles para tu supervisor y RH.</div></div><button class="switch" role="switch" aria-checked="' + !!p.rankOptIn + '" aria-label="Mostrarme en el ranking" data-act="rankOpt"></button></div>';
+  return h;
+}
+function viewHistorial() {
+  const p = yo(); const acs = S.acreds.filter(a => a.persona === p.id).sort((a, b) => b.fecha.localeCompare(a.fecha));
+  let h = headerLearn('Historial', 'Tus cursos acreditados y constancias');
+  if (!acs.length) return h + '<div class="card empty"><span class="shape">' + ic('doc', 'xl') + '</span><h3>Aún no tienes constancias</h3><p class="muted" style="margin:0">Aparecerán aquí cuando acredites tu primer curso.</p></div>';
+  h += '<div class="stack">' + acs.map(a => {
+    const c = CURSOS[a.curso]; const ks = S.consts.filter(k => k.acred === a.id); const k = ks.find(x => x.estado === 'vigente' || x.estado === 'generando') || ks.slice(-1)[0];
+    const st = a.estado === 'revocada' ? '<span class="chip danger">' + ic('x', 's') + 'Revocada</span>' : !a.vence || a.vence >= hoy() ? (a.vence && D.diff(a.vence, hoy()) <= S.cfg.aviso ? '<span class="chip warn">' + ic('clock', 's') + 'Vence ' + fmt(a.vence) + '</span>' : '<span class="chip ok">' + ic('check', 's') + 'Vigente hasta ' + fmt(a.vence) + '</span>') : '<span class="chip danger">' + ic('alert', 's') + 'Venció ' + fmt(a.vence) + '</span>';
+    return '<div class="ccard" style="align-items:flex-start"><span class="tile t-' + c.color + '">' + ic(c.icon) + '</span><div class="grow"><div class="t">' + esc(c.nombre) + '</div><div class="m">Versión ' + a.version + ' · acreditado el ' + fmt(a.fecha) + (a.calif ? ' · calificación ' + a.calif : '') + '</div><div style="margin:8px 0">' + st + '</div>' +
+      (k ? (k.estado === 'generando' ? '<span class="chip neutral">' + ic('clock', 's') + 'Generando tu constancia…</span>' : '<button class="btn soft sm" data-act="verConst" data-k="' + k.id + '">' + ic('doc', 's') + 'Ver constancia</button>' + (k.estado !== 'vigente' ? ' <span class="chip neutral">' + (k.estado === 'revocada' ? 'Revocada' : 'Sustituida') + '</span>' : '')) : '') + '</div></div>';
+  }).join('') + '</div>';
+  h += '<button class="btn soft block" data-act="exportar" data-r="individual" data-f="pdf" data-pid="' + p.id + '">' + ic('down') + 'Descargar mi reporte individual (PDF)</button><p class="demo-note" style="text-align:center;margin:0">En equipos compartidos, el archivo queda guardado en el equipo.</p>';
+  return h;
+}
+
+/* ---------- Reproductor de lecciones ---------- */
+function startLesson(aid, lid) {
+  const a = S.asigs.find(x => x.id === aid); let part = partActual(a);
+  if (!part || part.acred || part.cancelada) { toast('Este curso ya está acreditado.'); return; }
+  const l = findLesson(lid);
+  U.player = { aid, pid: part.id, lid, queue: l.acts.map((_, i) => i), pos: 0, retry: [], sel: null, seq: [], found: [], misses: 0, list: false, phase: 'q', ok: null, firstOk: 0, errores: 0, pts: 0, done: false };
+}
+function act() { const P = U.player; return findLesson(P.lid).acts[P.queue[P.pos]]; }
+function renderPlayer() {
+  const P = U.player; const l = findLesson(P.lid);
+  if (P.done) {
+    return '<div class="player wrap"><div class="done-hero"><div class="burst" aria-hidden="true">' + confeti() + '<span class="core">' + ic('star', 'xl') + '</span></div><span class="eyebrow">Lección completada</span><h1 style="font-size:30px">' + esc(l.titulo) + '</h1><div class="big-num num">+' + P.pts + '</div><div class="muted">puntos · ' + P.firstOk + ' de ' + l.acts.length + ' a la primera' + (P.errores === 0 ? ' · ¡lección perfecta!' : '') + '</div></div>' +
+      '<div class="notice info">' + ic('info') + '<span>Los puntos son para motivarte. Lo que acredita el curso es la evaluación y la práctica.</span></div>' +
+      '<div class="pfoot"><button class="btn pri block" data-act="finLeccion">Continuar</button></div></div>';
+  }
+  const a = act(); const total = P.queue.length; const pr = Math.round(P.pos / total * 100);
+  const labels = { img: 'Elige la imagen', mc: 'Elige una opción', tf: 'Verdadero o falso', order: 'Ordena los pasos', hotspot: 'Identifica situaciones', decision: 'Caso de decisión' };
+  let h = '<div class="player wrap"><div class="ptop"><button class="iconbtn" data-act="cerrarLeccion" aria-label="Cerrar lección">' + ic('x') + '</button><div class="bar-p" role="progressbar" aria-valuenow="' + pr + '" aria-valuemin="0" aria-valuemax="100"><i style="width:' + pr + '%;background:var(--coral)"></i></div><b class="num">' + (P.pos + 1) + '/' + total + '</b></div>';
+  h += '<div><span class="eyebrow">' + labels[a.t] + (P.queue[P.pos] !== undefined && P.pos >= findLesson(P.lid).acts.length ? ' · repaso' : '') + '</span><div class="q" id="q-txt">' + esc(a.q) + '</div></div>';
+  const locked = P.phase !== 'q';
+  if (a.t === 'mc' || a.t === 'decision') h += '<div class="opts" role="group" aria-labelledby="q-txt">' + a.ops.map((o, i) => '<button class="opt ' + optCls(i, a) + '" aria-pressed="' + (P.sel === i) + '" data-act="sel" data-i="' + i + '" ' + (locked ? 'disabled' : '') + '><span class="k">' + 'ABCD'[i] + '</span>' + esc(o) + '</button>').join('') + '</div>';
+  if (a.t === 'img') h += '<div class="imgopts" role="group" aria-labelledby="q-txt">' + a.ops.map((o, i) => '<button class="imgopt ' + optCls(i, a) + '" aria-pressed="' + (P.sel === i) + '" data-act="sel" data-i="' + i + '" ' + (locked ? 'disabled' : '') + '>' + svgEstacion(a.imgs[i]) + esc(o) + '</button>').join('') + '</div>';
+  if (a.t === 'tf') h += '<div class="tf" role="group" aria-labelledby="q-txt">' + [true, false].map((v, i) => '<button class="opt ' + optCls(v, a) + '" aria-pressed="' + (P.sel === v) + '" data-act="sel" data-i="' + v + '" ' + (locked ? 'disabled' : '') + '>' + (v ? 'Verdadero' : 'Falso') + '</button>').join('') + '</div>';
+  if (a.t === 'order') {
+    const pool = a.items.map((t, i) => i).filter(i => !P.seq.includes(i)); const orden = P.ord || (P.ord = shuffle(a.items.map((_, i) => i), P.lid.length + 7));
+    h += '<div class="seq">' + a.items.map((_, k) => { const i = P.seq[k]; if (i === undefined) return '<div class="slot"><span class="k" style="width:30px;height:30px;border-radius:10px;background:var(--surface-2);display:grid;place-items:center;font-weight:800">' + (k + 1) + '</span>Toca un paso para colocarlo aquí</div>'; const good = locked && i === k, bad = locked && i !== k; return '<button class="opt ' + (good ? 'good' : bad ? 'bad' : '') + '" aria-pressed="true" data-act="unseq" data-k="' + k + '" ' + (locked ? 'disabled' : '') + ' aria-label="Paso ' + (k + 1) + ': ' + esc(a.items[i]) + '. Toca para quitar."><span class="k">' + (k + 1) + '</span>' + esc(a.items[i]) + '</button>'; }).join('') + '</div>' +
+      (pool.length ? '<div class="pool">' + orden.filter(i => pool.includes(i)).map(i => '<button class="opt" data-act="seq" data-i="' + i + '" ' + (locked ? 'disabled' : '') + '>' + ic('plus', 's') + esc(a.items[i]) + '</button>').join('') + '</div>' : '');
+  }
+  if (a.t === 'hotspot') {
+    if (P.list) h += '<div class="opts">' + HS.map(x => '<label class="ck" style="border-radius:16px;padding:12px 14px"><input type="checkbox" id="hs-' + x.id + '" data-chg="hsList" data-id="' + x.id + '" ' + (P.found.includes(x.id) ? 'checked' : '') + ' ' + (locked ? 'disabled' : '') + '>' + esc(x.label) + '</label>').join('') + '</div>';
+    else h += '<div class="scene">' + svgEscena(P.found) + '</div>';
+    h += '<div class="row" style="flex-wrap:wrap"><span class="chip ' + (P.found.length ? 'ok' : 'neutral') + '">' + ic('check', 's') + P.found.length + ' de 3 marcadas</span><span class="grow"></span><button class="btn ghost sm" data-act="hsToggle">' + (P.list ? 'Usar imagen' : 'Usar lista en lugar de imagen') + '</button></div>';
+  }
+  if (P.phase === 'fb') {
+    let exp = a.exp; if (a.t === 'decision') exp = a.res[P.sel] + ' ' + (P.ok ? '' : a.exp);
+    const correcta = a.t === 'mc' || a.t === 'img' ? (P.ok ? '' : 'Respuesta correcta: «' + a.ops[a.ok] + '». ') : a.t === 'tf' ? (P.ok ? '' : 'La respuesta correcta es «' + (a.ok ? 'Verdadero' : 'Falso') + '». ') : '';
+    h += '<div class="fb ' + (P.ok ? 'good' : 'bad') + '" role="status"><h3>' + ic(P.ok ? 'check' : 'x') + (P.ok ? '¡Correcto!' : 'Revisa esto') + '</h3><p>' + esc(correcta + exp) + (P.ok ? '' : ' Repasarás esta actividad al final de la lección.') + '</p></div>';
+  }
+  const listo = a.t === 'order' ? P.seq.length === a.items.length : a.t === 'hotspot' ? P.found.length > 0 : P.sel !== null;
+  h += '<div class="pfoot">' + (P.phase === 'q' ? '<button class="btn pri block" data-act="comprobar" ' + (listo ? '' : 'disabled') + '>Comprobar</button>' : '<button class="btn ' + (P.ok ? 'pri' : 'dark') + ' block" data-act="siguiente">' + (P.ok ? 'Continuar' : 'Entendido') + '</button>') + '<p class="demo-note" style="text-align:center;margin:0">DEMO · contenido ficticio de ejemplo; no es un procedimiento de la empresa.</p></div></div>';
+  return h;
+}
+function optCls(i, a) { const P = U.player; if (P.phase !== 'fb') return ''; const ok = a.t === 'tf' ? a.ok : a.ok; if (i === ok) return 'good'; if (i === P.sel) return 'bad'; return ''; }
+function shuffle(arr, s) { const R = rng(s); const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(R() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } if (a.every((v, i) => v === arr[i])) a.push(a.shift()); return a; }
+function comprobar() {
+  const P = U.player; const a = act(); let ok;
+  if (a.t === 'order') ok = P.seq.every((v, i) => v === i);
+  else if (a.t === 'hotspot') ok = HS.filter(h => h.ok).every(h => P.found.includes(h.id)) && P.found.every(id => HS.find(h => h.id === id).ok);
+  else ok = P.sel === a.ok;
+  const part = S.parts.find(x => x.id === P.pid); marcarInicio(part);
+  P.phase = 'fb'; P.ok = ok;
+  const primera = P.pos < findLesson(P.lid).acts.length;
+  if (ok && primera) { P.firstOk++; P.pts += darPuntos(part.persona, 10, 'Actividad correcta · Lección ' + P.lid); }
+  if (!ok) { P.errores++; if (primera) P.retry.push(P.queue[P.pos]); }
+  live(ok ? 'Correcto' : 'Incorrecto. ' + a.exp);
+  save();
+}
+function siguiente() {
+  const P = U.player;
+  if (P.pos === P.queue.length - 1 && P.retry.length) { P.queue = P.queue.concat(P.retry); P.retry = []; }
+  if (P.pos >= P.queue.length - 1) {
+    const part = S.parts.find(x => x.id === P.pid);
+    if (!part.hechas.includes(P.lid)) { part.hechas.push(P.lid); P.pts += darPuntos(part.persona, 20, 'Lección ' + P.lid + ' completada'); log('Completar lección', 'Participación', CURSOS[part.curso].nombre + ' · ' + findLesson(P.lid).titulo); }
+    if (P.errores === 0) S.puntos.push({ persona: part.persona, fecha: hoy(), pts: 0, motivo: 'Lección perfecta ' + P.lid });
+    if (partEstado(part) === 'pendiente_validacion' && !part.pvDesde) part.pvDesde = hoy();
+    P.done = true; save(); return;
+  }
+  P.pos++; P.sel = null; P.seq = []; P.ord = null; P.found = []; P.phase = 'q'; P.ok = null; P.list = false;
+}
+
+/* ---------- Evaluación ---------- */
+function preExamen(aid) {
+  const a = S.asigs.find(x => x.id === aid); const part = partActual(a); const c = CURSOS[a.curso]; const closed = part.intentos.filter(i => i.fecha); const abierto = part.intentos.some(i => !i.fecha);
+  U.modal = { t: 'preExamen', aid, html: '<h2 style="font-size:24px">' + (abierto ? 'Tienes un intento abierto' : 'Antes de empezar') + '</h2><p class="muted" style="margin:0">' + esc(c.nombre) + ' · versión ' + (part.version || c.version) + '. Tus respuestas se guardan una por una.</p>' +
+    '<div class="card" style="background:var(--bg)"><div class="crit">' + ic('list') + '<span class="grow">Preguntas</span><b>' + c.eval.preguntas + '</b></div><div class="crit">' + ic('clock') + '<span class="grow">Tiempo</span><b>Sin límite</b></div><div class="crit">' + ic('flag') + '<span class="grow">Calificación mínima</span><b>' + c.eval.min + '</b></div><div class="crit">' + ic('swap') + '<span class="grow">Intentos restantes</span><b>' + (c.eval.intentos + part.extra - closed.length) + ' de ' + (c.eval.intentos + part.extra) + '</b></div></div>' +
+    '<div class="notice info">' + ic('info') + '<span>Si no apruebas, verás qué temas repasar. Las preguntas de la evaluación no dan puntos.</span></div><p class="demo-note" style="margin:0">Valores ficticios de ejemplo.</p>' +
+    '<div class="row" style="justify-content:flex-end;flex-wrap:wrap"><button class="btn ghost" data-act="cerrarModal">Ahora no</button><button class="btn pri" data-act="iniciarExamen" data-a="' + aid + '">' + (abierto ? 'Continuar intento' : 'Iniciar evaluación') + '</button></div>' };
+}
+function iniciarExamen(aid) {
+  const a = S.asigs.find(x => x.id === aid); const part = partActual(a); const c = CURSOS[a.curso];
+  const abierto = part.intentos.find(i => !i.fecha);
+  if (abierto) { U.modal = null; U.exam = { aid, pid: part.id, n: abierto.n, qs: abierto.qs, ans: abierto.ans || (abierto.ans = {}), idx: 0, confirm: false, sent: false }; log('Retomar intento', 'Evaluación', c.nombre + ' · intento ' + abierto.n); save(); return; }
+  const n = part.intentos.length + 1;
+  const qs = shuffle(c.banco.map((_, i) => i), 1000 + n * 17).slice(0, c.eval.preguntas);
+  const it = { n, inicio: hoy(), fecha: null, calif: null, aprobado: null, resp: null, qs, ans: {} };
+  part.intentos.push(it);
+  log('Iniciar intento', 'Evaluación', c.nombre + ' · intento ' + n);
+  U.modal = null; U.exam = { aid, pid: part.id, n, qs, ans: it.ans, idx: 0, confirm: false, sent: false }; save();
+}
+function renderExam() {
+  const E = U.exam; const part = S.parts.find(x => x.id === E.pid); const c = CURSOS[part.curso];
+  if (E.confirm) {
+    const sin = E.qs.filter((_, i) => E.ans[i] === undefined).length;
+    return '<div class="player wrap"><h1 style="font-size:28px">¿Enviar evaluación?</h1><div class="card stack"><div class="row"><span class="grow">Respondidas</span><b>' + (E.qs.length - sin) + ' de ' + E.qs.length + '</b></div>' + (sin ? '<div class="notice warn">' + ic('alert') + '<span>Tienes ' + sin + ' sin responder. Contarán como incorrectas.</span></div>' : '') + '<p class="muted" style="margin:0">Una vez enviada, no podrás cambiar tus respuestas.</p></div><div class="pfoot"><button class="btn pri block" data-act="enviarExamen" ' + (E.sent ? 'disabled' : '') + '>Enviar evaluación</button><button class="btn ghost block" data-act="volverExamen">Revisar respuestas</button></div></div>';
+  }
+  const q = c.banco[E.qs[E.idx]]; const sel = E.ans[E.idx];
+  let h = '<div class="player wrap"><div class="ptop"><span class="chip neutral">Evaluación · intento ' + E.n + '</span><div class="bar-p"><i style="width:' + Math.round(Object.keys(E.ans).length / E.qs.length * 100) + '%"></i></div><b class="num">' + (E.idx + 1) + '/' + E.qs.length + '</b></div>';
+  h += '<div class="q" id="eq">' + esc(q.q) + '</div>';
+  if (q.t === 'tf') h += '<div class="tf" role="group" aria-labelledby="eq">' + [true, false].map(v => '<button class="opt" aria-pressed="' + (sel === v) + '" data-act="resp" data-v="' + v + '">' + (v ? 'Verdadero' : 'Falso') + '</button>').join('') + '</div>';
+  else h += '<div class="opts" role="group" aria-labelledby="eq">' + q.ops.map((o, i) => '<button class="opt" aria-pressed="' + (sel === i) + '" data-act="resp" data-v="' + i + '"><span class="k">' + 'ABC'[i] + '</span>' + esc(o) + '</button>').join('') + '</div>';
+  h += '<div class="row" style="flex-wrap:wrap;gap:6px">' + E.qs.map((_, i) => '<button class="btn sm ' + (i === E.idx ? 'pri' : E.ans[i] !== undefined ? 'soft' : 'ghost') + '" data-act="irPregunta" data-i="' + i + '" aria-label="Pregunta ' + (i + 1) + '">' + (i + 1) + '</button>').join('') + (sel !== undefined ? '<span class="chip ok" style="margin-left:auto">' + ic('check', 's') + 'Guardado</span>' : '') + '</div>';
+  h += '<div class="pfoot">' + (E.idx < E.qs.length - 1 ? '<button class="btn pri block" data-act="irPregunta" data-i="' + (E.idx + 1) + '">Siguiente pregunta</button>' : '<button class="btn pri block" data-act="confExamen">Revisar y enviar</button>') + '<p class="demo-note" style="text-align:center;margin:0">Sin puntos ni animaciones durante la evaluación. La calificación se calcularía en el servidor.</p></div></div>';
+  return h;
+}
+function enviarExamen() {
+  const E = U.exam; if (E.sent) return; E.sent = true; // envío idempotente
+  const part = S.parts.find(x => x.id === E.pid); const c = CURSOS[part.curso]; const it = part.intentos.find(i => i.n === E.n);
+  if (it.fecha) return;
+  const resp = E.qs.map((qi, i) => { const q = c.banco[qi]; return { q: qi, r: E.ans[i], ok: E.ans[i] === q.ok, tema: q.tema }; });
+  const calif = resp.filter(r => r.ok).length / resp.length * 100;
+  Object.assign(it, { fecha: hoy(), calif, aprobado: calif >= c.eval.min, resp });
+  log('Enviar intento', 'Evaluación', c.nombre + ' · intento ' + it.n + ' · calificación ' + Math.round(calif) + (it.aprobado ? ' (aprobado)' : ' (no aprobado)'));
+  const est = partEstado(part);
+  if (est === 'pendiente_validacion') part.pvDesde = hoy();
+  if (est === 'acreditada' && !part.acred) acreditar(part, hoy());
+  U.exam = null; U.view = 'resultado'; U.p = { part: part.id }; save();
+}
+
+/* ---------- Administrar ---------- */
+function menu() {
+  const m = [];
+  m.push(['tablero', 'chart', 'Tablero']);
+  if (tiene('admin') || tiene('rh') || tiene('auditor') || tiene('supervisor')) m.push(['personas', 'users', tiene('supervisor') ? 'Mi equipo' : 'Personas']);
+  if (tiene('admin') || tiene('rh') || tiene('auditor')) m.push(['reglas', 'list', 'Reglas de asignación']);
+  m.push(['matriz', 'grid', 'Matriz de capacitación']);
+  if (puede('validar')) m.push(['validacion', 'shield', 'Validación práctica']);
+  if (!tiene('instructor')) m.push(['constancias', 'doc', 'Constancias']);
+  m.push(['reportes', 'down', 'Reportes y exportaciones']);
+  if (puede('bitacora')) m.push(['bitacora', 'list', 'Bitácora']);
+  if (tiene('admin') || tiene('rh') || tiene('auditor') || tiene('instructor')) m.push(['cursos', 'book', 'Cursos']);
+  return m;
+}
+function renderAdmin() {
+  const c = cuenta(); const p = yo(); const m = menu();
+  if (!m.some(x => x[0] === U.view) && U.view !== 'persona') U.view = 'tablero';
+  const ini = p.nombre.split(' ').map(x => x[0]).slice(0, 2).join('');
+  let side = '<nav class="side" aria-label="Administración"><div class="who"><span class="avatar" style="background:var(--violet);color:#fff">' + esc(ini) + '</span><div><b>' + esc(p.nombre) + '</b><small>' + esc(c.roles.filter(r => r !== 'trabajador').map(r => ROL[r]).join(' · ')) + '</small></div></div>';
+  m.forEach(([v, i, t]) => { side += '<button class="navb" data-act="go" data-v="' + v + '"' + (U.view === v || (U.view === 'persona' && v === 'personas') ? ' aria-current="page"' : '') + '>' + ic(i, 's') + t + '</button>'; });
+  side += '<div class="g">Sesión</div>' + (tiene('trabajador') ? '<button class="navb" data-act="space" data-s="aprender">' + ic('book', 's') + 'Ir a Aprender</button>' : '') + '<button class="navb" data-act="salir">' + ic('out', 's') + 'Salir</button></nav>';
+  const views = { tablero: aTablero, personas: aPersonas, persona: aPersona, reglas: aReglas, matriz: aMatriz, validacion: aValidacion, constancias: aConstancias, reportes: aReportes, bitacora: aBitacora, cursos: aCursos };
+  return '<div class="adm">' + side + '<div class="amain wrap">' + (views[U.view] || aTablero)() + '</div></div>';
+}
+function scopeLine(extra) { const al = alcance(); return '<div class="scope"><span class="chip primary">' + ic('grid', 's') + 'Grupo Demo › ' + esc(al.etiqueta) + '</span><span class="chip neutral">' + ic('cal', 's') + 'Corte: ' + fmt(hoy()) + ', fin del día (hora de la planta)</span>' + (soloLectura() ? '<span class="chip warn">' + ic('eye', 's') + 'Solo lectura</span>' : '') + (extra || '') + '</div>'; }
+function kpi(l, v, d, cls) { return '<div class="kpi ' + (cls || '') + '"><div class="l">' + l + '</div><div class="v ' + (cls && cls !== 'main' ? cls : '') + '">' + v + '</div><div class="d">' + d + '</div></div>'; }
+function aTablero() {
+  const al = alcance(); const area = U.p.area || ''; const rows = filas(al, a => !area || persona(a.persona).area === area); const I = indicadores(rows);
+  let h = '<div class="atop"><h1>Tablero de cumplimiento</h1>' + (soloLectura() ? '' : '<button class="btn soft sm" data-act="go" data-v="reportes">' + ic('down', 's') + 'Exportar</button>') + '</div>' + scopeLine();
+  if (!rows.length) return h + '<div class="panel empty"><span class="shape">' + ic('chart', 'xl') + '</span><h3>Todavía no hay asignaciones en este alcance</h3><p class="muted" style="margin:0;max-width:440px">' + (tiene('instructor') ? 'Cuando RH asigne tus cursos, aquí verás el avance de quienes los toman.' : 'Crea una regla de asignación para empezar.') + '</p></div>';
+  if (al.nivel === 'empresa') h += '<div class="filters"><label class="field"><span>Área</span><select class="input" id="f-area" data-chg="fArea"><option value="">Todas las áreas</option>' + AREAS.map(a => '<option value="' + a.id + '"' + (area === a.id ? ' selected' : '') + '>' + a.nombre + '</option>').join('') + '</select></label></div>';
+  h += '<div class="kpis six">' + kpi('Cumplimiento', pctTxt(I.cumplen, I.den), I.cumplen.toLocaleString('es-MX') + ' de ' + I.den.toLocaleString('es-MX') + ' asignaciones', 'main') + kpi('Personas al 100 %', pctTxt(I.total, I.personas), I.total + ' de ' + I.personas + ' personas') + kpi('Atrasadas', I.n.atrasada, 'fecha límite vencida', 'v-danger') + kpi('Vencidas', I.n.vencida, 'acreditación expirada', 'v-danger') + kpi('Por vencer · 30 días', I.n.por_vencer, 'incluidas en cumplimiento', 'v-warn') + kpi('Pendientes de validación', I.pv, I.pv7 + ' con más de 7 días', 'v-violet') + '</div>';
+  const grp = al.nivel === 'empresa' ? (area ? 'turno' : 'area') : 'curso';
+  const keyf = { area: r => r.p.area, turno: r => r.p.turno, curso: r => r.a.curso }[grp]; const namef = { area: k => AREA[k], turno: k => 'Turno ' + k.slice(1), curso: k => CURSOS[k].nombre }[grp];
+  const g = {}; rows.forEach(r => { (g[keyf(r)] = g[keyf(r)] || []).push(r); });
+  const lines = Object.entries(g).map(([k, rs]) => ({ k, I: indicadores(rs) })).sort((a, b) => pct(a.I.cumplen, a.I.den) - pct(b.I.cumplen, b.I.den));
+  h += '<div class="cols2 dash"><div class="panel"><div class="ph">Cumplimiento por ' + { area: 'área', turno: 'turno', curso: 'curso' }[grp] + '<span class="sp"></span><span class="chip neutral">menor a mayor</span></div><div class="tw"><table class="t"><thead><tr><th>' + { area: 'Área', turno: 'Turno', curso: 'Curso' }[grp] + '</th><th>Cumplimiento</th><th class="r">Al día</th><th class="r">Asignaciones</th><th class="r">Atrasadas</th><th class="r">Vencidas</th></tr></thead><tbody>' +
+    lines.map(l => '<tr><td>' + esc(namef(l.k)) + '</td><td><div class="hbar"><div class="bar-p"><i style="width:' + pct(l.I.cumplen, l.I.den).toFixed(1) + '%"></i></div><b>' + pctTxt(l.I.cumplen, l.I.den) + '</b></div></td><td class="r">' + l.I.cumplen + '</td><td class="r">' + l.I.den + '</td><td class="r">' + l.I.n.atrasada + '</td><td class="r">' + l.I.n.vencida + '</td></tr>').join('') +
+    '</tbody><tfoot><tr><td>Total</td><td>' + pctTxt(I.cumplen, I.den) + '</td><td class="r">' + I.cumplen + '</td><td class="r">' + I.den + '</td><td class="r">' + I.n.atrasada + '</td><td class="r">' + I.n.vencida + '</td></tr></tfoot></table></div></div>';
+  const prox = rows.filter(r => r.c.k === 'por_vencer').sort((a, b) => a.c.fecha.localeCompare(b.c.fecha));
+  h += '<div class="panel"><div class="ph">Próximos vencimientos<span class="sp"></span><span class="chip warn">30 días</span></div><div class="tw"><table class="t"><thead><tr><th>Persona</th><th>Curso</th><th class="r">Vence</th></tr></thead><tbody>' +
+    (prox.length ? prox.slice(0, 7).map(r => '<tr class="click" data-act="persona" data-id="' + r.p.id + '"><td>' + esc(r.p.tipo === 'contratista' ? r.p.num + ' · ' + r.p.nombre : r.p.nombre) + '</td><td>' + esc(CURSOS[r.a.curso].nombre) + '</td><td class="r">' + fmt(r.c.fecha) + '</td></tr>').join('') + (prox.length > 7 ? '<tr><td colspan="3" class="muted">y ' + (prox.length - 7) + ' más</td></tr>' : '') : '<tr><td colspan="3" class="muted">Nada vence en los próximos 30 días.</td></tr>') + '</tbody></table></div></div></div>';
+  h += '<p class="demo-note" style="margin:0">Cumplimiento = (Al día + Por vencer) ÷ asignaciones obligatorias vigentes, sin exentas (' + I.n.exenta + ') ni opcionales (indicador I-05). Atribución por adscripción a la fecha de corte. Datos ficticios.</p>';
+  return h;
+}
+function aPersonas() {
+  const al = alcance(); const q = (U.p.q || '').toLowerCase(); const area = U.p.area || '';
+  const lista = S.personas.filter(p => al.personas.includes(p.id) && (!area || p.area === area) && (!q || (p.nombre + ' ' + p.num).toLowerCase().includes(q)));
+  let h = '<div class="atop"><h1>' + (tiene('supervisor') ? 'Mi equipo' : 'Personas') + '</h1></div>' + scopeLine() + '<div class="filters"><label class="field" style="flex:1;min-width:220px"><span>Buscar</span><input class="input" id="f-q" data-inp="fq" placeholder="Nombre o número de empleado" value="' + esc(U.p.q || '') + '"></label>' + (al.nivel === 'empresa' ? '<label class="field"><span>Área</span><select class="input" id="f-area2" data-chg="fArea"><option value="">Todas</option>' + AREAS.map(a => '<option value="' + a.id + '"' + (area === a.id ? ' selected' : '') + '>' + a.nombre + '</option>').join('') + '</select></label>' : '') + '</div>';
+  if (!lista.length) return h + '<div class="panel empty"><span class="shape">' + ic('search', 'xl') + '</span><h3>Ninguna persona coincide</h3><p class="muted" style="margin:0">Quita algún filtro para ver más resultados.</p></div>';
+  h += '<div class="panel"><div class="ph">' + lista.length + ' personas<span class="sp"></span></div><div class="tw"><table class="t"><thead><tr><th>Persona</th><th>Número</th><th>Área · turno</th><th>Puesto</th><th>Cumplimiento</th><th>Cuenta</th></tr></thead><tbody>' +
+    lista.slice(0, 60).map(p => { const rs = filas({ personas: [p.id], cursos: al.cursos }); const I = indicadores(rs); return '<tr class="click" data-act="persona" data-id="' + p.id + '"><td><b>' + esc(p.nombre) + '</b>' + (p.tipo === 'contratista' ? ' <span class="chip coral">Contratista</span>' : '') + '</td><td class="mono">' + p.num + '</td><td>' + AREA[p.area] + ' · ' + p.turno + '</td><td>' + esc(p.puesto) + '</td><td>' + (I.den ? I.cumplen + ' de ' + I.den + ' · ' + pctTxt(I.cumplen, I.den) : '—') + '</td><td>' + (p.cuenta === 'activa' ? '<span class="chip ok">Activa</span>' : '<span class="chip neutral">Sin activar</span>') + '</td></tr>'; }).join('') +
+    (lista.length > 60 ? '<tr><td colspan="6" class="muted">y ' + (lista.length - 60) + ' más · usa la búsqueda</td></tr>' : '') + '</tbody></table></div></div>';
+  return h;
+}
+function aPersona() {
+  const p = persona(U.p.id); const al = alcance(); if (!p || !al.personas.includes(p.id)) return '<div class="panel empty"><h3>No tienes acceso a esta información con tu rol actual.</h3></div>';
+  const tab = U.p.tab || 'cap';
+  const rs = filas({ personas: [p.id], cursos: al.cursos }); const I = indicadores(rs);
+  let h = '<div class="atop"><button class="iconbtn" data-act="go" data-v="personas" aria-label="Volver">' + ic('back') + '</button><span class="avatar" style="width:52px;height:52px">' + esc(p.nombre.split(' ').map(x => x[0]).slice(0, 2).join('')) + '</span><div class="grow" style="min-width:220px"><h1 style="font-size:26px">' + esc(p.nombre) + '</h1><div class="muted"><span class="mono">' + p.num + '</span> · Empresa Demo Norte · ' + AREA[p.area] + ' · Turno ' + p.turno.slice(1) + ' · ' + esc(p.puesto) + (p.tipo === 'contratista' ? ' · ' + esc(p.contratista) + ' · acceso hasta ' + fmt(p.vence) : '') + '</div></div><button class="btn soft sm" data-act="exportar" data-r="individual" data-f="pdf" data-pid="' + p.id + '">' + ic('down', 's') + 'Reporte individual</button></div>';
+  const tabs = [['cap', 'Capacitación'], ['hist', 'Historial'], ['ads', 'Adscripciones'], ['acc', 'Acceso'], ['bit', 'Bitácora']].filter(t => t[0] !== 'acc' || !tiene('supervisor')).filter(t => t[0] !== 'bit' || puede('bitacora'));
+  h += '<div class="tabs" role="group">' + tabs.map(([k, t]) => '<button data-act="ptab" data-t="' + k + '" aria-pressed="' + (tab === k) + '">' + t + '</button>').join('') + '</div>';
+  if (tab === 'cap') {
+    h += '<div class="panel"><div class="ph">Asignaciones obligatorias<span class="sp"></span><span class="muted" style="font:600 13px var(--f-body)">' + I.cumplen + ' de ' + I.den + ' al día · ' + pctTxt(I.cumplen, I.den) + '</span></div><div class="tw"><table class="t"><thead><tr><th>Curso</th><th>Versión</th><th>Estado de cumplimiento</th><th>Fecha</th><th>Origen</th>' + (puede('excepcion') ? '<th>Excepción</th>' : '') + '</tr></thead><tbody>' +
+      rs.map(r => { const part = r.c.part || partActual(r.a); const ver = r.c.acred ? r.c.acred.version : part && part.version || CURSOS[r.a.curso].version; const reg = S.reglas.find(x => x.id === r.a.regla); return '<tr><td>' + esc(CURSOS[r.a.curso].nombre) + '</td><td>v' + ver + '</td><td>' + chipCum(r.c) + '</td><td>' + cumFecha(r.c) + '</td><td>' + (reg ? 'Regla ' + reg.id : 'Manual') + '</td>' + (puede('excepcion') ? '<td>' + (r.c.k === 'pendiente' || r.c.k === 'atrasada' ? '<button class="btn ghost sm" data-act="excepcion" data-a="' + r.a.id + '">' + (r.c.sub === 'no_aprobada' ? 'Intentos adicionales' : 'Prórroga o exención') + '</button>' : '') + '</td>' : '') + '</tr>'; }).join('') + '</tbody></table></div></div>';
+  }
+  if (tab === 'hist') {
+    const parts = S.parts.filter(x => x.persona === p.id && (!al.cursos || al.cursos.includes(x.curso)));
+    const intentos = parts.flatMap(x => x.intentos.filter(i => i.fecha).map(i => ({ x, i })));
+    const vals = parts.flatMap(x => x.vals.map(v => ({ x, v })));
+    const ks = S.consts.filter(k => k.persona === p.id && (!al.cursos || al.cursos.includes(k.curso)));
+    h += '<div class="panel"><div class="ph">Intentos de evaluación</div><div class="tw"><table class="t"><thead><tr><th>Curso</th><th>Versión</th><th>Intento</th><th>Fecha</th><th class="r">Calificación</th><th>Resultado</th></tr></thead><tbody>' + (intentos.length ? intentos.sort((a, b) => b.i.fecha.localeCompare(a.i.fecha)).map(({ x, i }) => '<tr><td>' + esc(CURSOS[x.curso].nombre) + '</td><td>v' + x.version + '</td><td>' + i.n + '</td><td>' + fmt(i.fecha) + '</td><td class="r">' + (tiene('supervisor') && !i.aprobado ? '—' : Math.round(i.calif)) + '</td><td>' + (i.aprobado ? '<span class="chip ok">Aprobado</span>' : '<span class="chip danger">No aprobado</span>') + '</td></tr>').join('') : '<tr><td colspan="6" class="muted">Sin intentos registrados.</td></tr>') + '</tbody></table></div></div>';
+    h += '<div class="panel"><div class="ph">Validaciones prácticas</div><div class="tw"><table class="t"><thead><tr><th>Curso</th><th>Fecha de la práctica</th><th>Validador</th><th>Resultado</th><th>Confirmación</th></tr></thead><tbody>' + (vals.length ? vals.map(({ x, v }) => '<tr><td>' + esc(CURSOS[x.curso].nombre) + '</td><td>' + fmt(v.fecha) + '</td><td>' + esc(v.validador) + '</td><td>' + (v.res === 'competente' ? '<span class="chip ok">Competente</span>' : '<span class="chip warn">Aún no competente</span>') + '</td><td>' + (v.conf ? 'Confirmada' : v.disp ? '<span class="chip danger">No reconocida</span>' : 'Pendiente') + '</td></tr>').join('') : '<tr><td colspan="5" class="muted">Sin validaciones.</td></tr>') + '</tbody></table></div></div>';
+    h += '<div class="panel"><div class="ph">Constancias</div><div class="tw"><table class="t"><thead><tr><th>Folio</th><th>Curso</th><th>Emitida</th><th>Estado</th><th></th></tr></thead><tbody>' + (ks.length ? ks.map(k => '<tr><td class="mono">' + k.folio + '</td><td>' + esc(CURSOS[k.curso].nombre) + ' v' + k.version + '</td><td>' + fmt(k.emitida) + '</td><td>' + chipConst(k) + '</td><td><button class="btn ghost sm" data-act="verConst" data-k="' + k.id + '">Ver</button></td></tr>').join('') : '<tr><td colspan="5" class="muted">Sin constancias.</td></tr>') + '</tbody></table></div></div>';
+  }
+  if (tab === 'ads') h += '<div class="panel"><div class="ph">Adscripciones</div><div class="pb"><ul class="tl">' + p.adscripciones.slice().reverse().map(a => '<li class="' + (a.hasta ? '' : 'cur') + '"><span class="d"></span><div><b>' + AREA[a.area] + ' · Turno ' + a.turno.slice(1) + ' · ' + esc(a.puesto) + '</b><div class="muted">' + (a.hasta ? fmt(a.desde) + ' – ' + fmt(a.hasta) : 'desde ' + fmt(a.desde)) + '</div></div></li>').join('') + '</ul><p class="demo-note">Un movimiento crea una nueva adscripción; la anterior y el historial de capacitación se conservan.</p></div></div>';
+  if (tab === 'acc') {
+    h += '<div class="panel"><div class="ph">' + ic('key', 's') + ' Acceso</div><div class="pb stack"><div class="row"><span class="grow muted">Cuenta</span>' + (p.cuenta === 'activa' ? '<span class="chip ok">Activa</span>' : '<span class="chip neutral">Sin activar</span>') + '</div><div class="row"><span class="grow muted">Último acceso</span><span>' + (p.ultimo ? fmt(p.ultimo) + ' · equipo compartido' : '—') + '</span></div>';
+    if (U.p.codigo) h += '<div class="notice ok">' + ic('key') + '<div><b>Código de un solo uso: <span class="mono" style="font-size:20px">' + U.p.codigo + '</span></b><div>Vence en 30 minutos. Entrégalo en persona; la persona creará una nueva frase de acceso. Se cerraron sus sesiones anteriores.</div></div></div>';
+    else if (puede('acceso')) h += '<div class="notice warn">' + ic('alert') + '<span>Verifica la identidad en persona (gafete o identificación) antes de restablecer.</span></div><form class="stack" data-submit="restablecer"><label class="ck" style="border-radius:14px"><input type="checkbox" name="verif" id="r-verif" required> Verifiqué la identidad en persona</label><label class="field"><span>Motivo</span><input class="input" name="motivo" id="r-motivo" required placeholder="Ej.: olvidó su frase de acceso"></label><button class="btn pri" type="submit" style="align-self:flex-start">' + ic('key', 's') + 'Restablecer acceso</button></form>';
+    else h += '<p class="muted" style="margin:0">Solo el Administrador puede restablecer accesos (decisión B-3).</p>';
+    h += '</div></div>';
+  }
+  if (tab === 'bit') { const b = S.bit.filter(x => x.detalle.includes(p.nombre) || x.actor === p.nombre); h += bitTable(b.slice(0, 40)); }
+  return h;
+}
+function chipConst(k) { return { vigente: '<span class="chip ok">Vigente</span>', generando: '<span class="chip neutral">Generando…</span>', sustituida: '<span class="chip neutral">Sustituida</span>', revocada: '<span class="chip danger">Revocada</span>' }[k.estado]; }
+function aReglas() {
+  const W = U.p.wiz;
+  let h = '<div class="atop"><h1>Reglas de asignación</h1>' + (puede('regla') && !W ? '<button class="btn pri" data-act="nuevaRegla">' + ic('plus', 's') + 'Nueva regla</button>' : '') + '</div>' + scopeLine();
+  if (W) return h + wizard(W);
+  h += '<div class="panel"><div class="tw"><table class="t"><thead><tr><th>Regla</th><th>Curso</th><th>A quién</th><th>Fecha límite</th><th class="r">Asignaciones</th><th>Creada</th></tr></thead><tbody>' +
+    S.reglas.slice().reverse().map(r => '<tr><td><b>' + r.id + '</b>' + (r.nueva ? ' <span class="chip coral">Nueva</span>' : '') + '</td><td>' + esc(CURSOS[r.curso].nombre) + '</td><td>' + (r.areas.length === AREAS.length ? 'Toda la empresa' : r.areas.map(a => AREA[a]).join(', ')) + (r.turnos.length < 3 ? ' · ' + r.turnos.join(', ') : '') + '</td><td>' + r.dias + ' días después de asignar</td><td class="r">' + S.asigs.filter(a => a.regla === r.id).length + '</td><td>' + fmt(r.creada) + ' · ' + esc(r.autor) + '</td></tr>').join('') + '</tbody></table></div></div>';
+  return h;
+}
+function wizard(W) {
+  const pasos = ['Qué', 'A quién', 'Cuándo y vista previa'];
+  let h = '<div class="steps">' + pasos.map((t, i) => '<span class="' + (i < W.paso ? 'done' : i === W.paso ? 'on' : '') + '">' + (i < W.paso ? ic('check', 's') : (i + 1) + '.') + ' ' + t + '</span>').join('') + '</div><div class="panel"><div class="pb stack" style="padding-top:18px">';
+  if (W.paso === 0) h += '<label class="field"><span>Curso publicado</span><select class="input" id="w-curso" data-chg="wCurso">' + Object.values(CURSOS).map(c => '<option value="' + c.id + '"' + (W.curso === c.id ? ' selected' : '') + '>' + esc(c.nombre) + ' · v' + c.version + '</option>').join('') + '</select></label><div class="checks"><span class="ck"><input type="radio" checked disabled> Obligatorio</span><span class="ck"><input type="radio" disabled> Opcional (no incluido en el prototipo)</span></div><div class="row" style="justify-content:flex-end"><button class="btn ghost" data-act="cancelWiz">Cancelar</button><button class="btn pri" data-act="wPaso" data-n="1">Siguiente</button></div>';
+  if (W.paso === 1) h += '<div class="field"><span>Áreas</span><div class="checks">' + AREAS.map(a => '<label class="ck"><input type="checkbox" id="w-a-' + a.id + '" data-chg="wArea" data-id="' + a.id + '" ' + (W.areas.includes(a.id) ? 'checked' : '') + '>' + a.nombre + '</label>').join('') + '</div></div><div class="field"><span>Turnos</span><div class="checks">' + TURNOS.map(t => '<label class="ck"><input type="checkbox" id="w-t-' + t + '" data-chg="wTurno" data-id="' + t + '" ' + (W.turnos.includes(t) ? 'checked' : '') + '>Turno ' + t.slice(1) + '</label>').join('') + '</div></div><label class="ck" style="align-self:flex-start"><input type="checkbox" id="w-con" data-chg="wCon" ' + (W.contratistas ? 'checked' : '') + '> Incluir contratistas</label><div class="row" style="justify-content:flex-end"><button class="btn ghost" data-act="wPaso" data-n="0">Atrás</button><button class="btn pri" data-act="wPaso" data-n="2" ' + (W.areas.length && W.turnos.length ? '' : 'disabled') + '>Siguiente</button></div>';
+  if (W.paso === 2) {
+    const pv = vistaPreviaRegla(W); const nuevos = pv.filter(x => !x.ya); const vig = nuevos.filter(x => x.vig).length; const con = nuevos.filter(x => x.p.tipo === 'contratista').length;
+    h += '<label class="field" style="max-width:320px"><span>Fecha límite (días después de asignar)</span><input class="input" type="number" min="1" max="365" id="w-dias" data-chg="wDias" value="' + W.dias + '"></label><p class="muted" style="margin:0">Aplica también a quien ingrese después a este alcance.</p>' +
+      '<div class="kpis four">' + kpi('Personas que recibirán el curso', nuevos.length, 'adscripción vigente al ' + fmt(hoy()), 'main') + kpi('Ya acreditado y vigente', vig, 'quedarán «Al día» de inmediato', 'v-ok') + kpi('Contratistas incluidos', con, 'identificador «C-»') + kpi('Ya tenían la asignación', pv.length - nuevos.length, 'no se duplica') + '</div>' +
+      '<div class="tw"><table class="t"><thead><tr><th>Persona</th><th>Número</th><th>Área · turno</th><th>Resultado</th><th>Fecha límite</th></tr></thead><tbody>' + pv.slice(0, 8).map(x => '<tr><td>' + esc(x.p.nombre) + '</td><td class="mono">' + x.p.num + '</td><td>' + AREA[x.p.area] + ' · ' + x.p.turno + '</td><td>' + (x.ya ? '<span class="chip neutral">Ya asignado</span>' : x.vig ? '<span class="chip ok">' + ic('check', 's') + 'Ya vigente</span>' : '<span class="chip primary">Nueva asignación</span>') + '</td><td>' + (x.ya || x.vig ? '—' : fmt(D.add(hoy(), W.dias))) + '</td></tr>').join('') + (pv.length > 8 ? '<tr><td colspan="5" class="muted">y ' + (pv.length - 8) + ' personas más</td></tr>' : '') + '</tbody></table></div>' +
+      '<div class="row" style="justify-content:flex-end;flex-wrap:wrap"><button class="btn ghost" data-act="wPaso" data-n="1">Atrás</button><button class="btn pri" data-act="crearRegla" ' + (nuevos.length ? '' : 'disabled') + '>' + ic('check', 's') + 'Crear regla y asignar a ' + nuevos.length + ' personas</button></div>';
+  }
+  return h + '</div></div>';
+}
+function matrizCursos() { const al = alcance(); return al.cursos || ['C1', 'C2', 'C3', 'C4', 'C5']; }
+function aMatriz() {
+  const al = alcance(); const area = U.p.marea || (al.nivel === 'empresa' ? 'ENS' : ''); const turno = U.p.mturno === 'todos' ? '' : (U.p.mturno || (al.nivel === 'empresa' ? 'T2' : ''));
+  const ps = S.personas.filter(p => al.personas.includes(p.id) && (!area || p.area === area) && (!turno || p.turno === turno));
+  const cs = matrizCursos().filter(c => ps.some(p => asigDe(p.id, c)));
+  let h = '<div class="atop"><h1>Matriz de capacitación</h1><button class="btn soft sm" data-act="exportar" data-r="matriz" data-f="xlsx">' + ic('down', 's') + 'Excel</button><button class="btn soft sm" data-act="exportar" data-r="matriz" data-f="pdf">' + ic('down', 's') + 'PDF</button></div>' + scopeLine();
+  if (al.nivel === 'empresa') h += '<div class="filters"><label class="field"><span>Área</span><select class="input" id="m-area" data-chg="mArea">' + AREAS.map(a => '<option value="' + a.id + '"' + (area === a.id ? ' selected' : '') + '>' + a.nombre + '</option>').join('') + '</select></label><label class="field"><span>Turno</span><select class="input" id="m-turno" data-chg="mTurno"><option value="">Todos</option>' + TURNOS.map(t => '<option value="' + t + '"' + (turno === t ? ' selected' : '') + '>Turno ' + t.slice(1) + '</option>').join('') + '</select></label></div>';
+  if (!ps.length || !cs.length) return h + '<div class="panel empty"><span class="shape">' + ic('grid', 'xl') + '</span><h3>Sin asignaciones en este alcance</h3><p class="muted" style="margin:0">Cuando haya cursos asignados, aparecerán aquí.</p></div>';
+  const tot = cs.map(c => { const rs = ps.map(p => asigDe(p.id, c)).filter(Boolean).map(a => cumplimiento(a)).filter(x => x.k !== 'exenta'); return [rs.filter(x => x.k === 'al_dia' || x.k === 'por_vencer').length, rs.length]; });
+  h += '<div class="panel"><div class="ph">' + ps.length + ' personas · ' + cs.length + ' cursos<span class="sp"></span><span class="muted" style="font:600 12.5px var(--f-body)">Exentas y «No requerido» no cuentan en el denominador</span></div><div class="tw"><table class="t"><thead><tr><th>Persona</th>' + cs.map(c => '<th>' + esc(CURSOS[c].nombre) + '</th>').join('') + '<th class="r">Cumple</th></tr></thead><tbody>' +
+    ps.map(p => { let ok = 0, n = 0; const tds = cs.map(c => { const a = asigDe(p.id, c); if (!a) return '<td class="muted">No requerido</td>'; const cu = cumplimiento(a); if (cu.k !== 'exenta') { n++; if (cu.k === 'al_dia' || cu.k === 'por_vencer') ok++; } return '<td><div class="cell">' + chipCum(cu, true) + '<small>' + cumFecha(cu) + '</small></div></td>'; }).join(''); return '<tr class="click" data-act="persona" data-id="' + p.id + '"><td><b>' + esc(p.nombre) + '</b><div class="muted" style="font-size:12px"><span class="mono">' + p.num + '</span> · ' + esc(p.puesto) + '</div></td>' + tds + '<td class="r"><b>' + ok + ' de ' + n + '</b></td></tr>'; }).join('') +
+    '</tbody><tfoot><tr><td>Cumplimiento por curso</td>' + tot.map(([a, b]) => '<td>' + pctTxt(a, b) + ' <span class="muted" style="font-weight:600">' + a + '/' + b + '</span></td>').join('') + '<td></td></tr></tfoot></table></div></div>';
+  return h;
+}
+function aValidacion() {
+  const c = cuenta(); const al = alcance();
+  const pend = S.parts.filter(x => al.personas.includes(x.persona) && c.valida.includes(x.curso) && partEstado(x) === 'pendiente_validacion' && x.persona !== c.persona);
+  const sel = pend.find(x => x.id === U.p.vp) || pend[0];
+  let h = '<div class="atop"><h1>Validación práctica</h1></div>' + scopeLine('<span class="chip violet">' + ic('shield', 's') + 'Validadora autorizada: ' + c.valida.map(x => CURSOS[x].nombre).join(', ') + '</span>');
+  if (!pend.length) return h + '<div class="panel empty"><span class="shape">' + ic('check', 'xl') + '</span><h3>No hay prácticas pendientes</h3><p class="muted" style="margin:0">Aparecerán aquí cuando alguien de tu equipo apruebe la evaluación de un curso que exige práctica.</p></div>';
+  const V = U.p.vf && U.p.vf.part === sel.id ? U.p.vf : (U.p.vf = { part: sel.id, crit: CURSOS[sel.curso].practica.criterios.map(() => null), res: null, fecha: hoy() });
+  const curso = CURSOS[sel.curso]; const per = persona(sel.persona);
+  h += '<div class="cols2" style="grid-template-columns:minmax(0,.7fr) minmax(0,1.6fr)"><div class="panel"><div class="ph">Pendientes · ' + pend.length + '</div><div class="pb stack">' + pend.map(x => '<button class="ccard" style="background:' + (x.id === sel.id ? 'var(--primary-soft)' : 'var(--bg)') + '" data-act="vSel" data-id="' + x.id + '"><span class="tile sm t-' + CURSOS[x.curso].color + '">' + ic(CURSOS[x.curso].icon, 's') + '</span><span class="grow"><span class="t" style="font-size:14.5px">' + esc(persona(x.persona).nombre) + '</span><span class="m" style="display:block;font-size:12.5px">' + esc(CURSOS[x.curso].nombre) + ' · v' + x.version + '<br>Esperando desde ' + fmt(x.pvDesde) + '</span></span></button>').join('') + '</div></div>';
+  h += '<form class="panel" data-submit="registrarValidacion"><div class="ph">' + esc(per.nombre) + ' · ' + esc(curso.nombre) + '<span class="sp"></span><span class="chip neutral">Lista de verificación de la versión ' + sel.version + '</span></div><div class="pb">' +
+    curso.practica.criterios.map((t, i) => '<div class="vrow"><span class="grow">' + (i + 1) + '. ' + esc(t) + '</span><span class="seg" role="group" aria-label="Criterio ' + (i + 1) + '"><button type="button" class="y" aria-pressed="' + (V.crit[i] === 'cumple') + '" data-act="vCrit" data-i="' + i + '" data-v="cumple">' + ic('check', 's') + ' Cumple</button><button type="button" class="n" aria-pressed="' + (V.crit[i] === 'no') + '" data-act="vCrit" data-i="' + i + '" data-v="no">No cumple</button><button type="button" class="na" aria-pressed="' + (V.crit[i] === 'na') + '" data-act="vCrit" data-i="' + i + '" data-v="na">No aplica</button></span></div>').join('') +
+    '<div class="vrow"><span class="grow"><b>Resultado general</b></span><span class="seg"><button type="button" class="y" aria-pressed="' + (V.res === 'competente') + '" data-act="vRes" data-v="competente">Competente</button><button type="button" class="n" aria-pressed="' + (V.res === 'aun_no') + '" data-act="vRes" data-v="aun_no">Aún no competente</button></span></div>' +
+    '<div class="filters" style="padding-top:12px;border-top:1px solid var(--line)"><label class="field"><span>Fecha de la práctica</span><input class="input" type="date" id="v-fecha" name="fecha" value="' + V.fecha + '" max="' + hoy() + '" min="' + D.add(hoy(), -7) + '"></label><label class="field" style="flex:1;min-width:220px"><span>Observaciones ' + (V.res === 'aun_no' ? '(obligatorias)' : '(opcional)') + '</span><input class="input" id="v-obs" name="obs" placeholder="Qué observaste"></label><label class="field"><span>Evidencia (opcional)</span><input class="input" type="file" accept="image/*,application/pdf" id="v-foto" name="foto"></label></div>' +
+    '<p class="demo-note">Sin rostros de terceros ni zonas restringidas (decisión D-21). En el prototipo el archivo no se guarda; solo se registra su nombre.</p>' +
+    '<div class="filters"><label class="field" style="min-width:260px"><span>Confirma con tu frase de acceso</span><input class="input" type="password" id="v-pass" name="pass" autocomplete="off" placeholder="Simulado: escribe cualquier texto"></label><span class="grow"></span><button class="btn pri" type="submit">' + ic('lock', 's') + 'Registrar validación</button></div>' +
+    '<p class="muted" style="margin:10px 0 0">' + esc(per.nombre.split(' ')[0]) + ' recibirá un aviso para confirmar la práctica.</p></div></form></div>';
+  return h;
+}
+function aConstancias() {
+  const al = alcance(); const q = (U.p.cq || '').toLowerCase();
+  const ks = S.consts.filter(k => al.personas.includes(k.persona) && (!q || (k.folio + ' ' + persona(k.persona).nombre + ' ' + CURSOS[k.curso].nombre).toLowerCase().includes(q))).sort((a, b) => b.emitida.localeCompare(a.emitida) || b.folio.localeCompare(a.folio));
+  let h = '<div class="atop"><h1>Constancias</h1><button class="btn soft sm" data-act="exportar" data-r="constancias" data-f="xlsx">' + ic('down', 's') + 'Excel</button></div>' + scopeLine() + '<div class="filters"><label class="field" style="flex:1;min-width:220px"><span>Buscar</span><input class="input" id="c-q" data-inp="cq" placeholder="Folio, persona o curso" value="' + esc(U.p.cq || '') + '"></label></div>';
+  h += '<div class="panel"><div class="ph">' + ks.length + ' constancias<span class="sp"></span></div><div class="tw"><table class="t"><thead><tr><th>Folio</th><th>Persona</th><th>Curso</th><th>Emitida</th><th>Estado</th><th></th></tr></thead><tbody>' +
+    ks.slice(0, 50).map(k => '<tr><td class="mono">' + k.folio + '</td><td>' + esc(persona(k.persona).nombre) + '</td><td>' + esc(CURSOS[k.curso].nombre) + ' v' + k.version + '</td><td>' + fmt(k.emitida) + '</td><td>' + chipConst(k) + '</td><td style="white-space:nowrap"><button class="btn ghost sm" data-act="verConst" data-k="' + k.id + '">Ver</button>' + (k.estado === 'vigente' && puede('reemitir') ? '<button class="btn ghost sm" data-act="accionConst" data-k="' + k.id + '" data-t="reemitir">Reemitir</button><button class="btn ghost sm" data-act="accionConst" data-k="' + k.id + '" data-t="revocar" style="color:var(--danger-ink)">Revocar</button>' : '') + '</td></tr>').join('') +
+    (ks.length > 50 ? '<tr><td colspan="6" class="muted">y ' + (ks.length - 50) + ' más · usa la búsqueda</td></tr>' : '') + '</tbody></table></div></div>';
+  return h;
+}
+const REPORTES = [
+  ['individual', '1. Reporte individual', 'Una persona: asignaciones, intentos, validaciones y constancias'],
+  ['matriz', '2. Matriz de capacitación', 'Personas × cursos con estado y vencimiento'],
+  ['unidad', '3. Cumplimiento por unidad', 'Indicadores por área y turno'],
+  ['intentos', '4. Evaluaciones e intentos', 'Un registro por intento'],
+  ['validaciones', '5. Evidencias y validaciones', 'Un registro por validación práctica'],
+  ['constancias', '6. Constancias emitidas', 'Folio, estado, reemisiones y revocaciones'],
+  ['pendientes', '7. Pendiente y próxima a vencer', 'Pendiente, atrasada, vencida y por vencer']
+];
+function aReportes() {
+  const al = alcance(); const r = U.p.rep || 'unidad'; const pid = U.p.rpid || (al.personas.includes('p-rosa') ? 'p-rosa' : al.personas[0]);
+  let h = '<div class="atop"><h1>Reportes y exportaciones</h1></div>' + scopeLine();
+  const rep = construirReporte(r, pid);
+  h += '<div class="cols2" style="grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)"><div class="panel"><div class="ph">Reportes disponibles</div><div class="pb stack">' + REPORTES.map(([k, t, d]) => '<button class="ccard" style="background:' + (k === r ? 'var(--primary-soft)' : 'var(--bg)') + '" data-act="rep" data-r="' + k + '"><span class="grow"><span class="t" style="font-size:14.5px">' + t + '</span><span class="m" style="display:block;font-size:12.5px">' + d + '</span></span><span class="chip neutral">PDF</span><span class="chip neutral">Excel</span></button>').join('') + '</div></div>';
+  h += '<div class="stack"><div class="panel"><div class="ph">' + esc(rep.titulo) + '</div><div class="pb stack">' +
+    (r === 'individual' ? '<label class="field"><span>Persona</span><select class="input" id="r-pid" data-chg="rPid">' + S.personas.filter(p => al.personas.includes(p.id)).map(p => '<option value="' + p.id + '"' + (p.id === pid ? ' selected' : '') + '>' + esc(p.nombre + ' · ' + p.num) + '</option>').join('') + '</select></label>' : '') +
+    '<div class="notice info">' + ic('info') + '<span>Alcance: <b>' + esc(rep.alcance) + '</b> · ' + esc(rep.periodo) + ' · <b>' + rep.filas.length.toLocaleString('es-MX') + '</b> registros. El archivo incluye estos datos en su encabezado' + ' y, en Excel, una hoja «Parámetros» con las definiciones.</span></div>' +
+    (rep.filas.length ? '' : '<div class="notice warn">' + ic('alert') + '<span>No hay registros con estos filtros. El archivo saldría vacío.</span></div>') +
+    '<div class="row" style="justify-content:flex-end;flex-wrap:wrap"><button class="btn soft" data-act="exportar" data-r="' + r + '" data-f="pdf" data-pid="' + pid + '">' + ic('down', 's') + 'PDF</button><button class="btn pri" data-act="exportar" data-r="' + r + '" data-f="xlsx" data-pid="' + pid + '">' + ic('down', 's') + 'Excel</button></div></div></div>';
+  const mias = S.exports.filter(e => e.usuario === yo().nombre).slice(0, 6);
+  h += '<div class="panel"><div class="ph">Mis exportaciones<span class="sp"></span><span class="muted" style="font:600 12.5px var(--f-body)">En producción, las grandes irían a una cola en segundo plano</span></div><div class="tw"><table class="t"><thead><tr><th>Reporte</th><th>Formato</th><th>Generado</th><th class="r">Registros</th></tr></thead><tbody>' + (mias.length ? mias.map(e => '<tr><td>' + esc(e.nombre) + '</td><td>' + e.formato.toUpperCase() + '</td><td>' + esc(e.fecha) + '</td><td class="r">' + e.registros + '</td></tr>').join('') : '<tr><td colspan="4" class="muted">Aún no has exportado nada.</td></tr>') + '</tbody></table></div></div></div></div>';
+  return h;
+}
+function bitTable(b) { return '<div class="panel"><div class="tw"><table class="t"><thead><tr><th>Fecha y hora</th><th>Quién</th><th>Acción</th><th>Registro</th><th>Detalle</th></tr></thead><tbody>' + (b.length ? b.map(x => '<tr><td style="white-space:nowrap">' + esc(x.ts) + '</td><td><b>' + esc(x.actor) + '</b><div class="muted" style="font-size:12px">' + esc(x.rol) + '</div></td><td>' + esc(x.accion) + '</td><td>' + esc(x.entidad) + '</td><td>' + esc(x.detalle) + '</td></tr>').join('') : '<tr><td colspan="5" class="muted">Sin movimientos.</td></tr>') + '</tbody></table></div></div>'; }
+function aBitacora() {
+  const q = (U.p.bq || '').toLowerCase(); const b = S.bit.filter(x => !q || (x.actor + x.accion + x.entidad + x.detalle).toLowerCase().includes(q));
+  return '<div class="atop"><h1>Bitácora</h1></div>' + scopeLine() + '<div class="filters"><label class="field" style="flex:1;min-width:220px"><span>Buscar</span><input class="input" id="b-q" data-inp="bq" placeholder="Persona, acción o registro" value="' + esc(U.p.bq || '') + '"></label></div><p class="demo-note" style="margin:0">Solo se agregan entradas; nadie puede editarlas ni borrarlas desde la aplicación. ' + b.length + ' entradas.</p>' + bitTable(b.slice(0, 80));
+}
+function aCursos() {
+  const al = alcance(); const cs = Object.values(CURSOS).filter(c => !al.cursos || al.cursos.includes(c.id));
+  return '<div class="atop"><h1>Cursos</h1></div>' + scopeLine() + '<div class="notice info">' + ic('info') + '<span>El editor de cursos, el flujo de revisión y la creación asistida por IA no están incluidos en este prototipo. Aquí se muestra el catálogo publicado con sus criterios.</span></div><div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">' +
+    cs.map(c => '<div class="card stack"><div class="row"><span class="tile t-' + c.color + '">' + ic(c.icon) + '</span><div class="grow"><b style="font-size:16px">' + esc(c.nombre) + '</b><div class="muted" style="font-size:13px">Versión ' + c.version + ' · ' + c.clasif + '</div></div></div><div class="row" style="flex-wrap:wrap;gap:6px"><span class="chip ok">Publicado</span><span class="chip coral">DEMO</span>' + (c.jugable ? '<span class="chip primary">Contenido navegable</span>' : '') + '</div><div style="font-size:13.5px"><div>Lecciones: <b>' + lessonIds(c).length + '</b></div><div>Evaluación: <b>mínimo ' + c.eval.min + ', ' + c.eval.intentos + ' intentos</b></div><div>Validación práctica: <b>' + (c.practica ? c.practica.criterios.length + ' criterios' : 'No') + '</b></div><div>Vigencia: <b>' + c.vigencia + ' meses</b></div><div>Fuentes: <b>DEMO · sin fuente real</b></div></div><p class="demo-note" style="margin:0">Criterios ficticios de ejemplo.</p></div>').join('') + '</div>';
+}
+
+/* ---------- Reportes: datos estructurados para PDF y Excel ---------- */
+function construirReporte(r, pid) {
+  const al = alcance(); const f = hoy(); const desde = D.add(f, -365);
+  const base = { alcance: 'Empresa Demo Norte' + (al.nivel === 'empresa' ? '' : ' · ' + al.etiqueta), periodo: 'Corte: ' + fmt(f), filtros: 'Ninguno adicional' };
+  const P = id => persona(id);
+  if (r === 'individual') {
+    const p = P(pid); if (!p) return Object.assign(base, { titulo: 'Reporte individual', cols: [['Persona', 'texto']], filas: [] });
+    const rs = filas({ personas: [pid], cursos: al.cursos });
+    return Object.assign(base, { titulo: 'Reporte individual · ' + p.nombre, filtros: 'Persona: ' + p.nombre + ' (' + p.num + ')', cols: [['Número de empleado', 'texto'], ['Persona', 'texto'], ['Curso', 'texto'], ['Versión', 'numero'], ['Estado de cumplimiento', 'texto'], ['Fecha límite', 'fecha'], ['Fecha de acreditación', 'fecha'], ['Vence', 'fecha'], ['Calificación', 'numero'], ['Folio de constancia', 'texto']],
+      filas: rs.map(x => { const ac = x.c.acred || S.acreds.filter(a => a.persona === pid && a.curso === x.a.curso).slice(-1)[0]; const k = ac && S.consts.find(k => k.acred === ac.id && k.estado === 'vigente'); return [p.num, p.nombre, CURSOS[x.a.curso].nombre, ac ? ac.version : CURSOS[x.a.curso].version, etiquetaCum(x.c), x.a.limite, ac ? ac.fecha : null, ac ? ac.vence : null, ac ? ac.calif : null, k ? k.folio : '']; }) });
+  }
+  if (r === 'matriz') {
+    const rs = filas(al);
+    return Object.assign(base, { titulo: 'Matriz de capacitación', cols: [['Número de empleado', 'texto'], ['Persona', 'texto'], ['Tipo', 'texto'], ['Área', 'texto'], ['Turno', 'texto'], ['Puesto', 'texto'], ['Curso', 'texto'], ['Estado de cumplimiento', 'texto'], ['Fecha relevante', 'fecha']],
+      filas: rs.map(x => [x.p.num, x.p.nombre, x.p.tipo === 'contratista' ? 'Contratista' : 'Empleado', AREA[x.p.area], x.p.turno, x.p.puesto, CURSOS[x.a.curso].nombre, etiquetaCum(x.c), x.c.fecha || null]) });
+  }
+  if (r === 'unidad') {
+    const rs = filas(al); const g = {}; rs.forEach(x => { const k = x.p.area + '|' + x.p.turno; (g[k] = g[k] || []).push(x); });
+    return Object.assign(base, { titulo: 'Cumplimiento por unidad organizacional', filtros: 'Agrupado por área y turno', cols: [['Área', 'texto'], ['Turno', 'texto'], ['Personas', 'numero'], ['Asignaciones vigentes', 'numero'], ['Al día', 'numero'], ['Por vencer', 'numero'], ['Vencidas', 'numero'], ['Atrasadas', 'numero'], ['Pendientes', 'numero'], ['Exentas', 'numero'], ['Cumplimiento', 'pct']],
+      filas: Object.entries(g).sort().map(([k, xs]) => { const I = indicadores(xs); const [a, t] = k.split('|'); return [AREA[a], t, I.personas, I.den, I.n.al_dia, I.n.por_vencer, I.n.vencida, I.n.atrasada, I.n.pendiente, I.n.exenta, I.den ? I.cumplen / I.den : 0]; }) });
+  }
+  if (r === 'intentos') {
+    const fil = []; S.parts.filter(x => al.personas.includes(x.persona) && (!al.cursos || al.cursos.includes(x.curso))).forEach(x => x.intentos.filter(i => i.fecha && i.fecha >= desde).forEach(i => { const p = P(x.persona); fil.push([p.num, p.nombre, CURSOS[x.curso].nombre, x.version, i.n, i.inicio, i.fecha, Math.round(i.calif * 10) / 10, i.aprobado ? 'Aprobado' : 'No aprobado']); }));
+    return Object.assign(base, { titulo: 'Historial de evaluaciones e intentos', periodo: 'Periodo: ' + fmt(desde) + ' a ' + fmt(f), cols: [['Número de empleado', 'texto'], ['Persona', 'texto'], ['Curso', 'texto'], ['Versión', 'numero'], ['Intento', 'numero'], ['Inicio', 'fecha'], ['Envío', 'fecha'], ['Calificación', 'numero'], ['Resultado', 'texto']], filas: fil.sort((a, b) => String(b[6]).localeCompare(String(a[6]))) });
+  }
+  if (r === 'validaciones') {
+    const fil = []; S.parts.filter(x => al.personas.includes(x.persona) && (!al.cursos || al.cursos.includes(x.curso))).forEach(x => x.vals.filter(v => v.fecha >= desde).forEach(v => { const p = P(x.persona); fil.push([p.num, p.nombre, CURSOS[x.curso].nombre, x.version, v.validador, v.fecha, v.registro, v.res === 'competente' ? 'Competente' : 'Aún no competente', v.crit.filter(c => c === 'cumple').length, v.crit.length, v.foto ? 'Sí' : 'No', v.conf ? 'Confirmada' : v.disp ? 'No reconocida' : 'Pendiente']); }));
+    return Object.assign(base, { titulo: 'Evidencias y validaciones prácticas', periodo: 'Periodo: ' + fmt(desde) + ' a ' + fmt(f), cols: [['Número de empleado', 'texto'], ['Persona', 'texto'], ['Curso', 'texto'], ['Versión', 'numero'], ['Validador', 'texto'], ['Fecha de la práctica', 'fecha'], ['Fecha de registro', 'fecha'], ['Resultado', 'texto'], ['Criterios cumplidos', 'numero'], ['Criterios evaluados', 'numero'], ['Evidencia adjunta', 'texto'], ['Confirmación del trabajador', 'texto']], filas: fil.sort((a, b) => String(b[5]).localeCompare(String(a[5]))) });
+  }
+  if (r === 'constancias') {
+    const ks = S.consts.filter(k => al.personas.includes(k.persona) && (!al.cursos || al.cursos.includes(k.curso)) && k.emitida >= desde);
+    return Object.assign(base, { titulo: 'Constancias emitidas', periodo: 'Periodo: ' + fmt(desde) + ' a ' + fmt(f), cols: [['Folio', 'texto'], ['Número de empleado', 'texto'], ['Persona', 'texto'], ['Curso', 'texto'], ['Versión', 'numero'], ['Fecha de acreditación', 'fecha'], ['Fecha de emisión', 'fecha'], ['Estado', 'texto'], ['Folio anterior', 'texto'], ['Motivo', 'texto']],
+      filas: ks.sort((a, b) => b.folio.localeCompare(a.folio)).map(k => { const ac = S.acreds.find(a => a.id === k.acred); const ant = k.anterior && S.consts.find(x => x.id === k.anterior); return [k.folio, P(k.persona).num, P(k.persona).nombre, CURSOS[k.curso].nombre, k.version, ac ? ac.fecha : null, k.emitida, { vigente: 'Vigente', generando: 'Generando', sustituida: 'Sustituida', revocada: 'Revocada' }[k.estado], ant ? ant.folio : '', k.motivo || '']; }) });
+  }
+  const rs = filas(al).filter(x => ['pendiente', 'atrasada', 'vencida', 'por_vencer'].includes(x.c.k));
+  return Object.assign(base, { titulo: 'Capacitación pendiente y próxima a vencer', cols: [['Número de empleado', 'texto'], ['Persona', 'texto'], ['Área', 'texto'], ['Turno', 'texto'], ['Curso', 'texto'], ['Estado de cumplimiento', 'texto'], ['Fecha relevante', 'fecha'], ['Días para la fecha', 'numero']],
+    filas: rs.sort((a, b) => String(a.c.fecha).localeCompare(String(b.c.fecha))).map(x => [x.p.num, x.p.nombre, AREA[x.p.area], x.p.turno, CURSOS[x.a.curso].nombre, etiquetaCum(x.c), x.c.fecha || null, x.c.fecha ? D.diff(x.c.fecha, f) : null]) });
+}
+function etiquetaCum(c) { return CUM[c.k][0] + (c.k === 'pendiente' && c.sub && c.sub !== 'pendiente' ? ' · ' + EST[c.sub] : ''); }
+const serial = s => (D.t(s) - Date.UTC(1899, 11, 30)) / 864e5;
+function generadoTxt() { return fmt(hoy()) + ' ' + hora() + ' · ' + yo().nombre + ' (' + cuenta().roles.map(r => ROL[r]).join(', ') + ')'; }
+function xlsxReporte(rep) {
+  if (!window.XLSX) throw new Error('La librería de Excel no cargó');
+  const wb = XLSX.utils.book_new(); const ws = {};
+  rep.cols.forEach(([h], c) => { ws[XLSX.utils.encode_cell({ r: 0, c })] = { t: 's', v: h }; });
+  rep.filas.forEach((row, i) => row.forEach((v, c) => {
+    const tipo = rep.cols[c][1]; const ref = XLSX.utils.encode_cell({ r: i + 1, c });
+    if (v === null || v === undefined || v === '') return;
+    if (tipo === 'fecha') ws[ref] = { t: 'n', v: serial(v), z: 'dd/mm/yyyy' };
+    else if (tipo === 'numero') ws[ref] = { t: 'n', v: Number(v) };
+    else if (tipo === 'pct') ws[ref] = { t: 'n', v: Number(v), z: '0.0%' };
+    else ws[ref] = { t: 's', v: String(v) };
+  }));
+  ws['!ref'] = XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: Math.max(rep.filas.length, 1), c: rep.cols.length - 1 } });
+  ws['!cols'] = rep.cols.map(([h, t]) => ({ wch: Math.max(12, Math.min(34, h.length + 4)) }));
+  ws['!autofilter'] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: Math.max(rep.filas.length, 1), c: rep.cols.length - 1 } }) };
+  XLSX.utils.book_append_sheet(wb, ws, 'Datos');
+  const par = [['Reporte', rep.titulo], ['Generado', generadoTxt()], ['Alcance', rep.alcance], ['Periodo', rep.periodo], ['Filtros', rep.filtros], ['Registros', rep.filas.length], ['Aviso', 'DEMO · DATOS FICTICIOS. Prototipo de la Etapa 3; no usar con datos reales.'], [], ['Columna', 'Tipo de dato']].concat(rep.cols.map(([h, t]) => [h, { texto: 'Texto (identificadores como texto para conservar ceros a la izquierda)', numero: 'Número', fecha: 'Fecha (dd/mm/aaaa)', pct: 'Porcentaje' }[t]]));
+  if (rep.titulo.startsWith('Cumplimiento')) par.push([], ['Cumplimiento', '(Al día + Por vencer) ÷ asignaciones obligatorias vigentes, sin exentas ni opcionales (I-05)']);
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(par), 'Parámetros');
+  return new Blob([XLSX.write(wb, { bookType: 'xlsx', type: 'array' })], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+}
+function pdfBase(orient) { if (!window.jspdf) throw new Error('La librería de PDF no cargó'); return new window.jspdf.jsPDF({ orientation: orient, unit: 'pt', format: 'a4' }); }
+function pdfReporte(rep) {
+  const ancho = rep.cols.length > 7; const doc = pdfBase(ancho ? 'landscape' : 'portrait'); const W = doc.internal.pageSize.getWidth(); const H = doc.internal.pageSize.getHeight();
+  const head = () => { doc.setFillColor(47, 75, 240); doc.rect(0, 0, W, 6, 'F'); doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(20, 26, 51); doc.text(rep.titulo, 36, 34); doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(83, 92, 119); doc.text('Generado: ' + generadoTxt(), 36, 50); doc.text('Alcance: ' + rep.alcance + '   ·   ' + rep.periodo + '   ·   Filtros: ' + rep.filtros, 36, 62); doc.setTextColor(184, 58, 28); doc.text('DEMO · DATOS FICTICIOS', W - 36, 34, { align: 'right' }); };
+  const body = rep.filas.map(row => row.map((v, c) => { const t = rep.cols[c][1]; if (v === null || v === undefined || v === '') return ''; if (t === 'fecha') return fmt(v); if (t === 'pct') return (v * 100).toFixed(1) + ' %'; return String(v); }));
+  doc.autoTable({ head: [rep.cols.map(c => c[0])], body: body.length ? body : [rep.cols.map((_, i) => i ? '' : 'Sin registros con estos filtros')], startY: 76, margin: { top: 76, left: 36, right: 36, bottom: 40 }, styles: { fontSize: 7.5, cellPadding: 3.5, textColor: [20, 26, 51], lineColor: [227, 231, 241], lineWidth: .5 }, headStyles: { fillColor: [231, 235, 255], textColor: [35, 57, 201], fontStyle: 'bold' }, alternateRowStyles: { fillColor: [247, 248, 252] }, didDrawPage: head });
+  const n = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= n; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(83, 92, 119); doc.text('Oficio · Prototipo de la Etapa 3 · Confidencial', 36, H - 20); doc.text('Página ' + i + ' de ' + n, W - 36, H - 20, { align: 'right' }); }
+  return doc.output('blob');
+}
+function pdfConstancia(k) {
+  const doc = pdfBase('portrait'); const W = doc.internal.pageSize.getWidth(); const H = doc.internal.pageSize.getHeight();
+  const p = persona(k.persona); const ac = S.acreds.find(a => a.id === k.acred); const c = CURSOS[k.curso];
+  const part = S.parts.find(x => x.id === ac.part); const val = part && part.vals.find(v => v.res === 'competente' && !v.anulada);
+  doc.saveGraphicsState(); doc.setGState(new doc.GState({ opacity: 0.1 })); doc.setFont('helvetica', 'bold'); doc.setFontSize(54); doc.setTextColor(255, 106, 77); doc.text('DEMO · CONTENIDO FICTICIO', W / 2, H / 2 + 40, { align: 'center', angle: 32 }); doc.restoreGraphicsState();
+  doc.setFillColor(47, 75, 240); doc.roundedRect(48, 46, 36, 36, 8, 8, 'F'); doc.setFillColor(255, 106, 77); doc.circle(77, 53, 4, 'F');
+  doc.setTextColor(20, 26, 51); doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text('Empresa Demo Norte', 96, 60); doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(83, 92, 119); doc.text('Grupo Demo · Planta Demo 1', 96, 74);
+  doc.setFontSize(8); doc.text('FOLIO', W - 48, 56, { align: 'right' }); doc.setFont('courier', 'bold'); doc.setFontSize(13); doc.setTextColor(20, 26, 51); doc.text(k.folio, W - 48, 72, { align: 'right' });
+  doc.setDrawColor(47, 75, 240); doc.setLineWidth(2.5); doc.line(48, 96, W - 48, 96);
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(26); doc.text('Constancia de capacitación', W / 2, 168, { align: 'center' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(83, 92, 119); doc.text('Documento interno generado con los datos registrados en la plataforma', W / 2, 188, { align: 'center' });
+  doc.setFontSize(12); doc.text('Se hace constar que', W / 2, 240, { align: 'center' });
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(24); doc.setTextColor(20, 26, 51); doc.text(p.nombre, W / 2, 272, { align: 'center' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(12); doc.setTextColor(83, 92, 119); doc.text('número de empleado ' + p.num + ', acreditó el curso', W / 2, 296, { align: 'center' });
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(17); doc.setTextColor(20, 26, 51); doc.text(c.nombre + ' · versión ' + k.version, W / 2, 326, { align: 'center' });
+  const ads = p.adscripciones.filter(a => a.desde <= ac.fecha && (!a.hasta || a.hasta >= ac.fecha)).pop() || p.adscripciones.slice(-1)[0];
+  const campos = [['Fecha de acreditación', fmtL(ac.fecha)], ['Fecha de emisión', fmtL(k.emitida)], ['Calificación de la evaluación', ac.calif != null ? Math.round(ac.calif) + ' / 100' : 'No aplica'], ['Validación práctica', val ? 'Competente · ' + fmt(val.fecha) : 'No aplica'], ['Vigencia', ac.vence ? 'Hasta el ' + fmtL(ac.vence) : 'Sin vencimiento'], ['Adscripción al acreditar', AREA[ads.area] + ' · Turno ' + ads.turno.slice(1) + ' · ' + ads.puesto]];
+  campos.forEach(([l, v], i) => { const x = i % 2 ? W / 2 + 10 : 72; const y = 380 + Math.floor(i / 2) * 48; doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(83, 92, 119); doc.text(l.toUpperCase(), x, y); doc.setFontSize(11); doc.setTextColor(20, 26, 51); doc.text(v, x, y + 15); });
+  doc.setLineDashPattern([4, 3], 0); doc.setDrawColor(139, 147, 171); doc.setLineWidth(1);
+  doc.roundedRect(72, 600, 300, 80, 8, 8); doc.roundedRect(W - 72 - 120, 580, 120, 120, 8, 8); doc.setLineDashPattern([], 0);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(83, 92, 119); doc.text('Firma del responsable', 222, 634, { align: 'center' }); doc.setFont('helvetica', 'bold'); doc.text('Opción por confirmar (D-23)', 222, 650, { align: 'center' });
+  doc.setFont('helvetica', 'normal'); doc.text('Código QR de verificación', W - 132, 632, { align: 'center' }); doc.setFont('helvetica', 'bold'); doc.text('Opción por confirmar', W - 132, 648, { align: 'center' }); doc.text('(D-22)', W - 132, 660, { align: 'center' });
+  doc.setDrawColor(227, 231, 241); doc.line(48, H - 92, W - 48, H - 92);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(83, 92, 119);
+  doc.text(doc.splitTextToSize('Documento interno de la empresa. No constituye un documento oficial ante autoridades ni sustituye formatos regulados. [Texto de ejemplo por validar con el área jurídica (D-24)]', W - 220), 48, H - 76);
+  doc.text('Plantilla v1 · Página 1 de 1', W - 48, H - 76, { align: 'right' });
+  if (k.huella) doc.text('Huella del registro de emisión (SHA-256): ' + k.huella.slice(0, 32) + '…', 48, H - 44);
+  if (k.estado !== 'vigente') { doc.setTextColor(191, 42, 42); doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.text('CONSTANCIA ' + k.estado.toUpperCase(), W / 2, 120, { align: 'center' }); }
+  return doc.output('blob');
+}
+
+/* ---------- Superposiciones ---------- */
+function renderOverlay() {
+  let h = '';
+  if (U.modal) h += '<div class="scrim" data-act="scrim"><div class="dialog ' + (U.modal.wide ? 'wide' : '') + '" role="dialog" aria-modal="true">' + modalBody() + '</div></div>';
+  if (U.guide) h += '<div class="scrim" data-act="scrim" style="justify-content:flex-end;padding:0"></div><aside class="drawer" role="dialog" aria-label="Guía de la demo">' + guideBody() + '</aside>';
+  if (U.inact) h += '<div class="scrim" style="align-items:flex-end;padding:0"><div class="dialog" style="border-radius:24px 24px 0 0;width:min(520px,100%)" role="alertdialog" aria-live="assertive"><div class="row"><span class="tile t-sun">' + ic('clock') + '</span><h2 style="font-size:24px">¿Sigues ahí?</h2></div><p style="margin:0">Para proteger tus datos, cerraremos tu sesión en este equipo compartido en:</p><div class="big-num num" style="text-align:center;color:var(--ink)">0:' + String(U.inact.t).padStart(2, '0') + '</div><p class="muted" style="text-align:center;margin:0">Tu avance ya está guardado.</p><button class="btn pri block" data-act="seguir">Seguir aprendiendo</button><button class="btn ghost block" data-act="salir">Salir ahora</button></div></div>';
+  if (U.toast) h += '<div class="toast" role="status">' + esc(U.toast) + '</div>';
+  return h;
+}
+function modalBody() {
+  const M = U.modal;
+  if (M.t === 'preExamen' || M.t === 'html') return M.html;
+  if (M.t === 'const') {
+    const k = S.consts.find(x => x.id === M.k); const p = persona(k.persona); const ac = S.acreds.find(a => a.id === k.acred); const c = CURSOS[k.curso];
+    const part = S.parts.find(x => x.id === ac.part); const val = part && part.vals.find(v => v.res === 'competente' && !v.anulada);
+    return '<div class="row"><h2 class="grow" style="font-size:22px">Constancia ' + chipConst(k) + '</h2><button class="iconbtn" data-act="cerrarModal" aria-label="Cerrar" style="background:var(--surface-2)">' + ic('x') + '</button></div>' +
+      '<div class="cert"><div class="wm">DEMO · CONTENIDO FICTICIO</div><div class="top"><div class="row"><svg style="width:36px;height:36px"><use href="#logo"/></svg><div><b>Empresa Demo Norte</b><div style="font-size:12px;color:#535C77">Grupo Demo · Planta Demo 1</div></div></div><div style="text-align:right"><div style="font-size:10px;font-weight:800;letter-spacing:.08em;color:#535C77">FOLIO</div><div class="mono" style="font-weight:600">' + k.folio + '</div></div></div>' +
+      '<h3>Constancia de capacitación</h3><p style="text-align:center;color:#535C77;margin:4px 0 14px;font-size:13px">Documento interno generado con los datos registrados en la plataforma</p><p style="text-align:center;margin:0;color:#535C77">Se hace constar que</p><div class="who">' + esc(p.nombre) + '</div><p style="text-align:center;margin:0;color:#535C77">número de empleado <span class="mono" style="color:#141A33">' + p.num + '</span>, acreditó el curso</p><p style="text-align:center;font-weight:800;font-size:18px;margin:8px 0 0">' + esc(c.nombre) + ' · versión ' + k.version + '</p>' +
+      '<div class="fields"><div><span>Fecha de acreditación</span><b>' + fmtL(ac.fecha) + '</b></div><div><span>Fecha de emisión</span><b>' + fmtL(k.emitida) + '</b></div><div><span>Calificación</span><b>' + (ac.calif != null ? Math.round(ac.calif) + ' / 100' : 'No aplica') + '</b></div><div><span>Validación práctica</span><b>' + (val ? 'Competente · ' + fmt(val.fecha) : 'No aplica') + '</b></div><div><span>Vigencia</span><b>' + (ac.vence ? 'Hasta el ' + fmtL(ac.vence) : 'Sin vencimiento') + '</b></div></div>' +
+      '<div style="display:grid;grid-template-columns:1fr 130px;gap:14px"><div class="ph">Firma del responsable<br><b>Opción por confirmar (D-23)</b></div><div class="ph" style="min-height:120px">QR de verificación<br><b>Por confirmar (D-22)</b></div></div><div class="legal">Documento interno de la empresa. No constituye un documento oficial ante autoridades. [Texto de ejemplo por validar con el área jurídica (D-24)]</div></div>' +
+      '<div class="muted" style="font-size:13px">Registro de emisión: plantilla ' + k.plantilla + ' · emitida ' + fmt(k.emitida) + (k.anterior ? ' · sustituye a ' + S.consts.find(x => x.id === k.anterior).folio : '') + (k.motivo ? ' · motivo: ' + esc(k.motivo) : '') + (k.huella ? '<br>Huella SHA-256: <span class="mono">' + k.huella.slice(0, 24) + '…</span>' : '') + '</div>' +
+      '<div class="row" style="justify-content:flex-end;flex-wrap:wrap"><button class="btn ghost" data-act="cerrarModal">Cerrar</button><button class="btn pri" data-act="pdfConst" data-k="' + k.id + '">' + ic('down', 's') + 'Descargar PDF</button></div>';
+  }
+  if (M.t === 'accionConst') {
+    const k = S.consts.find(x => x.id === M.k);
+    return '<form class="stack" data-submit="accionConst"><h2 style="font-size:22px">' + (M.tipo === 'revocar' ? 'Revocar constancia' : 'Reemitir constancia') + ' <span class="mono" style="font-size:16px">' + k.folio + '</span></h2>' +
+      (M.tipo === 'revocar' ? '<div class="notice danger">' + ic('alert') + '<span>La acreditación y la constancia quedarán revocadas. Se creará una nueva participación con fecha límite a 30 días. Nada se borra.</span></div>' : '<div class="notice info">' + ic('info') + '<span>Se emitirá una nueva constancia con nuevo folio. La actual quedará «Sustituida» y enlazada a la nueva.</span></div>') +
+      '<label class="field"><span>Motivo (obligatorio)</span><input class="input" name="motivo" id="m-motivo" required placeholder="' + (M.tipo === 'revocar' ? 'Ej.: acreditación registrada por error' : 'Ej.: corrección del nombre') + '"></label><label class="field"><span>Confirma con tu frase de acceso</span><input class="input" type="password" name="pass" id="m-pass" autocomplete="off" placeholder="Simulado"></label>' +
+      '<div class="row" style="justify-content:flex-end"><button type="button" class="btn ghost" data-act="cerrarModal">Cancelar</button><button class="btn ' + (M.tipo === 'revocar' ? 'danger' : 'pri') + '" type="submit">' + (M.tipo === 'revocar' ? 'Revocar' : 'Reemitir') + '</button></div></form>';
+  }
+  if (M.t === 'excepcion') {
+    const a = S.asigs.find(x => x.id === M.a); const cu = cumplimiento(a);
+    return '<form class="stack" data-submit="excepcion"><h2 style="font-size:22px">Excepción · ' + esc(CURSOS[a.curso].nombre) + '</h2><p class="muted" style="margin:0">' + esc(persona(a.persona).nombre) + ' · ' + chipCum(cu) + '</p>' +
+      '<label class="field"><span>Tipo</span><select class="input" name="tipo" id="e-tipo">' + (cu.sub === 'no_aprobada' ? '<option value="intentos">Autorizar 2 intentos adicionales</option>' : '') + '<option value="prorroga">Prórroga de 15 días</option><option value="exencion">Exentar por 90 días</option></select></label><label class="field"><span>Motivo (obligatorio)</span><input class="input" name="motivo" id="e-motivo" required></label>' +
+      '<p class="demo-note" style="margin:0">Las exenciones salen del denominador de cumplimiento y se reportan aparte. Toda excepción queda en la bitácora.</p><div class="row" style="justify-content:flex-end"><button type="button" class="btn ghost" data-act="cerrarModal">Cancelar</button><button class="btn pri" type="submit">Aprobar excepción</button></div></form>';
+  }
+  return '';
+}
+function pasosGuia() {
+  const rosaC2 = asigDe('p-rosa', 'C2'); const part = rosaC2 && partActual(rosaC2); const anyPart = rosaC2 && S.parts.filter(x => x.asig === rosaC2.id);
+  const lec = anyPart && anyPart.some(x => x.hechas.length >= 4); const ev = anyPart && anyPart.some(x => x.intentos.some(i => i.aprobado)); const val = anyPart && anyPart.some(x => x.vals.some(v => v.res === 'competente'));
+  const k = S.consts.find(k => k.persona === 'p-rosa' && k.curso === 'C2'); const exp = S.exports.some(e => e.usuario === 'Ana Ruiz');
+  return [
+    { ok: !!rosaC2, t: 'Asigna el curso', d: 'Como Ana (RH): Reglas de asignación → Nueva regla → «Orden y limpieza del área» → Ensamble → revisa la vista previa → Crear.', go: ['ana', 'admin', 'reglas'] },
+    { ok: !!lec, t: 'Aprende', d: 'Como Rosa: completa las 4 lecciones con sus 5 tipos de actividad. Equivócate a propósito para ver la retroalimentación.', go: ['rosa', 'aprender', 'inicio'] },
+    { ok: !!ev, t: 'Presenta la evaluación', d: 'Como Rosa: abre el curso y presenta la evaluación. Mínimo ficticio: 80.', go: ['rosa', 'aprender', 'inicio'] },
+    { ok: !!val, t: 'Valida la práctica', d: 'Como Laura (supervisora): Validación práctica → marca los criterios → Competente → Registrar.', go: ['laura', 'admin', 'validacion'] },
+    { ok: !!k, t: 'Revisa la constancia', d: 'Se emite sola al acreditar. Como Rosa: confirma la práctica y abre Historial → Ver constancia → Descargar PDF.', go: ['rosa', 'aprender', 'historial'] },
+    { ok: exp, t: 'Consulta y exporta', d: 'Como Ana: revisa Tablero y Matriz, y exporta un reporte en Excel o PDF.', go: ['ana', 'admin', 'reportes'] }
+  ];
+}
+function guideBody() {
+  const ps = pasosGuia(); const next = ps.findIndex(x => !x.ok);
+  return '<div class="row"><h2 class="grow" style="font-size:24px">Guía de la demo</h2><button class="iconbtn" data-act="guia" aria-label="Cerrar guía" style="background:var(--surface-2)">' + ic('x') + '</button></div><p class="muted" style="margin:0">Recorrido completo: de la asignación a la constancia y los reportes. Cada paso se marca solo al cumplirse.</p>' +
+    ps.map((x, i) => '<div class="gstep ' + (x.ok ? 'ok' : i === next ? 'next' : '') + '"><span class="n">' + (x.ok ? ic('check', 's') : i + 1) + '</span><div class="grow"><b>' + x.t + '</b><div class="muted" style="font-size:13.5px">' + x.d + '</div>' + (x.ok ? '' : '<button class="btn soft sm" style="margin-top:8px" data-act="guiaIr" data-i="' + i + '">Ir ' + ic('chev', 's') + '</button>') + '</div></div>').join('') +
+    '<h3 style="font-size:18px;margin-top:6px">Qué funciona y qué está simulado</h3>' +
+    '<div class="notice ok">' + ic('check') + '<span><b>Funciona:</b> navegación por rol, 5 tipos de actividad con retroalimentación, reglas de estado y cumplimiento, indicadores, vista previa de reglas, excepciones, validación práctica, emisión con folio, reemisión y revocación, PDF y Excel generados en el navegador, bitácora, fecha simulada.</span></div>' +
+    '<div class="notice warn">' + ic('alert') + '<span><b>Simulado:</b> inicio de sesión y activación, segundo factor, permisos del servidor (aquí solo en la interfaz), guardado (solo en este navegador), procesos en segundo plano, avisos, carga de evidencias. <b>No incluido:</b> editor de cursos, IA, carga desde Excel, verificación por QR y firma.</span></div>' +
+    '<p class="demo-note" style="margin:0">Usa «+30 días» o «+1 año» en la barra para ver vencimientos y renovaciones.</p>';
+}
+
+/* ---------- Utilidades de interfaz ---------- */
+let toastT = null;
+function toast(t) { U.toast = t; render(); clearTimeout(toastT); toastT = setTimeout(() => { U.toast = null; render(); }, 3200); }
+function live(t) { const el = $('#live'); if (el) el.textContent = t; }
+let inactT = null;
+function go(view, p) { U.view = view; U.p = p || {}; U.player = null; U.exam = null; U.modal = null; save(); render(); window.scrollTo(0, 0); }
+function entrarComo(id, space, view) {
+  U.user = id; U.loginErr = ''; U.loginMsg = ''; U.player = null; U.exam = null; U.modal = null; U.barOpen = false;
+  const p = yo(); p.ultimo = hoy();
+  U.space = space || (cuenta().roles.includes('trabajador') ? 'aprender' : 'admin'); U.view = view || (U.space === 'admin' ? 'tablero' : 'inicio'); U.p = {};
+  log('Inicio de sesión (simulado)', 'Sesión', 'Equipo compartido');
+  save(); render(); window.scrollTo(0, 0);
+}
+
+/* ---------- Acciones de la interfaz ---------- */
+const A = {
+  barToggle: () => { U.barOpen = !U.barOpen; render(); },
+  verComo: (d, el) => { if (!el.value) { U.user = null; U.loginSel = null; render(); return; } entrarComo(el.value); },
+  pickAcc: d => { U.loginSel = d.id; U.loginErr = ''; render(); },
+  entrar: data => { const c = CUENTAS.find(c => persona(c.persona).num.toLowerCase() === String(data.num || '').trim().toLowerCase()); if (!c || !data.pass) { U.loginErr = 'Revisa tu número de empleado y tu frase de acceso.'; render(); return; } entrarComo(c.id); },
+  salir: () => { if (U.user) log('Cierre de sesión', 'Sesión', U.inact ? 'Cierre por inactividad' : 'Salida manual'); clearInterval(inactT); const porInact = !!U.inact; U.inact = null; U.user = null; U.loginSel = null; U.player = null; U.exam = null; U.modal = null; U.loginMsg = porInact ? 'Cerramos tu sesión para proteger tus datos. Tu avance quedó guardado.' : ''; save(); render(); },
+  dia: d => { const n = Number(d.n); S.offset = n === 0 ? 0 : S.offset + n; procesoDiario(); save(); toast('Fecha simulada: ' + fmt(hoy())); },
+  reiniciar: () => { U.modal = { t: 'html', html: '<h2 style="font-size:22px">¿Reiniciar la demo?</h2><p style="margin:0">Se borran tus cambios en este navegador y se vuelve a los datos ficticios iniciales.</p><div class="row" style="justify-content:flex-end"><button class="btn ghost" data-act="cerrarModal">Cancelar</button><button class="btn danger" data-act="reiniciarSi">Reiniciar</button></div>' }; render(); },
+  reiniciarSi: () => { try { localStorage.removeItem(STORE_KEY); localStorage.removeItem(STORE_KEY + '-ui'); } catch (e) { } seed(); U = Object.assign(U, { user: null, space: 'aprender', view: 'inicio', p: {}, player: null, exam: null, modal: null, guide: true, loginSel: null, loginErr: '', loginMsg: '' }); save(); render(); },
+  guia: () => { U.guide = !U.guide; S.guiaVista = true; save(); render(); },
+  guiaIr: d => { const g = pasosGuia()[Number(d.i)].go; U.guide = false; entrarComo(g[0], g[1], g[2]); },
+  scrim: (d, el, e) => { if (e.target === el) { U.modal = null; U.guide = false; render(); } },
+  cerrarModal: () => { U.modal = null; render(); },
+  inactividad: () => { if (!U.user) { toast('Entra con una cuenta para probar el cierre por inactividad.'); return; } U.inact = { t: 30 }; clearInterval(inactT); inactT = setInterval(() => { if (!U.inact) { clearInterval(inactT); return; } U.inact.t--; if (U.inact.t <= 0) { clearInterval(inactT); A.salir(); } else render(); }, 1000); render(); },
+  seguir: () => { clearInterval(inactT); U.inact = null; render(); },
+  go: d => go(d.v),
+  space: d => { U.space = d.s; go(d.s === 'admin' ? 'tablero' : 'inicio'); },
+  tab: d => { U.p.tab = d.t; render(); },
+  curso: d => go('curso', { a: d.a }),
+  leccion: d => { if (!d.l) { go('curso', { a: d.a }); return; } startLesson(d.a, d.l); render(); window.scrollTo(0, 0); },
+  sel: d => { const a = act(); U.player.sel = a.t === 'tf' ? d.i === 'true' : Number(d.i); render(); },
+  seq: d => { U.player.seq.push(Number(d.i)); render(); },
+  unseq: d => { U.player.seq.splice(Number(d.k), 1); render(); },
+  hs: (d, el, e) => { e.stopPropagation(); const P = U.player; if (P.phase !== 'q') return; if (!P.found.includes(d.id)) P.found.push(d.id); render(); },
+  hsMiss: () => { const P = U.player; if (P && P.phase === 'q') { P.misses++; toast('Ahí no hay nada que reportar. Sigue buscando.'); } },
+  hsToggle: () => { U.player.list = !U.player.list; render(); },
+  hsList: (d, el) => { const P = U.player; if (el.checked) { if (!P.found.includes(d.id)) P.found.push(d.id); } else P.found = P.found.filter(x => x !== d.id); render(); },
+  comprobar: () => { comprobar(); render(); },
+  siguiente: () => { siguiente(); render(); window.scrollTo(0, 0); },
+  cerrarLeccion: () => { const a = U.player.aid; U.player = null; toast('Tu avance quedó guardado.'); go('curso', { a }); },
+  finLeccion: () => { const a = U.player.aid; U.player = null; go('curso', { a }); },
+  preExamen: d => { preExamen(d.a); render(); },
+  iniciarExamen: d => { iniciarExamen(d.a); render(); window.scrollTo(0, 0); },
+  resp: d => { const v = d.v === 'true' ? true : d.v === 'false' ? false : Number(d.v); U.exam.ans[U.exam.idx] = v; const it = S.parts.find(x => x.id === U.exam.pid).intentos.find(i => i.n === U.exam.n); it.ans = U.exam.ans; save(); render(); },
+  irPregunta: d => { U.exam.idx = Number(d.i); U.exam.confirm = false; render(); },
+  confExamen: () => { U.exam.confirm = true; render(); },
+  volverExamen: () => { U.exam.confirm = false; render(); },
+  enviarExamen: () => { enviarExamen(); render(); window.scrollTo(0, 0); },
+  confPractica: d => { const x = S.parts.find(p => p.id === d.p); const v = x.vals.find(v => v.id === d.v); v.conf = true; log('Confirmar práctica', 'Validación práctica', CURSOS[x.curso].nombre); save(); toast('Gracias. Confirmaste tu práctica.'); },
+  dispPractica: d => { const x = S.parts.find(p => p.id === d.p); const v = x.vals.find(v => v.id === d.v); v.disp = true; log('Práctica no reconocida', 'Validación práctica', persona(x.persona).nombre + ' · ' + CURSOS[x.curso].nombre + ' · aviso a RH'); save(); toast('Avisamos a RH para que lo revise.'); },
+  rankOpt: () => { const p = yo(); p.rankOptIn = !p.rankOptIn; log('Cambiar preferencia de ranking', 'Perfil', p.rankOptIn ? 'Participa en el ranking' : 'Progreso privado'); save(); render(); },
+  verConst: d => { U.modal = { t: 'const', k: d.k, wide: true }; if (U.space === 'aprender') delete S.nuevaConst[yo().id]; save(); render(); },
+  pdfConst: async d => { const k = S.consts.find(x => x.id === d.k); try { await guardar('Constancia_' + k.folio + '.pdf', pdfConstancia(k)); } catch (e) { toast('No se pudo generar el PDF: ' + e.message); } },
+  exportar: async d => {
+    try {
+      const rep = construirReporte(d.r, d.pid || 'p-rosa');
+      const blob = d.f === 'pdf' ? pdfReporte(rep) : xlsxReporte(rep);
+      const nombre = rep.titulo.replace(/[·\s]+/g, '_').replace(/[^\wÁÉÍÓÚáéíóúÑñ_-]/g, '') + '_' + hoy() + '.' + d.f;
+      S.exports.unshift({ nombre: rep.titulo, formato: d.f, fecha: fmt(hoy()) + ' ' + hora(), usuario: yo().nombre, registros: rep.filas.length });
+      log('Exportar', 'Reporte', rep.titulo + ' · ' + d.f.toUpperCase() + ' · ' + rep.filas.length + ' registros · ' + rep.alcance);
+      save(); render(); await guardar(nombre, blob);
+    } catch (e) { toast('No se pudo generar el archivo: ' + e.message); }
+  },
+  persona: d => go('persona', { id: d.id }),
+  ptab: d => { U.p.tab = d.t; U.p.codigo = null; render(); },
+  fArea: (d, el) => { U.p.area = el.value; render(); },
+  mArea: (d, el) => { U.p.marea = el.value; render(); },
+  mTurno: (d, el) => { U.p.mturno = el.value || ''; if (!el.value) U.p.mturno = 'todos'; render(); },
+  fq: (d, el) => { U.p.q = el.value; render(); },
+  cq: (d, el) => { U.p.cq = el.value; render(); },
+  bq: (d, el) => { U.p.bq = el.value; render(); },
+  rep: d => { U.p.rep = d.r; render(); },
+  rPid: (d, el) => { U.p.rpid = el.value; render(); },
+  restablecer: data => { if (!data.verif || !String(data.motivo || '').trim()) { toast('Marca la verificación y escribe el motivo.'); return; } const p = persona(U.p.id); const code = Array.from({ length: 6 }, () => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random() * 32)]).join(''); U.p.codigo = code.slice(0, 3) + '-' + code.slice(3); log('Restablecer acceso', 'Cuenta de ' + p.nombre, 'Identidad verificada en persona · motivo: ' + data.motivo + ' · sesiones cerradas'); save(); render(); },
+  nuevaRegla: () => { U.p.wiz = { paso: 0, curso: 'C2', areas: ['ENS'], turnos: TURNOS.slice(), dias: 30, contratistas: true }; render(); },
+  cancelWiz: () => { U.p.wiz = null; render(); },
+  wPaso: d => { U.p.wiz.paso = Number(d.n); render(); },
+  wCurso: (d, el) => { U.p.wiz.curso = el.value; },
+  wArea: (d, el) => { const W = U.p.wiz; W.areas = el.checked ? W.areas.concat(d.id) : W.areas.filter(x => x !== d.id); render(); },
+  wTurno: (d, el) => { const W = U.p.wiz; W.turnos = el.checked ? W.turnos.concat(d.id) : W.turnos.filter(x => x !== d.id); render(); },
+  wCon: (d, el) => { U.p.wiz.contratistas = el.checked; render(); },
+  wDias: (d, el) => { U.p.wiz.dias = Math.max(1, Math.min(365, Number(el.value) || 30)); render(); },
+  crearRegla: () => { const W = U.p.wiz; const r = { id: 'R' + (S.reglas.length + 1), curso: W.curso, areas: W.areas.slice(), turnos: W.turnos.slice(), dias: W.dias, contratistas: W.contratistas, tipo: 'obligatorio', creada: hoy(), autor: yo().nombre, estado: 'activa', nueva: true }; S.reglas.push(r); const res = aplicarRegla(r); log('Crear regla de asignación', 'Regla ' + r.id, CURSOS[r.curso].nombre + ' · ' + r.areas.map(a => AREA[a]).join(', ') + ' · ' + res.creadas + ' asignaciones (' + res.vig + ' ya vigentes)'); U.p.wiz = null; save(); toast('Regla ' + r.id + ' creada: ' + res.creadas + ' personas asignadas.'); },
+  excepcion: d => { U.modal = { t: 'excepcion', a: d.a }; render(); },
+  vSel: d => { U.p.vp = d.id; U.p.vf = null; render(); },
+  vCrit: d => { const V = U.p.vf; V.crit[Number(d.i)] = d.v; if (V.crit.every(x => x)) V.res = V.crit.includes('no') ? 'aun_no' : 'competente'; render(); },
+  vRes: d => { U.p.vf.res = d.v; render(); },
+  registrarValidacion: (data, f) => {
+    const V = U.p.vf; const part = S.parts.find(x => x.id === V.part); const c = CURSOS[part.curso];
+    V.fecha = data.fecha || hoy();
+    if (V.crit.some(x => !x)) { toast('Marca todos los criterios.'); return; }
+    if (!V.res) { toast('Elige el resultado general.'); return; }
+    if (V.res === 'aun_no' && !String(data.obs || '').trim()) { toast('Escribe las observaciones: son obligatorias si aún no es competente.'); return; }
+    if (!data.pass) { toast('Confirma con tu frase de acceso.'); return; }
+    if (V.fecha > hoy() || D.diff(hoy(), V.fecha) > 7) { toast('La fecha de la práctica no puede ser futura ni de hace más de 7 días.'); return; }
+    const foto = data.foto && data.foto.name ? data.foto.name : null;
+    const v = { id: uid('va'), fecha: V.fecha, registro: hoy(), validador: yo().nombre, crit: V.crit.slice(), res: V.res === 'competente' ? 'competente' : 'aun_no', obs: data.obs || '', foto: !!foto, fotoNombre: foto, conf: false };
+    part.vals.push(v);
+    log('Registrar validación práctica', 'Participación', persona(part.persona).nombre + ' · ' + c.nombre + ' v' + part.version + ' · ' + (v.res === 'competente' ? 'Competente' : 'Aún no competente') + (foto ? ' · evidencia: ' + foto : ''));
+    if (partEstado(part) === 'acreditada' && !part.acred) { const fechaAc = [V.fecha].concat(part.intentos.filter(i => i.aprobado).map(i => i.fecha)).sort().pop(); acreditar(part, fechaAc); toast('Validación registrada. ' + persona(part.persona).nombre.split(' ')[0] + ' acreditó el curso; la constancia se está generando.'); }
+    else toast('Validación registrada.');
+    U.p.vf = null; U.p.vp = null; save(); render();
+  },
+  accionConst: (data, f) => {
+    if (!f) { return; }
+    const M = U.modal; const k = S.consts.find(x => x.id === M.k); const motivo = String(data.motivo || '').trim();
+    if (!motivo) { toast('El motivo es obligatorio.'); return; }
+    if (!data.pass) { toast('Confirma con tu frase de acceso.'); return; }
+    const ac = S.acreds.find(a => a.id === k.acred);
+    if (M.tipo === 'reemitir') { k.estado = 'sustituida'; const n = emitir(ac, hoy(), motivo, k.id); huella(n).then(h => { n.huella = h; save(); }); log('Reemitir constancia', 'Constancia ' + k.folio, 'Nuevo folio ' + n.folio + ' · motivo: ' + motivo); toast('Nueva constancia ' + n.folio + '. La anterior quedó sustituida.'); }
+    else { k.estado = 'revocada'; ac.estado = 'revocada'; const a = asigDe(k.persona, k.curso); if (a) { a.limite = D.add(hoy(), 30); crearPart(a); } log('Revocar constancia y acreditación', 'Constancia ' + k.folio, persona(k.persona).nombre + ' · motivo: ' + motivo + ' · nueva participación con límite ' + fmt(D.add(hoy(), 30))); toast('Constancia ' + k.folio + ' revocada.'); }
+    U.modal = null; save(); render();
+  }
+};
+A.accionConstOpen = d => { U.modal = { t: 'accionConst', k: d.k, tipo: d.t }; render(); };
+A.excepcionSubmit = data => {
+  const a = S.asigs.find(x => x.id === U.modal.a); const motivo = String(data.motivo || '').trim(); if (!motivo) { toast('El motivo es obligatorio.'); return; }
+  if (data.tipo === 'intentos') { const p = partActual(a); p.extra += 2; log('Excepción: intentos adicionales', 'Asignación', persona(a.persona).nombre + ' · ' + CURSOS[a.curso].nombre + ' · +2 intentos · motivo: ' + motivo); }
+  if (data.tipo === 'prorroga') { const ant = a.limite; a.limite = D.add(a.limite < hoy() ? hoy() : a.limite, 15); log('Excepción: prórroga', 'Asignación', persona(a.persona).nombre + ' · ' + CURSOS[a.curso].nombre + ' · ' + fmt(ant) + ' → ' + fmt(a.limite) + ' · motivo: ' + motivo); }
+  if (data.tipo === 'exencion') { a.exencion = { hasta: D.add(hoy(), 90), motivo, por: yo().nombre }; log('Excepción: exención', 'Asignación', persona(a.persona).nombre + ' · ' + CURSOS[a.curso].nombre + ' · hasta ' + fmt(a.exencion.hasta) + ' · motivo: ' + motivo); }
+  U.modal = null; save(); toast('Excepción aprobada y registrada.');
+};
+// Formularios: el nombre en data-submit apunta a la acción
+const SUBMIT = { entrar: A.entrar, restablecer: A.restablecer, registrarValidacion: A.registrarValidacion, accionConst: A.accionConst, excepcion: A.excepcionSubmit };
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  let act = el.dataset.act; if (act === 'accionConst' && el.tagName === 'BUTTON') act = 'accionConstOpen';
+  if (act === 'excepcion' && el.tagName === 'FORM') return;
+  const fn = A[act]; if (!fn) return;
+  if (el.tagName === 'A') e.preventDefault();
+  fn(el.dataset, el, e);
+});
+document.addEventListener('change', e => { const el = e.target.closest('[data-chg]'); if (el && A[el.dataset.chg]) A[el.dataset.chg](el.dataset, el, e); });
+let inpT = null;
+document.addEventListener('input', e => { const el = e.target.closest('[data-inp]'); if (!el) return; clearTimeout(inpT); inpT = setTimeout(() => A[el.dataset.inp](el.dataset, el, e), 180); });
+document.addEventListener('submit', e => {
+  e.preventDefault(); const f = e.target; const fn = SUBMIT[f.dataset.submit]; if (!fn) return;
+  const data = {}; new FormData(f).forEach((v, k) => { data[k] = v; }); f.querySelectorAll('input[type=checkbox][name]').forEach(c => { data[c.name] = c.checked; });
+  fn(data, f);
+});
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('hs-hit')) { e.preventDefault(); A.hs(e.target.dataset, e.target, e); }
+  if (e.key === 'Escape' && (U.modal || U.guide)) { U.modal = null; U.guide = false; render(); }
+});
+
+load();
+if (!S.guiaVista) U.guide = true;
+render();
+</script>

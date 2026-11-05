@@ -1,0 +1,142 @@
+{
+  "_nota": "CONTENIDO DE EJEMPLO (DEMO). Lecciones genéricas para probar la plataforma. No son procedimientos, criterios de seguridad ni normas de la empresa: el contenido real lo redacta y aprueba el área responsable de cada curso.",
+  "presentacion": {
+    "C1": { "color": "primary", "icon": "flag" },
+    "C2": { "color": "coral", "icon": "sparkle" },
+    "C3": { "color": "sun", "icon": "box" },
+    "C4": { "color": "violet", "icon": "gear" },
+    "C5": { "color": "mint", "icon": "chat" }
+  },
+  "cursos": {
+    "C1": {
+      "niveles": [
+        { "titulo": "Nivel 1 · Bienvenida", "lecciones": [
+          { "id": "L1", "titulo": "Así funciona Nexo", "min": 3, "acts": [
+            { "t": "mc", "q": "¿Qué te acredita un curso en Nexo?", "ops": ["Juntar muchos puntos", "Terminar las lecciones y cumplir los criterios del curso (evaluación y, si aplica, práctica)", "Abrir el curso una vez"], "ok": 1, "exp": "Los puntos son para motivarte. Lo que acredita es cumplir los criterios del curso." },
+            { "t": "tf", "q": "Si te equivocas en una lección, pierdes el curso.", "ok": false, "exp": "En las lecciones no hay castigos: si fallas, ves la explicación y repasas la actividad al final." },
+            { "t": "order", "q": "Ordena el camino para acreditar un curso.", "items": ["Completar las lecciones", "Presentar la evaluación", "Realizar la práctica, si el curso la pide", "Recibir tu constancia"], "exp": "Primero aprendes, luego demuestras lo aprendido y, al cumplir todo, se emite tu constancia." }
+          ] },
+          { "id": "L2", "titulo": "Tu equipo y a quién acudir", "min": 3, "acts": [
+            { "t": "mc", "q": "Tienes una duda sobre una tarea de tu estación. ¿A quién acudes primero?", "ops": ["A tu supervisor o líder de línea", "A nadie: lo resuelvo como pueda", "A alguien de otra planta"], "ok": 0, "exp": "Tu supervisor conoce tu estación y puede orientarte o canalizarte con quien corresponda." },
+            { "t": "decision", "q": "Olvidaste tu frase de acceso a Nexo. ¿Qué haces?", "ops": ["Voy con el administrador con mi gafete o identificación", "Le pido a un compañero que me preste su cuenta", "Dejo de tomar mis cursos"], "res": ["El administrador verifica tu identidad y te da un código para crear una frase nueva.", "Cada cuenta es personal: lo que hagas quedaría registrado a nombre de otra persona.", "Tus cursos seguirán pendientes y podrían atrasarse."], "ok": 0, "exp": "La recuperación es en persona para proteger tu cuenta." }
+          ] }
+        ] },
+        { "titulo": "Nivel 2 · Tu día a día", "lecciones": [
+          { "id": "L3", "titulo": "Reportar a tiempo", "min": 4, "acts": [
+            { "t": "tf", "q": "Reportar algo que no está bien ayuda a que se atienda antes de que crezca.", "ok": true, "exp": "Un reporte a tiempo permite atender la situación cuando todavía es sencilla." },
+            { "t": "mc", "q": "¿Qué conviene incluir en un reporte?", "ops": ["Qué pasó, dónde y cuándo", "Solo tu nombre", "Nada: basta con decir que algo está mal"], "ok": 0, "exp": "Con qué, dónde y cuándo, quien recibe el reporte puede actuar sin adivinar." }
+          ] },
+          { "id": "L4", "titulo": "Tus cursos y constancias", "min": 3, "acts": [
+            { "t": "mc", "q": "¿Dónde consultas tus constancias en Nexo?", "ops": ["En Historial", "En Logros", "No se pueden consultar"], "ok": 0, "exp": "En Historial ves tus cursos acreditados y puedes descargar cada constancia." },
+            { "t": "tf", "q": "Una acreditación puede tener fecha de vencimiento y requerir renovación.", "ok": true, "exp": "Algunos cursos tienen vigencia. Nexo te avisa antes de que venza para que lo renueves." }
+          ] }
+        ] }
+      ],
+      "banco": [
+        { "t": "mc", "q": "¿Qué te acredita un curso en Nexo?", "ops": ["Los puntos acumulados", "Cumplir los criterios del curso", "Abrir todas las pantallas"], "ok": 1, "tema": "Lección 1" },
+        { "t": "tf", "q": "Los puntos de las lecciones cuentan para acreditar el curso.", "ok": false, "tema": "Lección 1" },
+        { "t": "mc", "q": "Si olvidas tu frase de acceso, ¿qué haces?", "ops": ["Uso la cuenta de un compañero", "Voy con el administrador con mi identificación", "Creo otra cuenta"], "ok": 1, "tema": "Lección 2" },
+        { "t": "mc", "q": "¿A quién acudes primero con una duda de tu estación?", "ops": ["A tu supervisor o líder de línea", "A nadie", "A una persona de otra planta"], "ok": 0, "tema": "Lección 2" },
+        { "t": "tf", "q": "Un buen reporte dice qué pasó, dónde y cuándo.", "ok": true, "tema": "Lección 3" },
+        { "t": "mc", "q": "¿Dónde descargas tus constancias?", "ops": ["En Logros", "En Historial", "En Inicio"], "ok": 1, "tema": "Lección 4" },
+        { "t": "tf", "q": "Una acreditación puede vencer y requerir renovación.", "ok": true, "tema": "Lección 4" }
+      ]
+    },
+    "C3": {
+      "niveles": [
+        { "titulo": "Nivel 1 · Antes de mover material", "lecciones": [
+          { "id": "L1", "titulo": "Planea el movimiento", "min": 3, "acts": [
+            { "t": "mc", "q": "Antes de mover material, ¿qué haces primero?", "ops": ["Reviso el procedimiento vigente de mi área y el recorrido", "Lo muevo lo más rápido posible", "Espero a que alguien más lo mueva"], "ok": 0, "exp": "El procedimiento de tu área indica cómo hacerlo. Revisar el recorrido te ayuda a detectar obstáculos." },
+            { "t": "tf", "q": "Si no sabes cómo mover un material, lo correcto es preguntar antes de hacerlo.", "ok": true, "exp": "Preguntar a tiempo evita errores y daños." }
+          ] },
+          { "id": "L2", "titulo": "El equipo adecuado", "min": 3, "acts": [
+            { "t": "decision", "q": "Te piden mover material con un equipo que no te han enseñado a usar. ¿Qué haces?", "ops": ["Aviso que no estoy autorizado y pido apoyo a mi supervisor", "Lo intento con cuidado", "Le pido a un compañero que me explique rápido"], "res": ["Tu supervisor puede asignar a alguien autorizado o programar tu capacitación.", "Usar un equipo sin capacitación puede causar un accidente o un daño.", "Una explicación rápida no sustituye la capacitación ni la autorización."], "ok": 0, "exp": "Solo se usan los equipos para los que estás capacitado y autorizado." },
+            { "t": "mc", "q": "¿Dónde consultas qué equipo usar para cada material?", "ops": ["En el procedimiento vigente de tu área o con tu supervisor", "En lo que hacía el turno anterior", "En ningún lado: se decide al momento"], "ok": 0, "exp": "El procedimiento vigente y tu supervisor son la referencia." }
+          ] }
+        ] },
+        { "titulo": "Nivel 2 · Durante y después", "lecciones": [
+          { "id": "L3", "titulo": "Pasillos y recorridos", "min": 3, "acts": [
+            { "t": "tf", "q": "Dejar material en un pasillo «solo un momento» no causa problemas.", "ok": false, "exp": "Un pasillo obstruido puede provocar tropiezos o impedir el paso de otras personas y equipos." },
+            { "t": "mc", "q": "Encuentras un pasillo bloqueado en tu recorrido. ¿Qué haces?", "ops": ["Lo reporto y busco el recorrido indicado", "Paso como pueda", "Muevo lo que estorba sin avisar"], "ok": 0, "exp": "Reportar permite que se atienda y que nadie más se arriesgue." }
+          ] },
+          { "id": "L4", "titulo": "Material dañado", "min": 3, "acts": [
+            { "t": "order", "q": "Ordena qué hacer si encuentras material dañado.", "items": ["Detenerte y no usarlo", "Separarlo o identificarlo según indique tu área", "Avisar a tu supervisor", "Esperar la indicación para continuar"], "exp": "Primero evitas usarlo, luego lo identificas, avisas y esperas la indicación." },
+            { "t": "tf", "q": "El material dañado se puede usar si nadie lo nota.", "ok": false, "exp": "Usarlo puede afectar la calidad y la seguridad. Siempre se reporta." }
+          ] },
+          { "id": "L5", "titulo": "Entrega del área", "min": 2, "acts": [
+            { "t": "mc", "q": "Al terminar de mover material, ¿cómo dejas el área?", "ops": ["Despejada y como indica el procedimiento", "Como quedó", "Con el material en el pasillo para el siguiente turno"], "ok": 0, "exp": "Dejar el área despejada ayuda a quien llega después." }
+          ] }
+        ] }
+      ],
+      "banco": [
+        { "t": "mc", "q": "Antes de mover material, ¿qué revisas?", "ops": ["El procedimiento vigente y el recorrido", "Nada", "Lo que hizo el turno anterior"], "ok": 0, "tema": "Lección 1" },
+        { "t": "tf", "q": "Si no sabes cómo mover un material, preguntas antes de hacerlo.", "ok": true, "tema": "Lección 1" },
+        { "t": "mc", "q": "¿Qué haces si te piden usar un equipo que no conoces?", "ops": ["Lo intento con cuidado", "Aviso que no estoy autorizado y pido apoyo", "Pido una explicación rápida y lo uso"], "ok": 1, "tema": "Lección 2" },
+        { "t": "tf", "q": "Dejar material en un pasillo un momento no causa problemas.", "ok": false, "tema": "Lección 3" },
+        { "t": "mc", "q": "Si encuentras material dañado, ¿qué haces primero?", "ops": ["Lo uso con cuidado", "Me detengo y no lo uso", "Lo regreso al almacén sin avisar"], "ok": 1, "tema": "Lección 4" },
+        { "t": "tf", "q": "Al terminar, el área se deja despejada como indica el procedimiento.", "ok": true, "tema": "Lección 5" },
+        { "t": "mc", "q": "Un pasillo bloqueado en tu recorrido:", "ops": ["Lo reporto y uso el recorrido indicado", "Paso como pueda", "Lo ignoro"], "ok": 0, "tema": "Lección 3" }
+      ]
+    },
+    "C4": {
+      "niveles": [
+        { "titulo": "Nivel 1 · Antes de operar", "lecciones": [
+          { "id": "L1", "titulo": "¿Quién puede operar?", "min": 3, "acts": [
+            { "t": "mc", "q": "¿Quién puede operar la prensa demo?", "ops": ["Quien esté capacitado y autorizado para ese equipo", "Cualquiera que sepa encenderla", "Quien llegue primero"], "ok": 0, "exp": "Solo operan el equipo las personas capacitadas y autorizadas." },
+            { "t": "tf", "q": "Acreditar este curso es parte de lo que se necesita para operar el equipo.", "ok": true, "exp": "El curso es un requisito; la autorización la da tu área según su procedimiento." }
+          ] },
+          { "id": "L2", "titulo": "Prepara tu estación", "min": 3, "acts": [
+            { "t": "order", "q": "Ordena los pasos generales para empezar en tu estación.", "items": ["Recibir la estación con la entrega de turno", "Revisar el procedimiento vigente de la estación", "Verificar que todo esté como indica el procedimiento", "Iniciar la tarea"], "exp": "Primero recibes la información del turno anterior, luego revisas y verificas, y al final empiezas." },
+            { "t": "mc", "q": "¿Dónde está la referencia de cómo operar el equipo?", "ops": ["En el procedimiento vigente de la estación", "En lo que recuerdas de otra planta", "En un video de internet"], "ok": 0, "exp": "El procedimiento vigente de tu estación es la referencia oficial." }
+          ] }
+        ] },
+        { "titulo": "Nivel 2 · Durante y al terminar", "lecciones": [
+          { "id": "L3", "titulo": "Si algo no está bien", "min": 3, "acts": [
+            { "t": "decision", "q": "El equipo hace un ruido que no reconoces. ¿Qué haces?", "ops": ["Detengo la tarea como indica el procedimiento y aviso", "Sigo trabajando y lo comento al final del turno", "Intento repararlo yo"], "res": ["Detenerte y avisar permite revisar el equipo a tiempo.", "Esperar puede convertir una falla pequeña en una grande.", "Las reparaciones las hace el personal autorizado de mantenimiento."], "ok": 0, "exp": "Ante algo inusual: detente según el procedimiento y avisa." },
+            { "t": "tf", "q": "Si un dispositivo de protección del equipo estorba, puedes retirarlo.", "ok": false, "exp": "Nunca se retiran ni se desactivan protecciones. Si algo estorba, se reporta." }
+          ] },
+          { "id": "L4", "titulo": "Entrega del equipo", "min": 3, "acts": [
+            { "t": "mc", "q": "Al terminar tu turno, ¿qué haces con el equipo?", "ops": ["Lo entrego como indica el procedimiento y comunico las novedades", "Lo dejo encendido para el siguiente turno", "Me voy sin comentar nada"], "ok": 0, "exp": "La entrega ordenada y las novedades ayudan a quien llega." }
+          ] }
+        ] }
+      ],
+      "banco": [
+        { "t": "mc", "q": "¿Quién puede operar el equipo?", "ops": ["Cualquiera que sepa encenderlo", "Quien esté capacitado y autorizado", "Quien llegue primero"], "ok": 1, "tema": "Lección 1" },
+        { "t": "tf", "q": "El procedimiento vigente de la estación es la referencia para operar.", "ok": true, "tema": "Lección 2" },
+        { "t": "mc", "q": "¿Qué va primero al empezar el turno?", "ops": ["Iniciar la tarea", "Recibir la estación con la entrega de turno", "Verificar al final"], "ok": 1, "tema": "Lección 2" },
+        { "t": "mc", "q": "El equipo hace un ruido extraño. ¿Qué haces?", "ops": ["Sigo y lo comento después", "Me detengo según el procedimiento y aviso", "Lo reparo yo"], "ok": 1, "tema": "Lección 3" },
+        { "t": "tf", "q": "Una protección que estorba se puede retirar un momento.", "ok": false, "tema": "Lección 3" },
+        { "t": "mc", "q": "Al terminar el turno:", "ops": ["Entrego el equipo y comunico novedades", "Lo dejo como quedó", "Me voy sin avisar"], "ok": 0, "tema": "Lección 4" },
+        { "t": "tf", "q": "Las reparaciones las hace el personal autorizado.", "ok": true, "tema": "Lección 3" }
+      ]
+    },
+    "C5": {
+      "niveles": [
+        { "titulo": "Nivel 1 · Comunicarte en tu turno", "lecciones": [
+          { "id": "L1", "titulo": "Entrega de turno clara", "min": 3, "acts": [
+            { "t": "mc", "q": "¿Qué hace clara una entrega de turno?", "ops": ["Decir qué quedó pendiente y cualquier novedad", "Decir «todo bien» siempre", "No decir nada si hay prisa"], "ok": 0, "exp": "Los pendientes y las novedades le permiten a quien llega continuar sin sorpresas." },
+            { "t": "tf", "q": "Si no hubo novedades, también conviene decirlo en la entrega.", "ok": true, "exp": "Confirmar que no hubo novedades también es información útil." }
+          ] },
+          { "id": "L2", "titulo": "Escuchar y confirmar", "min": 3, "acts": [
+            { "t": "decision", "q": "Te dan una indicación que no entendiste bien. ¿Qué haces?", "ops": ["Repito lo que entendí y pregunto lo que falta", "Hago lo que creo que me dijeron", "Espero a que me lo repitan otro día"], "res": ["Confirmar evita errores y muestra que estás atento.", "Si adivinas, puedes hacer algo distinto de lo que se pidió.", "La tarea podría retrasarse o hacerse mal."], "ok": 0, "exp": "Repetir y preguntar es la forma más rápida de asegurarte." },
+            { "t": "mc", "q": "¿Qué es escuchar con atención?", "ops": ["Dejar de hacer otras cosas y confirmar lo que entendí", "Asentir mientras hago otra tarea", "Interrumpir para terminar más rápido"], "ok": 0, "exp": "Prestar atención y confirmar asegura que el mensaje llegó completo." }
+          ] }
+        ] },
+        { "titulo": "Nivel 2 · Avisar a tiempo", "lecciones": [
+          { "id": "L3", "titulo": "Avisar a tiempo", "min": 3, "acts": [
+            { "t": "order", "q": "Ordena cómo dar un aviso útil.", "items": ["Identificar qué pasa", "Avisar a la persona indicada", "Decir qué, dónde y cuándo", "Confirmar que recibió el aviso"], "exp": "Un aviso completo y confirmado se atiende más rápido." },
+            { "t": "tf", "q": "Es mejor esperar a tener todos los detalles antes de avisar algo urgente.", "ok": false, "exp": "Lo urgente se avisa de inmediato con lo que sabes; los detalles pueden completarse después." }
+          ] }
+        ] }
+      ],
+      "banco": [
+        { "t": "mc", "q": "¿Qué incluye una entrega de turno clara?", "ops": ["Pendientes y novedades", "Solo «todo bien»", "Nada si hay prisa"], "ok": 0, "tema": "Lección 1" },
+        { "t": "tf", "q": "Decir que no hubo novedades también es útil.", "ok": true, "tema": "Lección 1" },
+        { "t": "mc", "q": "No entendiste una indicación. ¿Qué haces?", "ops": ["Adivino", "Repito lo que entendí y pregunto", "Lo dejo para otro día"], "ok": 1, "tema": "Lección 2" },
+        { "t": "tf", "q": "Escuchar con atención incluye confirmar lo que entendiste.", "ok": true, "tema": "Lección 2" },
+        { "t": "mc", "q": "Un aviso útil dice:", "ops": ["Qué, dónde y cuándo", "Solo que algo está mal", "Quién tiene la culpa"], "ok": 0, "tema": "Lección 3" },
+        { "t": "tf", "q": "Lo urgente se avisa hasta tener todos los detalles.", "ok": false, "tema": "Lección 3" }
+      ]
+    }
+  }
+}

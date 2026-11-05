@@ -35,3 +35,5 @@ echo "$SALIDA" | grep -E '^\s+[0-9C]' | sed -E 's/frase: .*/frase: (generada; se
 export NEXO_DEMO_CUENTAS="$(echo "$SALIDA" | grep '^\[')"
 echo
 node --experimental-strip-types --no-warnings pruebas/verificar_demo.ts
+echo
+node --experimental-strip-types --no-warnings pruebas/verificar_operacion.ts

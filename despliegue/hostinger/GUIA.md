@@ -1,14 +1,17 @@
 # Guía de instalación en Hostinger (VPS)
 
 **Para:** Departamento de Capacitación (responsable) y TI (aprobación pendiente, D-33).
-**Resultado:** Nexo publicado en un subdominio con HTTPS, con la base de datos y los **datos de demostración ficticios** cargados.
+**Resultado:** Nexo funcionando en un subdominio con HTTPS. Las personas entran con su número y frase, toman cursos, presentan evaluaciones, validan prácticas y descargan constancias. Todo se guarda en la base, con los **datos de demostración ficticios** cargados.
 
 Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuesto · **[P]** pendiente.
 
-> **Esto es un ambiente de demostración, no de producción.**
-> - La interfaz es todavía el prototipo de la Etapa 3. Funciona con sus propios datos ficticios **dentro del navegador**: lo que se hace en la página no se guarda en la base.
-> - La base de datos y el servicio sí están instalados y tienen los datos de demostración. Se comprueban con `scripts/verificar.sh`. Las pantallas se conectarán a la base en los siguientes módulos (M3 a M9).
-> - Antes de usar datos reales de personas faltan la aprobación de TI, la ubicación de los datos (D-64), la revisión de seguridad independiente y la Etapa 5.
+> **Ambiente de demostración con datos ficticios.** La aplicación funciona de punta a punta: lo que cada persona hace en la página se guarda en la base y queda en la bitácora.
+>
+> Antes de cargar datos reales de personas faltan:
+> - La aprobación de TI.
+> - La ubicación de los datos (D-64).
+> - La revisión de seguridad independiente.
+> - La Etapa 5.
 
 ## Contenido
 
@@ -32,7 +35,7 @@ Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuest
 flowchart LR
   U[Celular, tableta o PC] -->|HTTPS 443| W
   subgraph VPS de Hostinger
-    W[web · Caddy<br/>HTTPS automático<br/>página de Nexo] -->|/api| S[servicio · Node.js<br/>acceso, sesiones, permisos]
+    W[web · Caddy<br/>HTTPS automático<br/>aplicación Nexo] -->|/api| S[servicio · Node.js<br/>acceso, permisos, cursos,<br/>evaluaciones, constancias]
     S --> D[(db · PostgreSQL 16<br/>datos de demostración)]
     R[respaldo.sh · diario] --> D
   end
@@ -41,8 +44,8 @@ flowchart LR
 
 | Contenedor | Qué hace | Puertos abiertos a internet |
 |---|---|---|
-| `web` (Caddy 2.8.4) | Obtiene y renueva el certificado HTTPS, sirve la página y pasa `/api` al servicio | 80 y 443 |
-| `servicio` (Node.js 22) | Acceso con número y frase, sesiones, permisos por rol y alcance | Ninguno |
+| `web` (Caddy 2.8.4) | Obtiene y renueva el certificado HTTPS, sirve la aplicación (`app/web`) con política de seguridad de contenido y pasa `/api` al servicio | 80 y 443 |
+| `servicio` (Node.js 22) | Acceso y sesiones, permisos por rol y alcance, lecciones, evaluaciones calificadas en el servidor, validación práctica, reglas, excepciones, constancias, exportaciones y proceso diario de renovaciones | Ninguno |
 | `db` (PostgreSQL 16.6) | Base con aislamiento por empresa, bitácora y reglas protegidas | Ninguno |
 
 **Por qué un VPS:**
@@ -188,7 +191,12 @@ Al final muestra **una sola vez** las 7 cuentas de demostración con su frase de
 
 Anota las frases en el gestor de contraseñas. Si se pierden, se generan otras con `./scripts/frases_demo.sh` (sección 9).
 
-**Qué contiene la demostración [H]:** 116 personas ficticias, 346 asignaciones, 365 participaciones, 319 intentos, 31 validaciones prácticas, 243 acreditaciones, 243 constancias y unas 2,200 entradas de bitácora. Las fechas se ajustan al día de la carga. Todo es ficticio y proviene del prototipo.
+**Qué contiene la demostración [H]:**
+- 116 personas ficticias, 346 asignaciones, 365 participaciones, 319 intentos, 31 validaciones prácticas, 243 acreditaciones, 243 constancias y unas 2,200 entradas de bitácora.
+- 5 cursos con lecciones jugables y evaluación.
+- Puntos de la semana para el ranking del equipo.
+
+Las fechas se ajustan al día de la carga. Todo es ficticio y está marcado como DEMO; el contenido de los cursos es de ejemplo y no son procedimientos de la empresa.
 
 ## 7. Comprobar que todo funciona
 
@@ -202,7 +210,27 @@ Revisa los contenedores, la página por HTTPS, el servicio, la base, el bloqueo 
 ./scripts/verificar.sh 001920
 ```
 
-Debe terminar con «Todo correcto». Luego abre `https://capacitacion.dominio-de-la-empresa.com` en un celular y en una PC: aparece la animación de entrada de Nexo y el prototipo.
+Debe terminar con «Todo correcto».
+
+### 7.1 Recorrido sugerido para mostrar Nexo
+
+Abre `https://capacitacion.dominio-de-la-empresa.com` en una PC y en un celular. Después de la animación de entrada aparece la pantalla de acceso. La primera vez que cada persona entra, una bienvenida de tres pasos le explica la pantalla.
+
+| Paso | Quién | Qué hacer |
+|---|---|---|
+| 1. Asignar | Ana Ruiz (000412, RH) | Reglas de asignación → Nueva regla → «Orden y limpieza del área» → Ensamble → revisa la vista previa → Crear |
+| 2. Aprender | Rosa Elena Ibarra (004817), de preferencia en un celular | Mis cursos → «Orden y limpieza del área» → completa las 4 lecciones (prueba equivocarte para ver la explicación) |
+| 3. Evaluar | Rosa | Presenta la evaluación. La califica el servidor |
+| 4. Validar | Laura Peña (001920, supervisora) | Validación práctica → marca los criterios → confirma con su frase → Registrar. El curso queda acreditado y la constancia se emite con folio |
+| 5. Constancia | Rosa | Confirma su práctica en Inicio → abre la constancia → Descargar PDF |
+| 6. Consultar | Ana o Carlos Mora (000215, Administrador) | Tablero (toca un indicador), Matriz, Reportes (exporta a Excel o PDF) y Bitácora: cada paso del recorrido quedó registrado |
+
+**Otras cosas que puedes probar:**
+- **Activar una cuenta nueva.** Como Carlos: Personas → elige a alguien con cuenta «Sin activar» → Acceso → Generar ficha de activación. Luego, en otra ventana, «¿Es tu primera vez?» con ese número y código.
+- **Excepciones.** Como Ana: en la ficha de una persona con un curso atrasado o con intentos agotados.
+- **Ranking privado.** Como Rosa: Logros → apaga «Mostrarme en el ranking».
+- **Buscador.** En la consola, Ctrl + K.
+- **Cierre por inactividad.** En un equipo compartido, deja la sesión 5 minutos sin usar.
 
 **Si algo falla:**
 
@@ -255,15 +283,16 @@ Prográmalo a diario a las 3:15 con `crontab -e` del usuario `nexo`:
 | Actualizar a una nueva versión | `git pull`, luego `docker compose up -d --build` y `./scripts/migrar.sh` (haz un respaldo antes) |
 | Reiniciar | `docker compose restart` |
 | Generar frases nuevas para las cuentas de demostración (cierra sus sesiones) | `./scripts/frases_demo.sh` |
+| Volver a empezar la demostración desde cero (borra todo lo que se hizo) | `docker compose down -v`, luego `docker compose up -d`, `./scripts/migrar.sh` y `./scripts/cargar_demo.sh` |
 | Detener todo (los datos se conservan) | `docker compose down` |
 
-> **No uses** `docker compose down -v`: la opción `-v` borra los volúmenes, es decir, la base de datos y los certificados.
+> **Cuidado con** `docker compose down -v`: la opción `-v` borra los volúmenes, es decir, la base de datos y los certificados. Úsala solo para reiniciar la demostración, nunca con datos reales.
 
 **Actualizaciones de seguridad [R]:** aplica las del sistema cada mes (`apt-get upgrade`) y revisa las versiones de las imágenes (PostgreSQL, Caddy, Node.js) en cada entrega.
 
 ## 10. Alternativa: solo la página del prototipo en el hospedaje web
 
-Si mientras TI aprueba el VPS se quiere mostrar **solo el prototipo** (sin base de datos), sirve el hospedaje web de Hostinger:
+La aplicación completa necesita el VPS. Si mientras TI lo aprueba se quiere mostrar **solo el prototipo de la Etapa 3**, sirve el hospedaje web de Hostinger. Es una página sin servidor, con datos simulados en el navegador:
 
 1. Genera el paquete (o usa el que ya está en el repositorio):
 
@@ -291,11 +320,22 @@ El paquete trae `index.html`, un `.htaccess` (HTTPS obligatorio, encabezados de 
   - Una frase incorrecta da 401; una escritura sin el encabezado de protección da 403; una consulta sin sesión da 401.
 - Respaldo con huella, prueba de restauración en una base temporal, restauración completa sobre la base en uso (revierte un cambio) y conservación de datos al reiniciar.
 - El `.htaccess` del paquete estático en Apache 2.4: sin errores de configuración, redirige a HTTPS y aplica los encabezados.
+- **La aplicación completa en el navegador** (`app/web/pruebas/recorrido.js`, 18 comprobaciones), siguiendo el recorrido de la sección 7.1 a través de HTTPS:
+  - Se probaron la asignación, las 4 lecciones, la evaluación calificada en el servidor, la validación con frase, la acreditación con constancia, la descarga en PDF, la exportación a Excel y la bitácora.
+  - No hubo errores de JavaScript ni de la política de seguridad de contenido.
+- **Todas las pantallas de las 7 cuentas**, en escritorio y en celular, sin errores (`app/web/pruebas/vistas.js`).
+- **El servicio** (`app/db/demo/probar_demo.sh`): 34 comprobaciones de operación más 12 de acceso por rol. Incluyen:
+  - Permisos: nadie avanza en el curso de otra persona y solo un validador autorizado registra prácticas.
+  - Sin respuestas de evaluación en el navegador.
+  - Lecciones en orden.
+  - Tope diario de puntos.
+  - Ninguna excepción a favor propio.
+  - Folios consecutivos con huella.
 
 **No probado [P]:**
 - En un VPS real de Hostinger, con su firewall, su DNS y la emisión del certificado de Let's Encrypt.
 - El paquete estático en el servidor web de Hostinger (LiteSpeed, compatible con `.htaccess`).
-- Rendimiento con 400 sesiones simultáneas (Etapa 5).
+- Rendimiento con 400 sesiones simultáneas (Etapa 5). El estado de la consola se envía completo al entrar; con 2,000 personas habrá que paginarlo.
 - Revisión de seguridad independiente.
 - La copia remota de respaldos (`rsync`) y el respaldo diario de Hostinger.
 

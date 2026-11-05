@@ -1,6 +1,6 @@
-# Nexo · Servicio de aplicación (módulo M2)
+# Nexo · Servicio de aplicación
 
-Etapa 4, módulo M2: acceso, sesiones y permisos. **Propuesta pendiente de aprobación de TI** (D-33). No está listo para producción: falta la revisión de seguridad independiente y la Etapa 5.
+Etapa 4: acceso, sesiones y permisos (M2) y la operación diaria que usa la interfaz (`app/web`). **Propuesta pendiente de aprobación de TI** (D-33). No está listo para producción: falta la revisión de seguridad independiente y la Etapa 5.
 
 TypeScript sobre Node.js 22, ejecutado directamente con `--experimental-strip-types`, sin paso de compilación. Usa Fastify 5, `pg` y Argon2id (`@node-rs/argon2`). Las versiones están fijas en `package-lock.json`.
 
@@ -15,6 +15,19 @@ TypeScript sobre Node.js 22, ejecutado directamente con `--experimental-strip-ty
 | `POST /api/admin/personas/:id/codigo` | Código de activación o de restablecimiento. Solo el Administrador, dentro de su alcance y nunca para sí mismo. El restablecimiento exige identidad verificada en persona y motivo | FD-01, FD-03, B-3, D-36 |
 | `GET /api/asignaciones` | Asignaciones visibles: la base limita a la empresa y el servicio aplica el alcance fino | D-60 |
 | `GET /api/salud` | Estado del servicio y de la conexión a la base (para el monitoreo y el contenedor) | RNF-OBS |
+| `GET /api/acceso/empresas`, `GET /api/acceso/sesion` | Empresas para la pantalla de acceso y si hay una sesión vigente | D-14 |
+| `GET /api/estado` | Todo lo que la persona puede ver: personas, asignaciones, participaciones, acreditaciones, constancias, reglas, puntos, ranking, bitácora (según el rol) y cursos **sin las respuestas de las evaluaciones** | D-60, D-68 |
+| `POST /api/aprender/iniciar`, `/leccion` | Liga la participación a la versión vigente; completa lecciones en orden; puntos con tope diario de 200 | RT-01, RF-MOT, D-52 |
+| `POST /api/aprender/examen`, `/examen/respuesta`, `/examen/enviar` | Abre o retoma un intento con preguntas elegidas por el servidor, guarda cada respuesta y califica al enviar | RF-EVA, RT-06 |
+| `POST /api/aprender/practica` | La persona confirma o desconoce el registro de su práctica | FD-06, D-45 |
+| `POST /api/perfil/ranking` | Participar o no en el ranking del equipo | D-02 |
+| `POST /api/validaciones` | Validación práctica: solo validadores autorizados del curso, dentro de su alcance, nunca sobre sí mismos y con su frase de acceso | RF-EVA, SoD |
+| `POST /api/reglas` | Regla de asignación por área y turno; no duplica asignaciones activas | RF-ASG |
+| `POST /api/excepciones` | Intentos adicionales, prórroga o exención, con motivo; nunca a favor propio | SoD-02 |
+| `POST /api/constancias/:id/reemitir`, `/revocar` | Con frase de acceso y motivo; revocar crea una nueva participación a 30 días | RF-CTA, D-51 |
+| `POST /api/exportaciones` | Registra cada reporte exportado (el archivo se genera en el navegador) | RF-EXP, D-71 |
+
+**Proceso diario.** Al arrancar y cada hora, el servicio ejecuta `nexo.proceso_diario()`, que crea las participaciones de renovación dentro de la ventana de aviso de 30 días. Es idempotente.
 
 **Controles de seguridad:**
 - **Frases de acceso:** Argon2id, longitud mínima configurable (12 por defecto) y rechazo de frases débiles.
@@ -60,6 +73,12 @@ bash app/db/demo/probar_demo.sh
 ```
 
 **12 de 12 correctas.** Entra con las 7 cuentas de demostración y comprueba lo que ve cada rol.
+
+Después corre `pruebas/verificar_operacion.ts`, con **34 de 34 correctas**. Recorre el flujo completo a través del servicio:
+- Asignar, aprender en orden, evaluar y validar.
+- Acreditar con emisión de constancia, confirmar la práctica y reemitir.
+- Aprobar excepciones, exportar y registrar en la bitácora.
+- Comprobar que cada rol solo puede hacer lo que le corresponde.
 
 ## Ejecutar
 

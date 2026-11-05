@@ -10,6 +10,7 @@
 		Referrer-Policy "no-referrer"
 		Permissions-Policy "camera=(), microphone=(), geolocation=()"
 		X-Robots-Tag "noindex, nofollow"
+		Content-Security-Policy "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 		-Server
 	}
 
@@ -25,9 +26,10 @@ Disallow: /
 		reverse_proxy servicio:3000
 	}
 
-	# Interfaz (por ahora, el prototipo navegable con datos de demostración en el navegador).
+	# Interfaz de Nexo (app/web): página, código y logotipo. Sin caché para que cada actualización llegue de inmediato.
 	handle {
 		root * /srv/sitio
+		header Cache-Control "no-cache"
 		try_files {path} /index.html
 		file_server
 	}

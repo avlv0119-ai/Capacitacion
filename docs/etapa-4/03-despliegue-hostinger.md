@@ -42,7 +42,8 @@ En [01 · Arquitectura](01-arquitectura.md) se recomendaba nube administrada. Co
 
 | Pieza | Ruta | Verificado |
 |---|---|---|
-| Contenedores y proxy HTTPS | `despliegue/hostinger/docker-compose.yml`, `Caddyfile` | Arranque, chequeos de salud, HTTPS, redirección y encabezados |
+| Contenedores y proxy HTTPS | `despliegue/hostinger/docker-compose.yml`, `Caddyfile` | Arranque, chequeos de salud, HTTPS, redirección, encabezados y política de seguridad de contenido |
+| Aplicación | `app/web` (interfaz), `app/servicio` (servicio), `app/db` (base) | Recorrido completo en el navegador (18 de 18) y todas las pantallas de las 7 cuentas |
 | Imagen del servicio | `app/servicio/Dockerfile` | Usuario sin privilegios y chequeo de salud |
 | Secretos | `scripts/secretos.sh` → `.env` con permisos 600 | Generación aleatoria; no se sube al repositorio |
 | Base | `scripts/migrar.sh` | Migraciones aplicadas una sola vez; usuario limitado del servicio |
@@ -51,7 +52,7 @@ En [01 · Arquitectura](01-arquitectura.md) se recomendaba nube administrada. Co
 | Respaldos | `scripts/respaldo.sh`, `verificar_respaldo.sh`, `restaurar.sh` | Respaldo con huella, prueba de restauración aislada y restauración real |
 | Prototipo para hospedaje web | `despliegue/hostinger-web/` | `.htaccess` probado en Apache 2.4 |
 
-**Prueba de punta a punta [H]:** instalación limpia en Docker local siguiendo la guía. Resultados:
+**Prueba de punta a punta [H]:** instalación limpia en Docker local siguiendo la guía. Una persona de RH asigna, la trabajadora aprende y aprueba, la supervisora valida y se emite la constancia; todo a través del navegador. Además:
 - Las 7 cuentas de demostración entran a través del proxy y cada rol ve solo su alcance.
 - Una frase incorrecta da 401; una escritura sin el encabezado de protección da 403.
 - Los datos se conservan al reiniciar.

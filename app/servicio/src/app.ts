@@ -7,6 +7,7 @@ import type { Config } from './config.ts';
 import type { Servicio } from './sesion.ts';
 import { rutasAcceso } from './rutas/acceso.ts';
 import { rutasAdmin } from './rutas/admin.ts';
+import { rutasOperacion } from './rutas/operacion.ts';
 
 export { COOKIE_SESION } from './sesion.ts';
 
@@ -41,5 +42,6 @@ export async function construirApp(cfg: Config, pool: pg.Pool): Promise<FastifyI
   const servicio: Servicio = { app, cfg, pool };
   await rutasAcceso(servicio);
   await rutasAdmin(servicio);
+  await rutasOperacion(servicio);
   return app;
 }

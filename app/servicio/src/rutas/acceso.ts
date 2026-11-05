@@ -29,6 +29,21 @@ export async function rutasAcceso(s: Servicio): Promise<void> {
     return r.rows[0] as { persona_id: string; grupo_id: string; estado: string; hash_frase: string | null; acceso_vigente: boolean } | undefined;
   }
 
+  // ---------- ¿Hay una sesión vigente? (la interfaz lo pregunta al abrir, sin provocar un 401) ----------
+  app.get('/api/acceso/sesion', async (req, rep) => {
+    const token = req.cookies[COOKIE_SESION];
+    if (!token) return rep.send({ activa: false });
+    const r = await sinUsuario(pool, c => c.query('SELECT 1 FROM nexo.sesion_valida($1)', [huellaToken(token)]));
+    if (!r.rows.length) rep.clearCookie(COOKIE_SESION, { path: '/' });
+    return rep.send({ activa: r.rows.length > 0 });
+  });
+
+  // ---------- Empresas del grupo para la pantalla de acceso (D-14) ----------
+  app.get('/api/acceso/empresas', async (_req, rep) => {
+    const r = await sinUsuario(pool, c => c.query('SELECT id, nombre FROM nexo.empresas_para_acceso()'));
+    return rep.send({ empresas: r.rows });
+  });
+
   // ---------- Activación con el código de la ficha ----------
   app.post('/api/acceso/activar', async (req, rep) => {
     const b = (req.body ?? {}) as Record<string, unknown>;

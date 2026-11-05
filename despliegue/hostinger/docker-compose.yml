@@ -50,7 +50,7 @@ services:
       NEXO_DOMINIO: ${NEXO_DOMINIO:?Falta NEXO_DOMINIO en .env}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - ../../prototipo/index.html:/srv/sitio/index.html:ro
+      - ../../app/web:/srv/sitio:ro
       - caddy-datos:/data
       - caddy-config:/config
     networks: [interna]

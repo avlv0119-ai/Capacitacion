@@ -1,15 +1,17 @@
 # Nexo · Núcleo de datos (PostgreSQL)
 
-Etapa 4, módulos M1 y M2. **Propuesta pendiente de aprobación de TI** (D-33). Los datos de prueba y de demostración son ficticios.
+Etapa 4: base de datos de Nexo (M1, M2 y operación). **Propuesta pendiente de aprobación de TI** (D-33). Los datos de prueba y de demostración son ficticios.
 
 | Ruta | Contenido |
 |---|---|
 | `migraciones/001_esquema.sql` | Tablas, restricciones, llaves compuestas e índices |
 | `migraciones/002_seguridad.sql` | Roles, seguridad por fila, bitácora automática, reglas protegidas y folios |
 | `migraciones/003_acceso.sql` | Sesiones, intentos de acceso, permisos especiales y funciones acotadas de acceso (M2) |
+| `migraciones/004_operacion.sql` | Funciones acotadas de operación (ver detalle abajo) |
 | `pruebas/pruebas.sql` | 50 comprobaciones con datos ficticios de dos grupos |
 | `pruebas/ejecutar.sh` | Crea una base temporal, aplica las migraciones y ejecuta las pruebas |
 | `demo/prototipo-demo.json` | Datos de demostración exportados del prototipo (ficticios) |
+| `demo/contenido-demo.json` | Lecciones y evaluaciones de ejemplo de los cursos de la demostración (DEMO; no son procedimientos de la empresa) |
 | `demo/generar_sql_demo.py` | Convierte esos datos en SQL, con las fechas ajustadas al día de la carga (`--hoy AAAA-MM-DD`) |
 | `demo/probar_demo.sh` | Carga la demostración en una base temporal, activa las cuentas y verifica cada rol a través del servicio |
 
@@ -19,13 +21,22 @@ Etapa 4, módulos M1 y M2. **Propuesta pendiente de aprobación de TI** (D-33). 
 bash app/db/pruebas/ejecutar.sh
 ```
 
-**50 de 50 correctas**, con las tres migraciones aplicadas.
+**50 de 50 correctas**, con las cuatro migraciones aplicadas.
 
 ```bash
 bash app/db/demo/probar_demo.sh
 ```
 
-**12 de 12 correctas.** Requiere PostgreSQL 16 (`initdb`, `pg_ctl`, `psql`), Python 3 y Node.js 22. No usa ni modifica ninguna base existente.
+**12 de 12** comprobaciones de acceso por rol y **34 de 34** de operación. Requiere PostgreSQL 16 (`initdb`, `pg_ctl`, `psql`), Python 3 y Node.js 22. No usa ni modifica ninguna base existente.
+
+## Funciones de la migración 004
+
+- **Acreditación.** Se crea solo si se cumplen los criterios de la versión del curso.
+- **Constancias.** Emisión idempotente con folio consecutivo y huella.
+- **Práctica.** Confirmación por la persona validada.
+- **Ranking voluntario.** Lista a quienes aceptaron participar.
+- **Proceso diario.** Renovaciones dentro de la ventana de aviso.
+- **Catálogo.** De la organización.
 
 ## Datos de demostración
 

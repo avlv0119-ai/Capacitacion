@@ -45,6 +45,7 @@ def main() -> None:
 
     d = json.loads((AQUI / 'prototipo-demo.json').read_text(encoding='utf-8'))
     S, CURSOS, AREAS = d['S'], d['CURSOS'], d['AREAS']
+    extra = json.loads((AQUI / 'contenido-demo.json').read_text(encoding='utf-8'))   # lecciones de ejemplo de los demás cursos
     base = date.fromisoformat(d['base'])
     delta = (date.fromisoformat(args.hoy) - base) if args.hoy else timedelta(0)
 
@@ -115,7 +116,10 @@ def main() -> None:
         [(curso_id[c], G, c, v['nombre'], clasif[v['clasif']], True) for c, v in CURSOS.items()])
     vers = []
     for c, v in CURSOS.items():
-        contenido = {'niveles': v.get('niveles'), 'banco': v.get('banco')} if v.get('jugable') else {'lecciones': [f'L{i + 1}' for i in range(v['lecciones'])]}
+        fuente = v if v.get('jugable') else extra['cursos'][c]
+        contenido = {'presentacion': extra['presentacion'][c], 'niveles': fuente['niveles'], 'banco': fuente['banco'], 'demo': extra['_nota']}
+        n_lecciones = sum(len(n['lecciones']) for n in fuente['niveles'])
+        assert v.get('jugable') or n_lecciones == v['lecciones'], f'{c}: el contenido de ejemplo debe tener {v["lecciones"]} lecciones'
         criterios = {'requiere_evaluacion': True, 'calificacion_minima': v['eval']['min'], 'intentos': v['eval']['intentos'],
                      'preguntas': v['eval']['preguntas'], 'requiere_practica': bool(v.get('practica')), 'vigencia_meses': v['vigencia'],
                      'criterios_practica': (v.get('practica') or {}).get('criterios', []), 'demo': 'Criterios ficticios de ejemplo'}
@@ -178,6 +182,20 @@ def main() -> None:
     L.append('INSERT INTO contadores_folio (grupo_id, empresa_id, anio, ultimo) '
              "SELECT grupo_id, empresa_id, split_part(folio, '-', 2)::int, max(split_part(folio, '-', 3)::int) FROM constancias GROUP BY 1, 2, 3;")
     ins('puntos', ['grupo_id', 'persona_id', 'fecha', 'puntos', 'motivo'], [(G, pid[x['persona']], f(x['fecha']), x['pts'], x['motivo']) for x in S['puntos'] if x['pts'] > 0])
+    # Puntos de la semana del equipo (ranking): repartidos en varios días sin pasar el tope diario de 200
+    rank = []
+    for persona_id, total in S.get('rank', {}).items():
+        dia = 1
+        while total > 0:
+            pts = min(total, 120)
+            rank.append((G, pid[persona_id], f((base - timedelta(days=dia)).isoformat()), pts, 'Lecciones de la semana (DEMO)'))
+            total -= pts; dia += 1
+    ins('puntos', ['grupo_id', 'persona_id', 'fecha', 'puntos', 'motivo'], rank)
+    # Eventos de la historia de la demostración (carga de personas, reglas, publicación)
+    por_nombre = {p['nombre']: pid[p['id']] for p in S['personas']}
+    ins('bitacora', ['grupo_id', 'empresa_id', 'ocurrido_en', 'actor_id', 'actor_rol', 'accion', 'tabla', 'registro_id', 'despues'],
+        [(G, E, f(x['ts'][:10]) + ' ' + x['ts'][11:16] + ':00-06', por_nombre.get(x['actor']), x['rol'], x['accion'], 'evento', x['entidad'],
+          {'detalle': x['detalle'], 'entidad': x['entidad']}) for x in reversed(S['bit'])])
     L.append(f"INSERT INTO bitacora (grupo_id, accion, tabla, despues) VALUES ({q(G)}, 'Carga de datos de demostración (ficticios)', 'demo', "
              f"{q({'personas': len(S['personas']), 'asignaciones': len(S['asigs']), 'acreditaciones': len(S['acreds']), 'fecha_referencia': (base + delta).isoformat()})});")
     L.append('COMMIT;')

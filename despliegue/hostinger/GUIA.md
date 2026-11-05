@@ -135,7 +135,11 @@ sudo mkdir -p /opt/nexo && sudo chown nexo:nexo /opt/nexo
 git clone --branch claude/friendly-cori-l43oy7 git@github.com:avlv0119-ai/Capacitacion.git /opt/nexo
 ```
 
-**B. Sin git.** Descarga el repositorio como `.zip` desde GitHub y súbelo con el Administrador de archivos de hPanel o con `scp`. Descomprímelo en `/opt/nexo`.
+**B. Sin git (paquete listo).** Sube `despliegue/nexo-hostinger-vps.zip` al VPS, con `scp` o con el Administrador de archivos del VPS. Trae solo lo necesario y un `LEEME.txt` con los pasos. Se regenera con `python3 despliegue/empaquetar.py`.
+
+```bash
+unzip nexo-hostinger-vps.zip -d /opt/nexo
+```
 
 ## 6. Instalar y cargar los datos de demostración
 

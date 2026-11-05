@@ -64,6 +64,8 @@ flowchart LR
 
 ## 4. Opciones de hospedaje (depende de B-5)
 
+> **Actualización del 5 nov 2026:** la empresa decidió hospedar todo en **Hostinger** (B-5). Eso corresponde a la opción 2. La propuesta concreta es un VPS con Docker Compose y está en [03 · Despliegue en Hostinger](03-despliegue-hostinger.md). La tabla siguiente se conserva como referencia.
+
 | Opción | Descripción | A favor | En contra |
 |---|---|---|---|
 | 1 · Nube administrada | Contenedores administrados, PostgreSQL administrada, almacenamiento de objetos y respaldos del proveedor | Respaldos, parches y alta disponibilidad incluidos; menos carga para TI | Costo mensual; hay que definir la región de los datos (RNF-PRI-08) y el contrato |

@@ -1,0 +1,277 @@
+[
+  {
+    "nombre": "La animación de entrada se muestra al abrir",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "La animación de entrada termina sola y deja la app utilizable",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "La guía se abre en la primera visita",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Vista previa de la regla muestra personas afectadas",
+    "ok": true,
+    "detalle": "36 personas"
+  },
+  {
+    "nombre": "La regla crea la asignación de Rosa",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Una sola asignación activa por persona y curso",
+    "ok": true,
+    "detalle": "1"
+  },
+  {
+    "nombre": "Inicio muestra el curso nuevo",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Retroalimentación de error visible y explicada",
+    "ok": true,
+    "detalle": "Revisa esto"
+  },
+  {
+    "nombre": "Cuatro lecciones completadas → «Contenido completado»",
+    "ok": true,
+    "detalle": "{\"hechas\":4,\"estado\":\"contenido_completado\",\"version\":3}"
+  },
+  {
+    "nombre": "La participación queda ligada a la versión 3",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Las actividades otorgan puntos (registro separado)",
+    "ok": true,
+    "detalle": "170 puntos"
+  },
+  {
+    "nombre": "Los puntos no cambian el estado oficial",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Intento 1 reprobado muestra temas a repasar",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Intento 2 aprobado",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Aprobar no acredita: queda «Pendiente de validación»",
+    "ok": true,
+    "detalle": "{\"estado\":\"pendiente_validacion\",\"intentos\":2,\"acred\":false,\"cum\":\"pendiente\",\"sub\":\"pendiente_validacion\"}"
+  },
+  {
+    "nombre": "Se registraron 2 intentos",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Reenviar un intento cerrado no duplica el registro",
+    "ok": true,
+    "detalle": "2 → 2"
+  },
+  {
+    "nombre": "Validación «Competente» acredita el curso",
+    "ok": true,
+    "detalle": "{\"cum\":\"al_dia\",\"fecha\":\"2026-11-05\",\"vence\":\"2027-11-05\",\"version\":3,\"folio\":\"DN-2026-000180\",\"estado\":\"vigente\",\"huella\":\"6e1949cfd7985f18839625d406de10e4071c1c8c7767fb3173c577dfa4efc769\"}"
+  },
+  {
+    "nombre": "Vigencia = fecha de acreditación + 12 meses",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Constancia emitida automáticamente con folio",
+    "ok": true,
+    "detalle": "DN-2026-000180"
+  },
+  {
+    "nombre": "Registro de emisión con huella SHA-256",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Repetir la emisión no duplica la constancia",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Aviso para confirmar la práctica",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "PDF de constancia generado",
+    "ok": true,
+    "detalle": "546496 bytes"
+  },
+  {
+    "nombre": "Tablero muestra cumplimiento con numerador y denominador",
+    "ok": true,
+    "detalle": "Cumplimiento 61.0 % 219 de 359 asignaciones"
+  },
+  {
+    "nombre": "Indicador I-05 coincide con un recálculo independiente",
+    "ok": true,
+    "detalle": "219/359"
+  },
+  {
+    "nombre": "Exportación individual · XLSX",
+    "ok": true,
+    "detalle": "21974 bytes"
+  },
+  {
+    "nombre": "Exportación individual · PDF",
+    "ok": true,
+    "detalle": "555038 bytes"
+  },
+  {
+    "nombre": "Exportación matriz · XLSX",
+    "ok": true,
+    "detalle": "169195 bytes"
+  },
+  {
+    "nombre": "Exportación matriz · PDF",
+    "ok": true,
+    "detalle": "1305779 bytes"
+  },
+  {
+    "nombre": "Exportación unidad · XLSX",
+    "ok": true,
+    "detalle": "26273 bytes"
+  },
+  {
+    "nombre": "Exportación unidad · PDF",
+    "ok": true,
+    "detalle": "586736 bytes"
+  },
+  {
+    "nombre": "Exportación intentos · XLSX",
+    "ok": true,
+    "detalle": "119368 bytes"
+  },
+  {
+    "nombre": "Exportación intentos · PDF",
+    "ok": true,
+    "detalle": "1125395 bytes"
+  },
+  {
+    "nombre": "Exportación validaciones · XLSX",
+    "ok": true,
+    "detalle": "33882 bytes"
+  },
+  {
+    "nombre": "Exportación validaciones · PDF",
+    "ok": true,
+    "detalle": "623192 bytes"
+  },
+  {
+    "nombre": "Exportación constancias · XLSX",
+    "ok": true,
+    "detalle": "92986 bytes"
+  },
+  {
+    "nombre": "Exportación constancias · PDF",
+    "ok": true,
+    "detalle": "1023324 bytes"
+  },
+  {
+    "nombre": "Exportación pendientes · XLSX",
+    "ok": true,
+    "detalle": "73268 bytes"
+  },
+  {
+    "nombre": "Exportación pendientes · PDF",
+    "ok": true,
+    "detalle": "828733 bytes"
+  },
+  {
+    "nombre": "Cada exportación queda en la bitácora",
+    "ok": true,
+    "detalle": "14"
+  },
+  {
+    "nombre": "Reemitir: la anterior queda «Sustituida» y enlazada",
+    "ok": true,
+    "detalle": "{\"ant\":\"sustituida\",\"nuevo\":\"DN-2026-000181\",\"nuevoEst\":\"vigente\"}"
+  },
+  {
+    "nombre": "Revocar: acreditación y constancia revocadas, nueva participación pendiente",
+    "ok": true,
+    "detalle": "{\"k\":\"revocada\",\"ac\":\"revocada\",\"cum\":\"pendiente\",\"sub\":\"pendiente\",\"total\":2}"
+  },
+  {
+    "nombre": "Nada se borra: se conservan las 2 constancias",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Auditor: solo lectura, sin «Nueva regla»",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Auditor no puede crear reglas",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Auditor no puede reemitir ni revocar",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Supervisora: sin reglas ni bitácora en su menú",
+    "ok": true,
+    "detalle": "Tablero | Mi equipo | Matriz de capacitación | Validación práctica | Constancias | Reportes y exportaciones | Ir a Aprender | Salir"
+  },
+  {
+    "nombre": "Supervisora: alcance limitado a Ensamble · Turno 2",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Trabajadora: sin acceso a la consola",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Instructora: alcance limitado a sus cursos",
+    "ok": true,
+    "detalle": "C2"
+  },
+  {
+    "nombre": "Por vencer → sigue vigente el día de vencimiento → Vencida al día siguiente",
+    "ok": true,
+    "detalle": "{\"antes\":\"por_vencer\",\"dia\":\"por_vencer\",\"despues\":\"vencida\",\"vence\":\"2026-12-01\"}"
+  },
+  {
+    "nombre": "Avanzar la fecha genera renovaciones (proceso diario simulado)",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Inactividad: la sesión se cierra y vuelve al acceso",
+    "ok": true,
+    "detalle": ""
+  },
+  {
+    "nombre": "Sin errores de JavaScript en la página",
+    "ok": true,
+    "detalle": ""
+  }
+]

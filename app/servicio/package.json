@@ -1,0 +1,26 @@
+{
+  "name": "nexo-servicio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nexo · servicio de aplicación (Etapa 4, módulo M2: acceso, sesiones y permisos)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "start": "node --experimental-strip-types src/servidor.ts",
+    "tipos": "tsc --noEmit",
+    "test": "bash pruebas/ejecutar.sh"
+  },
+  "dependencies": {
+    "@fastify/cookie": "11.1.5",
+    "@node-rs/argon2": "2.2.2",
+    "fastify": "5.12.8",
+    "pg": "8.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/pg": "8.23.1",
+    "typescript": "5.9.3"
+  }
+}

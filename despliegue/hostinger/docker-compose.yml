@@ -1,0 +1,64 @@
+# Nexo · despliegue en un VPS de Hostinger con Docker Compose.
+# Tres contenedores en una red interna: base de datos (sin puertos expuestos), servicio de aplicación
+# (sin puertos expuestos) y proxy web con HTTPS automático (único con puertos 80 y 443 abiertos).
+# Guía paso a paso: despliegue/hostinger/GUIA.md
+name: nexo
+
+services:
+  db:
+    image: postgres:16.6
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nexo
+      POSTGRES_USER: ${POSTGRES_USER:-nexo_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Falta POSTGRES_PASSWORD en .env}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+      TZ: America/Mexico_City
+    volumes:
+      - db-datos:/var/lib/postgresql/data
+      - ../../app/db:/nexo-db:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d nexo"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [interna]
+
+  servicio:
+    build: ../../app/servicio
+    image: nexo-servicio:local
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://nexo_servicio:${NEXO_DB_PASSWORD:?Falta NEXO_DB_PASSWORD en .env}@db:5432/nexo
+      NEXO_PEPPER: ${NEXO_PEPPER:?Falta NEXO_PEPPER en .env}
+      NEXO_COOKIE_SEGURA: "si"
+      TZ: America/Mexico_City
+    networks: [interna]
+
+  web:
+    image: caddy:2.8.4
+    restart: unless-stopped
+    depends_on: [servicio]
+    ports:
+      - "${NEXO_PUERTO_HTTP:-80}:80"
+      - "${NEXO_PUERTO_HTTPS:-443}:443"
+      - "${NEXO_PUERTO_HTTPS:-443}:443/udp"
+    environment:
+      NEXO_DOMINIO: ${NEXO_DOMINIO:?Falta NEXO_DOMINIO en .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ../../prototipo/index.html:/srv/sitio/index.html:ro
+      - caddy-datos:/data
+      - caddy-config:/config
+    networks: [interna]
+
+volumes:
+  db-datos:
+  caddy-datos:
+  caddy-config:
+
+networks:
+  interna:

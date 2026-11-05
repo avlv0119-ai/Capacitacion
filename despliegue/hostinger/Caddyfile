@@ -1,0 +1,39 @@
+# Nexo · proxy web. Caddy obtiene y renueva solo el certificado HTTPS del dominio (Let's Encrypt)
+# siempre que el registro DNS del dominio apunte a este servidor y los puertos 80 y 443 estén abiertos.
+{$NEXO_DOMINIO} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "no-referrer"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		X-Robots-Tag "noindex, nofollow"
+		-Server
+	}
+
+	# Ambiente de demostración: que los buscadores no lo indexen.
+	handle /robots.txt {
+		respond "User-agent: *
+Disallow: /
+" 200
+	}
+
+	# Servicio de aplicación (acceso, sesiones, permisos y consultas).
+	handle /api/* {
+		reverse_proxy servicio:3000
+	}
+
+	# Interfaz (por ahora, el prototipo navegable con datos de demostración en el navegador).
+	handle {
+		root * /srv/sitio
+		try_files {path} /index.html
+		file_server
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}

@@ -67,7 +67,7 @@ erDiagram
 3. Las políticas de seguridad por fila filtran lecturas y escrituras. Un trabajador ve sus propios registros.
 4. Si no hay usuario en el contexto, no se ve ni se escribe nada.
 
-**Capas:** la base garantiza el aislamiento por **grupo y empresa**. Los alcances más finos (planta, área y turno de un supervisor; cursos de un instructor) y los permisos por acción (quién crea, aprueba o exporta) los aplica el servicio de aplicación, según la [matriz de permisos](../etapa-2/02-matriz-de-permisos.md). Esas reglas se probarán en el módulo M2.
+**Capas:** la base garantiza el aislamiento por **grupo y empresa**. Los alcances más finos (planta, área y turno de un supervisor; cursos de un instructor) y los permisos por acción (quién crea, aprueba o exporta) los aplica el servicio de aplicación, según la [matriz de permisos](../etapa-2/02-matriz-de-permisos.md). Esas reglas se prueban en el módulo M2 ([`app/servicio`](../../app/servicio/README.md), 23 comprobaciones).
 
 ## 5. Verificación
 

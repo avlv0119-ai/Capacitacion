@@ -15,9 +15,9 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | B-2 | Contratistas con identificador generado por la plataforma (prefijo «C-») y empresa contratista registrada | Confirmada (5 nov 2026) | Etapa 2 | Empresa | idem |
 | B-3 | Costo de mensajería cero: activación con ficha impresa y recuperación solo en persona con el Administrador | Confirmada (5 nov 2026) | Etapa 2 | Empresa | idem |
 | B-4 | «Empresas» son razones sociales de un mismo grupo | Confirmada (5 nov 2026) | Etapas 2 y 4 | Empresa | idem |
-| B-5 | Restricciones de TI e infraestructura | Bloqueante | Etapa 4 | TI | idem |
+| B-5 | Restricciones de TI e infraestructura. **Respuesta (5 nov 2026): todo se guarda en Hostinger**; TI aprobará. Propuesta concreta en D-63 | Confirmada en parte (proveedor); pendiente: aprobación de TI y ubicación de los datos (D-64) | Etapa 4 | Empresa y TI | [Etapa 4 · 03](etapa-4/03-despliegue-hostinger.md) |
 | B-6 | Envío de documentos internos a un servicio de IA | Bloqueante | Módulo de IA (V2) | TI y jurídico | idem |
-| B-7 | Responsables de producto, contenido y jurídico; cursos y alcance del piloto | Bloqueante | Contenido y piloto | Dirección | idem |
+| B-7 | Responsables de producto, contenido y jurídico; cursos y alcance del piloto. **Respuesta (5 nov 2026): el Departamento de Capacitación es el responsable** | Confirmada en parte; pendiente: revisión jurídica, operación técnica (D-66), cursos y áreas del piloto | Contenido y piloto | Dirección | idem |
 | D-01 | Registro de capacitación y motivación separados; los puntos nunca alteran estados ni resultados | Confirmada | Todas | — | RF-MOT-02, RT-04 |
 | D-02 | Ranking voluntario; progreso privado por defecto | Propuesta | Etapa 2 | RH | RF-RNK-01 |
 | D-03 | El ranking compara solo puntos del periodo, por equipo y planta, con un mínimo de 5 participantes y sin mostrar los últimos lugares | Propuesta | Etapa 2 | RH | RF-RNK-02 a 06 |
@@ -50,7 +50,7 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | D-30 | Plazos de conservación de datos por categoría | Pendiente | Etapa 4 | Jurídico | [04 §12](etapa-1/04-requisitos-no-funcionales.md#12-conservación-de-datos) |
 | D-31 | Objetivos de disponibilidad, RPO y RTO | Pendiente (candidatos propuestos) | Etapa 4 | TI | RNF-DIS |
 | D-32 | Navegadores y dispositivos mínimos | Pendiente (requiere inventario) | Etapas 2 y 5 | TI | RNF-COM-01 |
-| D-33 | Tecnología e infraestructura. Propuesta: desarrollo a la medida; TypeScript en web y servidor; PostgreSQL 16 con seguridad por fila; almacenamiento compatible con S3; contenedores portátiles entre nube y servidores propios | Propuesta (Etapa 4, entrega 1); pendiente de TI | Etapa 4 | TI | [Etapa 4 · 01](etapa-4/01-arquitectura.md) |
+| D-33 | Tecnología e infraestructura. Propuesta: desarrollo a la medida; TypeScript en web y servidor; PostgreSQL 16 con seguridad por fila; contenedores portátiles. Con Hostinger (B-5), archivos en el disco del VPS con respaldo en lugar de almacenamiento compatible con S3 | Propuesta; **TI aprobará** (aviso de la empresa, 5 nov 2026) | Etapa 4 | TI | [Etapa 4 · 01](etapa-4/01-arquitectura.md), [03](etapa-4/03-despliegue-hostinger.md) |
 | D-34 | El prototipo de la Etapa 3 es una aplicación web navegable con datos ficticios en el navegador, sin servidor ni persistencia real, marcada como prototipo | Confirmada (implementada el 5 nov 2026) | Etapa 3 | Producto | [Etapa 3](etapa-3/README.md) |
 | D-35 | Objetivo de prueba de carga: 400 sesiones activas simultáneas, 2,000 cuentas y un año de datos simulados | Propuesta | Etapa 5 | TI | [04 §1](etapa-1/04-requisitos-no-funcionales.md#1-capacidad-y-rendimiento) |
 | D-36 | El Administrador puede delegar el permiso «Restablecer acceso» a personas designadas por planta y turno | Pendiente | Etapa 3 | Empresa | [Etapa 2 · 02 §3](etapa-2/02-matriz-de-permisos.md#3-permisos-especiales-por-curso-o-tema) |
@@ -80,3 +80,8 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | D-60 | La base aísla por grupo y empresa; los alcances finos (planta, área y turno, cursos) y los permisos por acción se aplican en el servicio de aplicación | Propuesta | Etapa 4 | Producto y TI | [Etapa 4 · 02 §4](etapa-4/02-modelo-de-datos.md#4-cómo-funciona-el-aislamiento) |
 | D-61 | La aplicación indica solo el usuario en cada transacción; el grupo y las empresas permitidas se calculan en la base a partir de sus roles vigentes | Propuesta (implementada en M1) | Etapa 4 | TI | idem |
 | D-62 | El acceso de superusuario a la base se restringe al equipo de operación y se registra fuera de la base | Propuesta | Operación | TI | [Etapa 4 · 02 §5](etapa-4/02-modelo-de-datos.md#5-verificación) |
+| D-63 | Hospedaje en un VPS KVM de Hostinger con Docker Compose (proxy con HTTPS automático, servicio y PostgreSQL); el hospedaje web compartido solo para la página estática del prototipo | Propuesta (deriva de B-5; lista para instalar) | Etapa 4 | TI | [Etapa 4 · 03](etapa-4/03-despliegue-hostinger.md) |
+| D-64 | Centro de datos (ubicación) del VPS para datos personales de trabajadores | Pendiente; no bloquea mientras solo haya datos ficticios | Puesta en marcha | TI y jurídico | idem |
+| D-65 | Respaldos: diario de Hostinger (complemento de pago) y respaldo propio diario con huella, 14 días de retención, copia en otro lugar y prueba de restauración mensual | Propuesta | Operación | TI | idem |
+| D-66 | Quién opera técnicamente el VPS (acceso SSH y Docker, actualizaciones, respaldos) | Pendiente | Operación | Capacitación con TI | idem |
+| D-67 | El ambiente publicado es de demostración: datos ficticios, sin indexación en buscadores y, en el hospedaje web, protegido con contraseña | Propuesta | Publicación | Capacitación | idem |

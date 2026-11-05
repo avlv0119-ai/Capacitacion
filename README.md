@@ -4,7 +4,9 @@
 
 Web app de capacitación para operadores de producción, mantenimiento, supervisores, seguridad y contratistas. Combina una experiencia de aprendizaje por niveles, breve y motivante, con una administración rigurosa, medible y trazable: asignaciones, evaluaciones, validaciones prácticas, constancias en PDF, indicadores y exportaciones.
 
-**Este repositorio todavía no contiene la aplicación de producción.** Contiene la documentación de producto y diseño y un prototipo navegable con datos ficticios. Ningún entregable de este repositorio debe considerarse listo para producción mientras no complete la Etapa 5 (validación).
+**Este repositorio todavía no contiene la aplicación de producción.** Contiene la documentación de producto y diseño, un prototipo navegable con datos ficticios, los primeros módulos de la aplicación real (base de datos y servicio de acceso) y un paquete para publicar un **ambiente de demostración en Hostinger**. Ningún entregable de este repositorio debe considerarse listo para producción mientras no complete la Etapa 5 (validación).
+
+**Para publicar la demostración:** [`despliegue/hostinger/GUIA.md`](despliegue/hostinger/GUIA.md).
 
 ## Estado por etapa
 
@@ -13,7 +15,7 @@ Web app de capacitación para operadores de producción, mantenimiento, supervis
 | 1. Definición del producto | [`docs/etapa-1/`](docs/etapa-1/README.md) | **Entregada.** Preguntas bloqueantes B-1 a B-4 respondidas el 5 nov 2026 e incorporadas. |
 | 2. Diseño funcional y visual | [`docs/etapa-2/`](docs/etapa-2/README.md): mapa de navegación, matriz de permisos, flujos, pantallas y propuesta visual (versión 3: Nexo con identidad Grupo PIGSA88, plana y juvenil) | **Entregada.** |
 | 3. Prototipo funcional | [`docs/etapa-3/`](docs/etapa-3/README.md) y [`prototipo/`](prototipo/README.md) | **Entregada para revisión.** 55 + 35 comprobaciones automáticas correctas. La página publicada muestra la versión anterior a la marca corporativa (ver Etapa 3). |
-| 4. Desarrollo para operación real | [`docs/etapa-4/`](docs/etapa-4/README.md) y [`app/`](app/db/README.md) | **En curso.** Entrega 1: arquitectura propuesta y núcleo de datos en PostgreSQL (50 de 50 comprobaciones). |
+| 4. Desarrollo para operación real | [`docs/etapa-4/`](docs/etapa-4/README.md), [`app/`](app/db/README.md) y [`despliegue/`](despliegue/hostinger/GUIA.md) | **En curso.** Entrega 2: núcleo de datos (50 de 50), servicio de acceso y permisos (23 de 23), datos de demostración en la base (12 de 12) y despliegue en Hostinger probado de punta a punta en Docker local. Pendiente: aprobación de TI. |
 | 5. Validación y preparación de lanzamiento | Pruebas de recorridos, permisos, aislamiento, indicadores, documentos y carga | Por iniciar |
 
 ## Convenciones de los documentos
@@ -57,8 +59,11 @@ docs/
     05-propuesta-visual.md
   etapa-3/                    Prototipo funcional: guía, verificación, hallazgos y capturas
   registro-de-decisiones.md   Decisiones tomadas, propuestas y pendientes (todas las etapas)
+  etapa-4/                    Arquitectura, modelo de datos, despliegue en Hostinger y plan de módulos
 prototipo/                    Prototipo navegable (datos ficticios) y sus pruebas automatizadas
-app/db/                       Núcleo de datos de la aplicación real (PostgreSQL): migraciones y pruebas
-docs/etapa-4/                 Arquitectura propuesta, modelo de datos y plan de módulos
+app/db/                       Núcleo de datos (PostgreSQL): migraciones, pruebas y datos de demostración
+app/servicio/                 Servicio de aplicación (Node.js): acceso, sesiones y permisos, con pruebas
+despliegue/hostinger/         VPS con Docker Compose: guía, contenedores, HTTPS y scripts de operación
+despliegue/hostinger-web/     Paquete estático del prototipo para el hospedaje web
 docs/identidad/               Logotipo de Grupo PIGSA88
 ```

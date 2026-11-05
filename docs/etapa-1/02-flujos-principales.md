@@ -56,7 +56,7 @@ flowchart TD
 ### F-01 · Configuración inicial de la empresa
 
 - **Actor:** Administrador.
-- **Pasos:** registrar empresa → plantas (con zona horaria) → áreas y subáreas → turnos por planta → catálogo de puestos → logotipo y datos para constancias → parámetros (gamificación activa o no, ranking, días de aviso de vencimiento, tiempo de inactividad en dispositivos compartidos).
+- **Pasos:** registrar el grupo y la empresa (razón social) → plantas (con zona horaria) → áreas y subáreas → turnos por planta → catálogo de puestos → logotipo y datos para constancias → parámetros (gamificación activa o no, ranking, días de aviso de vencimiento, tiempo de inactividad en dispositivos compartidos).
 - **Resultado:** empresa lista para cargar personas.
 - **Reglas:** no se puede eliminar una unidad con historial; solo desactivarla con fecha [R].
 
@@ -65,18 +65,18 @@ flowchart TD
 - **Actor:** Recursos Humanos.
 - **Pasos:** descargar plantilla Excel → llenar número de empleado, nombre, tipo (empleado o contratista), planta, área, turno, puesto y fecha efectiva → subir archivo → el sistema valida (duplicados, unidades inexistentes, campos faltantes, formatos) → vista previa con altas, cambios y errores por fila → confirmar → registro en bitácora.
 - **Resultado:** personas creadas o actualizadas en estado «Sin activar». Las reglas de asignación vigentes se aplican automáticamente.
-- **Reglas:** la carga es todo o nada por archivo, o bien por filas válidas, a elección del usuario [R]. Un cambio de adscripción en la carga se trata como movimiento (F-16), no como sobrescritura. El número de empleado se guarda como texto para conservar ceros a la izquierda [R].
+- **Reglas:** para contratistas, la plataforma genera el identificador con prefijo (por ejemplo, C-000123) y se registra su empresa contratista [H]. La carga es todo o nada por archivo, o bien por filas válidas, a elección del usuario [R]. Un cambio de adscripción en la carga se trata como movimiento (F-16), no como sobrescritura. El número de empleado se guarda como texto para conservar ceros a la izquierda [R].
 
 ### F-03 · Activación de cuenta
 
-- **Actores:** Recursos Humanos o Supervisor (entrega); Trabajador.
+- **Actores:** Administrador (genera las fichas); Administrador, RH o Supervisor (entregan la ficha); Trabajador.
 - **Pasos:**
-  1. RH genera códigos de activación de un solo uso, de forma individual o por lote. Se imprime una ficha por persona con el código, la dirección de acceso y un QR que abre esa dirección [R].
-  2. La ficha se entrega en persona, o el código se envía por un canal registrado si existe (depende de B-3).
-  3. La persona abre la dirección, captura su número de empleado y el código.
+  1. El Administrador genera códigos de activación de un solo uso, de forma individual o por lote (por ejemplo, para toda una convocatoria). Se imprime una ficha por persona con el código, la empresa, la dirección de acceso y un QR que abre esa dirección con la empresa ya elegida [R].
+  2. La ficha se entrega en persona. No se envían códigos por mensaje (costo cero, H-17).
+  3. La persona abre la dirección, elige su empresa si el QR no la trae, y captura su número de empleado y el código.
   4. Crea su contraseña (frase de acceso) con ayuda visual de fortaleza.
   5. Lee y acepta el aviso de privacidad [P: texto a cargo de jurídico].
-  6. Opcional: registra un celular o correo para recuperar su acceso por sí misma; en su celular personal, puede activar el desbloqueo con huella o rostro (llave de acceso) [R].
+  6. Opcional: en su celular personal, puede activar el desbloqueo con huella o rostro (llave de acceso) [R]. No se piden correo ni celular.
   7. Elige si participa en el ranking. Por defecto: **progreso privado** [R].
 - **Resultado:** cuenta activa; panel personal con sus cursos asignados.
 - **Reglas:** el código caduca (propuesta: 72 horas, configurable) [R] y se invalida al usarse. Respuestas genéricas que no revelan si un número de empleado existe.
@@ -90,9 +90,10 @@ flowchart TD
 
 ### F-05 · Recuperación de acceso
 
-- **Autoservicio** (si la persona registró y verificó un celular o correo): solicita recuperación → recibe código de un solo uso → crea nueva contraseña → se cierran sus demás sesiones.
-- **Asistida** (sin canal registrado): acude a RH o a su supervisor (si se le autoriza) → verificación de identidad en persona (gafete o identificación) → se genera un nuevo código de activación → la persona repite F-03 desde el paso 3 → la acción queda en bitácora con quién la autorizó.
-- **Reglas:** la recuperación nunca revela la contraseña anterior ni datos de la persona. Los roles administrativos se recuperan solo con un Administrador [R].
+- **Actores:** Trabajador; Administrador.
+- **Pasos:** la persona acude con el Administrador → verificación de identidad en persona (gafete o identificación) → el Administrador genera un código nuevo y lo entrega impreso o lo muestra en su pantalla → la persona repite F-03 desde el paso 3 → se cierran sus sesiones anteriores → la acción queda en bitácora con quién la autorizó.
+- **Reglas:** no hay recuperación por autoservicio ni envío de mensajes (H-17). La pantalla de acceso indica claramente «¿Olvidaste tu contraseña? Acude con el administrador de tu planta». La recuperación nunca revela la contraseña anterior ni datos de la persona. La recuperación de un Administrador la hace otro Administrador.
+- **Riesgo operativo:** en turnos sin Administrador presente, la persona no podrá entrar hasta el siguiente turno. Opciones: designar Administradores por planta y turno, o que el Administrador delegue el permiso «Restablecer acceso» a personas concretas. Decisión D-36.
 
 ### F-06 · Creación manual de un curso
 
@@ -178,6 +179,7 @@ flowchart TD
   - Asignaciones que dejan de aplicar: si no se han iniciado, se cancelan con motivo «Cambio organizacional»; si están en curso, se aplica la configuración del curso: conservar como opcional (por defecto) o cancelar [R].
   - Acreditaciones vigentes que la nueva adscripción también exige se reconocen automáticamente.
   - Los reportes históricos atribuyen los registros según la regla definida en [06](06-indicadores.md#2-reglas-generales).
+  - **Transferencia entre empresas del grupo (V2):** se registra la baja en la empresa de origen y el alta en la de destino, con su nuevo número de empleado. La persona conserva su identificador interno y todo su historial. Las acreditaciones de cursos compartidos por el grupo se reconocen.
 
 ### F-17 · Consulta y exportación de reportes
 

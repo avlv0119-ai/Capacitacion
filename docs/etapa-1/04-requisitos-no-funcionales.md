@@ -8,7 +8,7 @@ Este documento fija requisitos y objetivos **candidatos**. Ninguno se da por cum
 
 ### 1.1 Qué significan «400 por sesión» y «1,600 al mes»
 
-Las cifras admiten lecturas muy distintas, con requisitos de carga muy distintos. **Se necesita confirmar cuál aplica (pregunta B-1)** antes de fijar el objetivo de las pruebas de carga.
+Las cifras admitían lecturas muy distintas. **Respuesta a B-1 (5 nov 2026):** las convocatorias corresponden al escenario B (unas 400 personas inscritas que avanzan a su ritmo) y el mes al escenario C′ (unas 1,600 personas distintas). La plantilla total es de 2,000 personas.
 
 | Escenario | Lectura | Carga estimada [S] |
 |---|---|---|
@@ -19,14 +19,14 @@ Las cifras admiten lecturas muy distintas, con requisitos de carga muy distintos
 
 Las cifras de la tabla son órdenes de magnitud para orientar la discusión, no mediciones.
 
-**Lectura del equipo [R].** Incluso el escenario A es una carga moderada para una aplicación web bien construida. El riesgo mayor de ese escenario no está necesariamente en el servidor, sino en **la red del lugar**: 400 dispositivos en la misma red inalámbrica de una sala o planta pueden saturarla. Si se confirma el escenario A, TI debe evaluar la red local además del servidor.
+**Objetivo de carga derivado [R].** Aunque las convocatorias no son simultáneas, en planta las pausas suelen coincidir por turno y concentran el uso [S]. Se propone como objetivo de prueba **400 sesiones activas simultáneas** (una convocatoria completa al mismo tiempo), sobre una base con 2,000 cuentas y al menos un año de datos simulados. Cubre con margen el pico estimado del escenario B y es un objetivo modesto para una aplicación web. TI debe confirmar la cobertura inalámbrica donde haya tabletas compartidas.
 
 ### 1.2 Objetivos candidatos (por acordar)
 
 | ID | Objetivo candidato [R] | Cómo se verificará |
 |---|---|---|
 | RNF-REN-01 | Navegación y envío de respuestas: el 95 % de las respuestas del servidor en menos de 1 segundo bajo la carga acordada, sin contar la red del usuario. | Prueba de carga en Etapa 5 |
-| RNF-REN-02 | La prueba de carga se ejecuta al doble del escenario confirmado (factor de seguridad 2). | Prueba de carga |
+| RNF-REN-02 | La prueba de carga se ejecuta con 400 sesiones activas simultáneas, 2,000 cuentas y un año de datos simulados. | Prueba de carga |
 | RNF-REN-03 | Ningún envío de evaluación se pierde ni se duplica durante una ráfaga de envíos simultáneos. | Prueba de carga y verificación de registros |
 | RNF-REN-04 | Exportaciones y constancias no bloquean la navegación: se procesan en segundo plano. | Prueba funcional bajo carga |
 | RNF-REN-05 | Imágenes de lección optimizadas, con un peso objetivo por imagen que se fijará en la Etapa 2 según el consumo de datos aceptable en celulares personales. | Revisión de contenido |
@@ -63,11 +63,11 @@ Con supuestos que deben reemplazarse por datos reales [S]: si se registran 1,000
 
 **Base para todas las personas: opción A, complementada con C en celulares personales.**
 
-1. **Activación** con código de un solo uso, de vigencia corta, entregado en persona en una ficha impresa (o por canal registrado si existe, según B-3).
+1. **Activación** con código de un solo uso, de vigencia corta, entregado en persona en una ficha impresa. Sin envío por mensaje (B-3).
 2. **Inicio de sesión** con número de empleado + contraseña. Se recomienda una **frase de acceso** (varias palabras), más fácil de recordar que una contraseña compleja. La longitud mínima y las reglas se fijarán con TI siguiendo una guía reconocida, como NIST SP 800-63B: privilegiar longitud sobre complejidad, rechazar contraseñas comunes o filtradas y no forzar cambios periódicos salvo sospecha de compromiso.
 3. **Llave de acceso opcional** en el celular propio, para no teclear la contraseña.
 4. **Segundo factor obligatorio** para Administrador, RH y Auditor (aplicación de códigos o llave de acceso); configurable y recomendado para Instructor y Supervisor.
-5. **Recuperación** por autoservicio si hay canal verificado; si no, asistida con verificación presencial (F-05).
+5. **Recuperación** solo asistida, en persona con el Administrador (F-05, B-3).
 6. **Opciones D y E** quedan como evolución si la empresa ya tiene gafetes con código o un proveedor de identidad.
 
 **Sobre un PIN numérico corto.** Es más fácil para algunas personas, pero un PIN de pocos dígitos no es suficiente como único factor. Si la empresa prefiere PIN, debe combinarse con un segundo elemento: un dispositivo personal registrado o un gafete (opción D).
@@ -107,21 +107,21 @@ Con supuestos que deben reemplazarse por datos reales [S]: si se registran 1,000
 
 | ID | Requisito |
 |---|---|
-| RNF-SEP-01 | Toda información pertenece a una empresa. Ninguna consulta, archivo, exportación ni proceso en segundo plano puede mezclar datos de empresas distintas. [H] |
+| RNF-SEP-01 | Toda información pertenece a un grupo y, dentro de él, a una empresa. Ningún dato sale de su grupo. Dentro del grupo, ver datos de varias empresas solo es posible con un rol de alcance «grupo». Ninguna consulta, archivo, exportación ni proceso en segundo plano mezcla empresas fuera de ese alcance. [H] |
 | RNF-SEP-02 | El aislamiento se aplica en dos capas: en la lógica de la aplicación y en la base de datos (por ejemplo, políticas de seguridad por fila), para que un error en una capa no exponga datos. [R] |
-| RNF-SEP-03 | El número de empleado solo es único dentro de una empresa. La empresa se determina por la dirección de acceso (o por el QR de la ficha), no por un campo adicional que la persona deba conocer. [R] |
+| RNF-SEP-03 | El número de empleado solo es único dentro de una empresa [S]. La dirección de acceso identifica al grupo. Si el grupo tiene más de una empresa, la pantalla de acceso muestra un selector de empresa, que viene elegido por el QR de la ficha y se recuerda en dispositivos personales. [R] |
 | RNF-SEP-04 | Los archivos (evidencias, constancias, exportaciones) se guardan separados por empresa y solo se entregan mediante enlaces temporales emitidos después de verificar el permiso. Nunca hay enlaces públicos permanentes. [R] |
 | RNF-SEP-05 | El Administrador de plataforma no ve datos personales por defecto. Un acceso excepcional para soporte requiere justificación, es temporal y queda registrado. [R] |
 | RNF-SEP-06 | Pruebas automáticas de aislamiento entre empresas y de alcance por rol forman parte de la Etapa 5 y de cada entrega posterior. [R] |
 
-Alternativas de aislamiento, a decidir antes de la Etapa 4 según B-4: base compartida con identificador de empresa y políticas por fila (recomendada para una empresa o un grupo), esquema por empresa, o base de datos por empresa (si un cliente exige aislamiento físico por contrato).
+Con B-4 resuelto (empresas de un mismo grupo), se recomienda una base compartida con identificador de grupo y de empresa en cada registro, y políticas por fila. Las alternativas de esquema o base por empresa solo se justificarían si en el futuro se atendiera a terceros. La decisión técnica final se toma antes de la Etapa 4.
 
 ## 7. Protección de datos personales
 
 | ID | Requisito | Etiqueta |
 |---|---|---|
 | RNF-PRI-01 | Minimización: solo se recaban los datos necesarios para capacitar y demostrar la capacitación. No se piden identificadores oficiales (como CURP) salvo que una decisión futura lo exija. | R |
-| RNF-PRI-02 | Aviso de privacidad, finalidades, transferencias y atención de solicitudes de acceso, rectificación, cancelación y oposición conforme a la legislación mexicana vigente de protección de datos personales en posesión de particulares. El texto y el proceso los define y valida el área jurídica. | P |
+| RNF-PRI-02 | Aviso de privacidad, finalidades, transferencias y atención de solicitudes de acceso, rectificación, cancelación y oposición conforme a la legislación mexicana vigente de protección de datos personales en posesión de particulares. El texto y el proceso los define y valida el área jurídica. Debe contemplar el uso de datos entre empresas del grupo (reportes consolidados y transferencias). | P |
 | RNF-PRI-03 | Cifrado en tránsito y en reposo para base de datos, archivos y respaldos. | R |
 | RNF-PRI-04 | Las evidencias fotográficas se limitan a la tarea validada. La empresa define si se permite fotografiar personas e instalaciones. Por defecto, la evidencia mínima es la lista de verificación y la confirmación del validador; la foto es opcional. | P · R |
 | RNF-PRI-05 | Los registros técnicos (errores, monitoreo) no contienen contraseñas, códigos ni datos personales innecesarios. | R |

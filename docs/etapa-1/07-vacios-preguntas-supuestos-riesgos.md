@@ -6,12 +6,12 @@ Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuest
 
 | ID | Hallazgo | Impacto | Cómo se resuelve |
 |---|---|---|---|
-| V-01 | «400 por sesión» y «1,600 al mes» pueden ser personas simultáneas, inscritas, únicas o participaciones. | Los requisitos de carga varían en un orden de magnitud. | Pregunta **B-1** |
-| V-02 | Se habla de «sesión de capacitación», pero el alcance solo describe autoestudio digital. No se menciona si hay sesiones grupales o presenciales con registro de asistencia. | Puede faltar un módulo completo (sesiones y asistencia). | Pregunta **B-1** |
-| V-03 | El acceso es por número de empleado, pero los contratistas normalmente no tienen número de empleado de la empresa. | Sin solución, los contratistas no pueden entrar ni ser reportados. | Pregunta **B-2** |
-| V-04 | El número de empleado solo es único dentro de una empresa, pero el modelo debe soportar varias empresas. | Dos personas de empresas distintas podrían tener el mismo número. | La empresa se determina por la dirección de acceso (RNF-SEP-03) y por **B-4** |
-| V-05 | «Separar empresas» puede significar empresas de un mismo grupo (con reportes consolidados y transferencias de personal) o clientes independientes (aislamiento total). | Cambia el modelo organizacional y la estrategia de aislamiento. | Pregunta **B-4** |
-| V-06 | Se pide recuperación de acceso, pero no se sabe si hay correo o celular registrado de las personas. | Sin canal, toda recuperación depende de RH; en turnos nocturnos puede no haber quién atienda. | Pregunta **B-3** |
+| V-01 | «400 por sesión» y «1,600 al mes» pueden ser personas simultáneas, inscritas, únicas o participaciones. | Los requisitos de carga varían en un orden de magnitud. | Resuelto: personas distintas, convocatorias de inscritos, HC 2,000 (antes: Pregunta **B-1**) |
+| V-02 | Se habla de «sesión de capacitación», pero el alcance solo describe autoestudio digital. No se menciona si hay sesiones grupales o presenciales con registro de asistencia. | Puede faltar un módulo completo (sesiones y asistencia). | Resuelto: no hay sesiones simultáneas; autoestudio por convocatoria (antes: Pregunta **B-1**) |
+| V-03 | El acceso es por número de empleado, pero los contratistas normalmente no tienen número de empleado de la empresa. | Sin solución, los contratistas no pueden entrar ni ser reportados. | Resuelto: identificador «C-» generado por la plataforma (antes: Pregunta **B-2**) |
+| V-04 | El número de empleado solo es único dentro de una empresa, pero el modelo debe soportar varias empresas. | Dos personas de empresas distintas podrían tener el mismo número. | Resuelto: selector de empresa en el acceso, elegido de antemano por el QR de la ficha (RNF-SEP-03) |
+| V-05 | «Separar empresas» puede significar empresas de un mismo grupo (con reportes consolidados y transferencias de personal) o clientes independientes (aislamiento total). | Cambia el modelo organizacional y la estrategia de aislamiento. | Resuelto: empresas de un mismo grupo (antes: Pregunta **B-4**) |
+| V-06 | Se pide recuperación de acceso, pero no se sabe si hay correo o celular registrado de las personas. | Sin canal, toda recuperación depende de RH; en turnos nocturnos puede no haber quién atienda. | Resuelto: solo recuperación en persona con el Administrador (antes: Pregunta **B-3**) |
 | V-07 | Acceso desde celulares personales, sin definir si la capacitación fuera de la jornada está permitida, cómo se registra ese tiempo ni quién paga los datos móviles. | Implicaciones laborales que la plataforma no puede resolver. | Decisión **D-25** con RH y jurídico; la plataforma registra la hora de cada actividad |
 | V-08 | Constancias descargables y equipos compartidos: el PDF puede quedar en la carpeta de descargas del equipo. | Exposición de datos personales. | RNF-DCO-06 y configuración de los equipos por TI |
 | V-09 | Ranking, modo privado y supervisión: no estaba definido quién ve qué. | Riesgo de percepción de vigilancia o de exhibición. | Reglas RF-RNK-01 a 08 |
@@ -27,9 +27,20 @@ Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuest
 
 ## 2. Preguntas bloqueantes
 
-### 2.1 Necesarias para la Etapa 2 (diseño funcional y visual)
+### 2.0 Respuestas recibidas (5 de noviembre de 2026)
 
-**B-1 · Volumen y modalidad**
+| Pregunta | Respuesta de la empresa | Cambios aplicados |
+|---|---|---|
+| B-1 | Las 1,600 al mes son **personas distintas**. Las 400 son **inscritas en una convocatoria**. La plantilla total (HC) es de **2,000**. | Sin modo de sesión grupal en V1. Objetivo de prueba: 400 sesiones simultáneas sobre 2,000 cuentas ([04 §1](04-requisitos-no-funcionales.md#1-capacidad-y-rendimiento)). |
+| B-2 | Opción **b**: la plataforma genera un identificador con prefijo y registra la empresa contratista. | RF-PER-01, F-02. |
+| B-3 | **Sin costo**: quien necesite algo acude con el Administrador. | Activación con ficha impresa y recuperación solo en persona con el Administrador (RF-ACC-02, RF-ACC-06, F-03, F-05). Sin SMS, WhatsApp ni correo. |
+| B-4 | Opción **a**: razones sociales de un **mismo grupo**. | Nivel «grupo» en el modelo, alcance de grupo para roles corporativos, catálogos compartibles, selector de empresa en el acceso, transferencias entre empresas en V2. |
+
+Las preguntas se conservan abajo para mantener la trazabilidad.
+
+### 2.1 Necesarias para la Etapa 2 (diseño funcional y visual) · resueltas
+
+**B-1 · Volumen y modalidad** · *resuelta*
 
 ¿Qué representan «400 por sesión» y «1,600 al mes»? ¿Hay sesiones grupales en las que muchas personas usan la plataforma al mismo tiempo (sala, auditorio, arranque de turno)? ¿Cuántas personas activas hay en total, entre empleados y contratistas?
 
@@ -45,7 +56,7 @@ Y para «1,600 al mes»: ¿son **personas distintas** o **participaciones** (una
 
 ---
 
-**B-2 · Identificación de contratistas**
+**B-2 · Identificación de contratistas** · *resuelta*
 
 ¿Los contratistas tienen número de empleado de la empresa? ¿Quién los da de alta (RH, Seguridad o el área que los contrata)?
 
@@ -59,7 +70,7 @@ Y para «1,600 al mes»: ¿son **personas distintas** o **participaciones** (una
 
 ---
 
-**B-3 · Canales de activación y recuperación**
+**B-3 · Canales de activación y recuperación** · *resuelta*
 
 ¿La empresa tiene, y puede usar, el celular o el correo de las personas para enviar códigos? ¿Acepta un costo por mensaje? ¿Los supervisores pueden generar códigos de recuperación para su equipo o solo RH?
 
@@ -73,7 +84,7 @@ Y para «1,600 al mes»: ¿son **personas distintas** o **participaciones** (una
 
 ---
 
-**B-4 · Significado de «empresas»**
+**B-4 · Significado de «empresas»** · *resuelta*
 
 | Opción | Consecuencia |
 |---|---|
@@ -134,3 +145,4 @@ Se avanzará con los valores propuestos en el [registro de decisiones](../regist
 | R-11 | Datos de personal incompletos o desactualizados. | Alta | Medio | Validación en la carga; RH como responsable del dato. |
 | R-12 | Implicaciones laborales de capacitarse con el celular personal fuera de la jornada. | Media | Medio | Decisión D-25 con RH y jurídico antes del piloto. |
 | R-13 | Se interpreta el prototipo de la Etapa 3 como producto terminado. | Media | Alto | Marca visible de prototipo; lista explícita de funciones simuladas. |
+| R-14 | Toda recuperación de acceso depende del Administrador: en turnos sin Administrador, una persona puede quedarse sin entrar hasta el siguiente turno, o acumularse filas al inicio de una convocatoria. | Media | Medio | Administradores designados por planta y turno, o delegación del permiso «Restablecer acceso» (D-36); llave de acceso en celulares personales para reducir olvidos; jornada de activación asistida al abrir cada convocatoria. |

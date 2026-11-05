@@ -26,8 +26,8 @@ Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuest
 |---|---|
 | H-01 | Plataforma web de capacitación gamificada para una empresa de manufactura, con progresión por niveles inspirada en Duolingo, sin copiar su identidad visual, personajes ni recursos. |
 | H-02 | Población: operadores de producción, mantenimiento, supervisores, seguridad y contratistas. |
-| H-03 | Primera implementación para una sola empresa. El modelo debe permitir separar empresas, plantas, áreas, turnos, puestos, personas y sus asignaciones. |
-| H-04 | Referencia de volumen: al menos 400 personas por sesión de capacitación y unas 1,600 al mes. **El significado de estas cifras no está confirmado** (ver pregunta B-1). |
+| H-03 | Primera implementación para una sola empresa. El modelo debe permitir separar empresas, plantas, áreas, turnos, puestos, personas y sus asignaciones. Las «empresas» son **razones sociales de un mismo grupo** (respuesta a B-4, 5 nov 2026). |
+| H-04 | Volumen: unas 1,600 **personas distintas** al mes; convocatorias de unas 400 personas **inscritas** que avanzan a su ritmo, no de forma simultánea; plantilla total (HC) de 2,000 personas (respuesta a B-1, 5 nov 2026). |
 | H-05 | Acceso desde celulares personales y desde computadoras o tabletas compartidas, con internet. |
 | H-06 | El identificador de acceso es el número de empleado, pero no debe ser credencial suficiente. |
 | H-07 | Los cursos se asignan según necesidad; no todas las personas toman todos los cursos. |
@@ -39,6 +39,8 @@ Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuest
 | H-13 | Constancias automáticas en PDF con datos registrados (no PDF con campos editables). Firmas y QR son opciones por confirmar. No se les atribuye validez oficial ni equivalencia con DC-3. |
 | H-14 | Los puntos del juego no sustituyen la aprobación de una evaluación ni la validación práctica. |
 | H-15 | Interfaz y entregables en español. |
+| H-16 | Contratistas: la plataforma genera su identificador con prefijo y registra su empresa contratista (respuesta a B-2). |
+| H-17 | Costo de mensajería cero: no se envían códigos por SMS, WhatsApp ni correo. La activación y la recuperación de acceso se resuelven en persona con el Administrador (respuesta a B-3). |
 
 ### 1.2 Lo que el producto **no** hará (para evitar expectativas ambiguas)
 
@@ -63,17 +65,17 @@ El perfil describe a la persona; el **rol** (sección 2.2) describe lo que puede
 | Personal de mantenimiento | Celular personal; consulta de pasos y riesgos. | Actividades de ordenamiento de pasos e identificación de riesgos con imágenes claras. |
 | Supervisor | Computadora o tableta; celular en piso. Toma cursos y además da seguimiento a su equipo y valida prácticas. | Vista rápida de pendientes de su equipo; validación práctica en tableta con pocos toques. |
 | Personal de seguridad | Computadora; posible instructor o validador de temas de seguridad. | Control de evidencias y vigencias; reportes por área. |
-| Contratista | Dispositivo propio o compartido; estancias temporales. **Identificación no definida** (pregunta B-2). | Acceso con vigencia limitada; asignaciones específicas por actividad o zona. |
+| Contratista | Dispositivo propio o compartido; estancias temporales. Identificador generado por la plataforma (por ejemplo, C-000123) y empresa contratista registrada [H]. | Acceso con vigencia limitada; asignaciones específicas por actividad o zona. |
 
 ### 2.2 Roles del sistema
 
 | Rol [H] | Responsabilidad principal [R] | Alcance típico [R] |
 |---|---|---|
-| Administrador | Configura la empresa, la estructura, los roles, las plantillas y los parámetros. | Empresa completa |
-| Recursos Humanos | Administra personas y movimientos, asignaciones, excepciones, constancias y reportes de cumplimiento. | Empresa o planta |
+| Administrador | Configura la empresa, la estructura, los roles, las plantillas y los parámetros. Genera las fichas de activación y restablece accesos [H]. | Empresa, o grupo completo si es corporativo |
+| Recursos Humanos | Administra personas y movimientos, asignaciones, excepciones, constancias y reportes de cumplimiento. | Grupo, empresa o planta |
 | Instructor | Crea y mantiene contenido; da seguimiento a resultados de sus cursos; valida prácticas si está autorizado. | Cursos asignados, dentro de una o varias plantas |
 | Supervisor | Da seguimiento al avance de su equipo; valida prácticas si está autorizado. | Área y turno (uno o varios) |
-| Auditor | Consulta en modo de solo lectura registros, evidencias, constancias, reportes y bitácora. | El alcance que se le asigne |
+| Auditor | Consulta en modo de solo lectura registros, evidencias, constancias, reportes y bitácora. | El alcance que se le asigne, hasta el grupo completo |
 | Trabajador | Toma sus cursos, consulta su historial y descarga sus constancias. | Sus propios datos |
 
 Ajustes propuestos al conjunto de roles:
@@ -87,7 +89,7 @@ La matriz completa de permisos (consultar, crear, modificar, aprobar, exportar, 
 
 ### 2.3 Alcance organizacional
 
-[R] Todo permiso se evalúa como **rol + alcance**. El alcance es una combinación de empresa y, opcionalmente, planta, área y turno. Un usuario solo ve y exporta registros de personas cuya adscripción, en la fecha consultada, cae dentro de su alcance. Las reglas detalladas para reportes históricos están en [06-indicadores.md](06-indicadores.md#2-reglas-generales).
+[R] Todo permiso se evalúa como **rol + alcance**. El alcance es el grupo completo, o una empresa y, opcionalmente, planta, área y turno. Un usuario solo ve y exporta registros de personas cuya adscripción, en la fecha consultada, cae dentro de su alcance. Las reglas detalladas para reportes históricos están en [06-indicadores.md](06-indicadores.md#2-reglas-generales).
 
 ## 3. Contexto de uso
 
@@ -108,8 +110,8 @@ El alcance general incluye todo lo solicitado. El plan de versiones (sección 5)
 
 | Módulo | Contenido | Versión |
 |---|---|---|
-| M01 Identidad y acceso | Activación, autenticación, recuperación, sesiones, dispositivos compartidos, segundo factor para roles administrativos | V1 |
-| M02 Estructura organizacional | Empresas, plantas, áreas (con subáreas), turnos, puestos; historial con fechas de vigencia | V1 |
+| M01 Identidad y acceso | Activación con ficha impresa, autenticación, recuperación asistida por el Administrador, sesiones, dispositivos compartidos, segundo factor para roles administrativos | V1 |
+| M02 Estructura organizacional | Grupo, empresas (razones sociales), plantas, áreas (con subáreas), turnos, puestos; historial con fechas de vigencia | V1 |
 | M03 Personas | Alta manual y carga masiva desde Excel, movimientos de puesto, área y planta sin perder historial, bajas, contratistas | V1 |
 | M04 Roles y permisos | Roles acumulables con alcance; permisos de aprobador de contenido y validador práctico | V1 |
 | M05 Autoría de contenido | Cursos, módulos, niveles, lecciones, actividades y bancos de preguntas; biblioteca de imágenes | V1 |
@@ -123,8 +125,8 @@ El alcance general incluye todo lo solicitado. El plan de versiones (sección 5)
 | M13 Indicadores y consultas | Tableros y consultas con fórmulas definidas | V1 (núcleo) · V2 (análisis de preguntas, competencias) |
 | M14 Exportaciones | Las siete exportaciones indispensables en PDF y Excel, generadas en segundo plano | V1 |
 | M15 Bitácora | Registro de cambios relevantes: quién, cuándo, qué cambió, sobre qué registro | V1 |
-| M16 Notificaciones | Dentro de la app | V1 · correo, SMS o WhatsApp en V2 según decisión y costo |
-| M17 Operación de plataforma | Configuración multiempresa, respaldos, monitoreo, registro de errores | V1 (una empresa) · V3 (alta de nuevas empresas) |
+| M16 Notificaciones | Dentro de la app; notificaciones del navegador sin costo por mensaje. Sin SMS ni WhatsApp por decisión de costo cero | V1 (en la app) · V2 (navegador) |
+| M17 Operación de plataforma | Configuración del grupo y sus empresas, respaldos, monitoreo, registro de errores | V1 (una empresa) · V2 (más empresas del grupo) |
 | M18 Integraciones | Sincronización con sistema de RH, inicio de sesión corporativo (SSO), API | V2–V3, según sistemas existentes |
 
 ## 5. Plan de versiones
@@ -135,7 +137,7 @@ El alcance general incluye todo lo solicitado. El plan de versiones (sección 5)
 
 Incluye:
 
-1. Estructura organizacional y personas con carga desde Excel y validación de errores.
+1. Estructura organizacional con modelo de grupo (aunque arranque con una empresa) y personas con carga desde Excel y validación de errores.
 2. Activación de cuentas, inicio de sesión seguro, recuperación asistida y modo de dispositivo compartido.
 3. Roles con alcance, incluido el Auditor de solo lectura.
 4. Autoría manual con flujo editorial, versiones y registro de fuentes.
@@ -148,25 +150,25 @@ Incluye:
 11. Indicadores núcleo y **las siete exportaciones indispensables en PDF y Excel**.
 12. Bitácora de cambios, respaldos y monitoreo.
 
-Fuera de V1: IA (sin documentos fuente todavía no aporta), notificaciones por mensajería con costo, integraciones y alta de nuevas empresas.
+Fuera de V1: IA (sin documentos fuente todavía no aporta), integraciones e incorporación de más empresas del grupo. La mensajería con costo queda fuera del alcance (H-17).
 
 **Criterio para pasar a V2 [R]:** el piloto completa al menos un ciclo real de asignación a constancia sin discrepancias entre los registros, los reportes y las constancias, y las personas pueden activar su cuenta y completar una lección sin ayuda en pruebas de usabilidad. Las metas numéricas se definen con la empresa [P].
 
 ### V2 · Escala dentro de la empresa
 
 - Contenido asistido por IA (sujeto a la decisión B-6).
-- Notificaciones por correo, SMS o WhatsApp (sujeto a costo y datos de contacto).
+- Notificaciones del navegador, sin costo por mensaje.
 - Verificación por QR y firmas en constancias, si no entran en V1.
 - Sincronización con el sistema de RH e inicio de sesión corporativo, si existen.
-- Sesiones grupales presenciales con registro de asistencia, si no entran en V1 (depende de B-1).
+- Incorporación de más empresas del grupo, reportes consolidados del grupo y transferencias de personal entre empresas con historial.
 - Más tipos de actividad, retos de equipo y temporadas de ranking.
 - Análisis de preguntas (dificultad, discriminación) y matriz de competencias.
 - Tolerancia avanzada a falta de conexión.
 
 ### V3 · Multiempresa y analítica
 
-- Alta y configuración de nuevas empresas con aislamiento completo.
-- Reportes corporativos consolidados (si «empresas» significa un grupo; ver B-4).
+- Configuración de nuevas empresas del grupo por autoservicio.
+- Sesiones grupales con registro de asistencia, si llegan a necesitarse (B-1 indica que las convocatorias no son simultáneas).
 - API para integraciones y herramientas de análisis.
 
 ## 6. Glosario y modelo conceptual
@@ -175,12 +177,14 @@ Estos términos se usarán igual en la interfaz, los reportes y el código.
 
 | Término | Definición [R] |
 |---|---|
-| Empresa | Unidad de separación de datos y configuración. En el futuro, cada cliente o razón social (ver B-4). |
+| Grupo | Conjunto de empresas que comparten la plataforma, los catálogos que se decida compartir y los reportes consolidados. Es la unidad máxima de separación de datos. |
+| Empresa | Razón social del grupo. Tiene sus propios números de empleado, configuración, plantilla de constancia y logotipo. |
 | Planta | Centro de trabajo de una empresa. Tiene zona horaria propia. |
 | Área | Unidad organizacional dentro de una planta. Admite subáreas. |
 | Turno | Horario de trabajo definido por planta. No es jerárquico: atraviesa áreas. |
 | Puesto | Función o posición definida por la empresa. |
-| Persona | Individuo con un identificador interno inmutable. El número de empleado es un atributo que puede cambiar o repetirse entre empresas. |
+| Persona | Individuo con un identificador interno inmutable dentro del grupo. El número de empleado es un atributo por empresa que puede cambiar o repetirse entre empresas. |
+| Contratista · Empresa contratista | Persona externa con identificador generado por la plataforma (prefijo «C-») y el proveedor al que pertenece. La empresa contratista no es una empresa del grupo. |
 | Adscripción | Combinación de planta, área, turno y puesto de una persona, con fecha de inicio y fin. Los movimientos crean una nueva adscripción; la anterior se conserva. |
 | Curso | Contenido de capacitación con identidad estable a lo largo de sus versiones. |
 | Versión de curso | Instantánea inmutable del contenido, la evaluación y los criterios de acreditación al publicarse. |
@@ -198,7 +202,7 @@ Estos términos se usarán igual en la interfaz, los reportes y el código.
 
 ```mermaid
 flowchart LR
-  E[Empresa] --> P[Planta] --> A[Área]
+  G[Grupo] --> E[Empresa] --> P[Planta] --> A[Área]
   P --> T[Turno]
   E --> Pu[Puesto]
   Pe[Persona] --> Ad[Adscripción<br/>con vigencia]

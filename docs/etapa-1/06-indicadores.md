@@ -35,7 +35,7 @@ Dos tipos de indicador:
 | RI-08 | Todo porcentaje se presenta con su **numerador y denominador** y un decimal. | R |
 | RI-09 | Las exportaciones incluyen una hoja o sección con la definición de cada indicador incluido. | R |
 
-**Dimensiones disponibles** para todos los indicadores, salvo que se indique otra cosa: curso, versión, periodo, empresa, planta, área, turno, puesto, tipo de personal (empleado o contratista) y empresa contratista.
+**Dimensiones disponibles** para todos los indicadores, salvo que se indique otra cosa: curso, versión, periodo, grupo, empresa, planta, área, turno, puesto, tipo de personal (empleado o contratista) y empresa contratista.
 
 ## 3. Indicadores
 
@@ -44,7 +44,7 @@ Dos tipos de indicador:
 | ID | Indicador | Tipo | Fórmula | Denominador | Fuente |
 |---|---|---|---|---|---|
 | I-01 | Personas con capacitación asignada | Foto | Personas únicas con al menos una asignación obligatoria activa | — | Asignaciones, adscripciones |
-| I-02 | Cobertura de asignación | Foto | I-01 ÷ personas activas en el alcance | Personas activas en el alcance al corte | Personas, asignaciones |
+| I-02 | Cobertura de asignación | Foto | I-01 ÷ personas activas en el alcance (plantilla de referencia: 2,000) | Personas activas en el alcance al corte | Personas, asignaciones |
 | I-03 | Asignaciones obligatorias vigentes | Foto | Asignaciones obligatorias no canceladas ni exentas | — | Asignaciones |
 | I-04 | Distribución por estado de cumplimiento | Foto | Asignaciones en cada estado (Al día, Por vencer, Vencida, Atrasada, Pendiente con su subestado) ÷ I-03 | I-03 | Asignaciones, participaciones, acreditaciones |
 | I-05 | **Cumplimiento de capacitación asignada** | Foto | (Al día + Por vencer) ÷ I-03 | I-03 | Igual que I-04 |

@@ -9,13 +9,13 @@ Cada requisito tiene un identificador estable que se usará en el diseño, las p
 | ID | Requisito | V | Origen |
 |---|---|---|---|
 | RF-ACC-01 | El número de empleado identifica a la persona dentro de su empresa, pero nunca basta para entrar: se exige además una credencial secreta o un factor de posesión. | V1 | H |
-| RF-ACC-02 | Activación por código de un solo uso, con caducidad configurable, generado por RH de forma individual o por lote, con fichas imprimibles. | V1 | R |
+| RF-ACC-02 | Activación por código de un solo uso, con caducidad configurable, generado por el Administrador de forma individual o por lote, con fichas imprimibles que incluyen un QR con la empresa. | V1 | H · R |
 | RF-ACC-03 | La persona crea su propia contraseña en la activación; nadie más la conoce. | V1 | R |
 | RF-ACC-04 | Llave de acceso (huella o rostro del celular) opcional en dispositivos personales. | V1 | R |
 | RF-ACC-05 | Segundo factor obligatorio para Administrador, RH y Auditor; configurable para Instructor y Supervisor. | V1 | R |
-| RF-ACC-06 | Recuperación por autoservicio (canal verificado) y asistida (RH o supervisor autorizado, con verificación presencial), ambas registradas en bitácora. | V1 | R |
+| RF-ACC-06 | Recuperación solo asistida, en persona con el Administrador, con verificación de identidad y registro en bitácora. Sin autoservicio ni mensajes con costo. | V1 | H |
 | RF-ACC-07 | Modo de dispositivo compartido: sesión no persistente, cierre por inactividad configurable, botón «Salir» siempre visible, limpieza al salir. | V1 | H |
-| RF-ACC-08 | La persona puede ver y cerrar sus sesiones abiertas; RH puede cerrar las de una persona por motivo de seguridad. | V1 | R |
+| RF-ACC-08 | La persona puede ver y cerrar sus sesiones abiertas; el Administrador puede cerrar las de una persona por motivo de seguridad. | V1 | R |
 | RF-ACC-09 | El acceso de contratistas tiene fecha de expiración. | V1 | R |
 | RF-ACC-10 | Inicio de sesión corporativo (SSO) para personal administrativo, si la empresa cuenta con un proveedor de identidad. | V2 | P |
 
@@ -23,7 +23,8 @@ Cada requisito tiene un identificador estable que se usará en el diseño, las p
 
 | ID | Requisito | V | Origen |
 |---|---|---|---|
-| RF-ORG-01 | Administrar empresas, plantas, áreas (con subáreas), turnos y puestos. | V1 | H |
+| RF-ORG-01 | Administrar el grupo, sus empresas (razones sociales), plantas, áreas (con subáreas), turnos y puestos. | V1 | H |
+| RF-ORG-05 | Catálogos del grupo (cursos, plantillas) compartibles entre empresas, o propios de una empresa. | V1 | R |
 | RF-ORG-02 | Cada planta tiene zona horaria; los cortes diarios, vencimientos y reportes usan la zona de la planta. | V1 | R |
 | RF-ORG-03 | Las unidades se desactivan con fecha; no se eliminan si tienen historial. | V1 | R |
 | RF-ORG-04 | Los cambios de estructura (renombrar, fusionar, mover un área) conservan la trazabilidad de los registros anteriores. | V1 | R |
@@ -32,19 +33,20 @@ Cada requisito tiene un identificador estable que se usará en el diseño, las p
 
 | ID | Requisito | V | Origen |
 |---|---|---|---|
-| RF-PER-01 | Alta, edición y baja lógica de personas, con tipo (empleado o contratista) y empresa contratista cuando aplique. | V1 | H · R |
+| RF-PER-01 | Alta, edición y baja lógica de personas, con tipo (empleado o contratista). Para contratistas, identificador generado con prefijo «C-», empresa contratista y fecha de expiración del acceso. | V1 | H |
 | RF-PER-02 | Carga masiva desde Excel con plantilla, validación por fila, vista previa de altas, cambios y errores, y confirmación. | V1 | R |
 | RF-PER-03 | Historial de adscripciones (planta, área, turno, puesto) con fechas de inicio y fin; un movimiento nunca sobrescribe el anterior. | V1 | H |
 | RF-PER-04 | Identificador interno inmutable; el número de empleado se guarda como texto, con historial si cambia. | V1 | R |
 | RF-PER-05 | Importación de capacitación previa (registros externos con fecha, curso, vigencia y referencia a evidencia), marcada como «Registro externo». | V1 | P |
 | RF-PER-06 | Sincronización automática con el sistema de RH de la empresa. | V2 | P |
+| RF-PER-07 | Transferencia de una persona entre empresas del grupo, conservando su identificador interno y su historial. | V2 | H · R |
 
 ## M04 · Roles y permisos
 
 | ID | Requisito | V | Origen |
 |---|---|---|---|
 | RF-ROL-01 | Roles iniciales: Administrador, Recursos Humanos, Instructor, Supervisor, Auditor, Trabajador. | V1 | H |
-| RF-ROL-02 | Una persona puede tener varios roles, cada uno con su alcance (empresa, planta, área, turno). | V1 | R |
+| RF-ROL-02 | Una persona puede tener varios roles, cada uno con su alcance (grupo, empresa, planta, área, turno). | V1 | R |
 | RF-ROL-03 | Permisos especiales asignables: aprobador de contenido (por curso o tema) y validador práctico (por curso). | V1 | R |
 | RF-ROL-04 | Toda consulta, listado, reporte y exportación se filtra en el servidor por rol y alcance. | V1 | H |
 | RF-ROL-05 | Las asignaciones de roles quedan en bitácora con quién las otorgó y cuándo. | V1 | R |
@@ -168,7 +170,7 @@ Cada requisito tiene un identificador estable que se usará en el diseño, las p
 | ID | Requisito | V | Origen |
 |---|---|---|---|
 | RF-IND-01 | Indicadores con fórmula, fuente, periodo y denominador documentados en [06-indicadores.md](06-indicadores.md). | V1 | H |
-| RF-IND-02 | Filtros por curso, versión, periodo, empresa, planta, área, turno, puesto y tipo de personal. | V1 | H |
+| RF-IND-02 | Filtros por curso, versión, periodo, grupo, empresa, planta, área, turno, puesto y tipo de personal. | V1 | H |
 | RF-IND-03 | Distinción visible entre personas únicas y participaciones, y entre tiempo activo estimado y tiempo transcurrido. | V1 | H |
 | RF-IND-04 | Cada tablero muestra la fecha de corte y la definición del indicador al pasar el cursor o tocar un ícono de ayuda. | V1 | R |
 
@@ -198,4 +200,4 @@ Cada requisito tiene un identificador estable que se usará en el diseño, las p
 | ID | Requisito | V | Origen |
 |---|---|---|---|
 | RF-NOT-01 | Avisos dentro de la app: nueva asignación, fecha límite próxima, resultado de evaluación, validación registrada, constancia disponible, exportación lista. | V1 | R |
-| RF-NOT-02 | Avisos por correo, SMS o WhatsApp, sujetos a datos de contacto, consentimiento y costo. | V2 | P |
+| RF-NOT-02 | Notificaciones del navegador (sin costo por mensaje) para quien las active en su dispositivo personal. Sin SMS, WhatsApp ni correo por decisión de costo cero. | V2 | H · R |

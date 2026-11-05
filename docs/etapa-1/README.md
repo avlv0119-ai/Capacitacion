@@ -1,6 +1,6 @@
 # Etapa 1 · Definición del producto
 
-**Estado:** entregada para revisión · **Fecha:** 5 de noviembre de 2026 · **Siguiente etapa:** diseño funcional y visual (Etapa 2)
+**Estado:** entregada; B-1 a B-4 respondidas e incorporadas el 5 de noviembre de 2026 · **Siguiente etapa:** [diseño funcional y visual (Etapa 2)](../etapa-2/README.md), entregada
 
 Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuesto · **[P]** pendiente.
 
@@ -41,7 +41,7 @@ Piloto controlado con datos reales: una empresa, una planta o algunas áreas, y 
 
 ## Preguntas bloqueantes
 
-**Para iniciar la Etapa 2:**
+**Para iniciar la Etapa 2** (respondidas el 5 nov 2026; ver [07 §2.0](07-vacios-preguntas-supuestos-riesgos.md#20-respuestas-recibidas-5-de-noviembre-de-2026)):
 
 - **B-1** · ¿Qué significan «400 por sesión» y «1,600 al mes»: personas simultáneas, inscritas, distintas o participaciones? ¿Hay sesiones grupales simultáneas? ¿Cuántas personas hay en total?
 - **B-2** · ¿Cómo se identifican y quién da de alta a los contratistas?
@@ -57,7 +57,7 @@ Las opciones y la recomendación de cada una están en [07 §2](07-vacios-pregun
 La etapa se considera aceptada cuando:
 
 - [ ] La empresa confirma o corrige el objetivo y los no objetivos ([01 §1](01-producto-y-alcance.md#1-objetivo-del-producto)).
-- [ ] La empresa responde B-1 a B-4, o acepta expresamente la recomendación de cada una.
+- [x] La empresa responde B-1 a B-4, o acepta expresamente la recomendación de cada una. *(5 nov 2026)*
 - [ ] El alcance de V1 está aceptado, incluidas las siete exportaciones y las constancias.
 - [ ] El modelo de estados en capas y el orden de cálculo del cumplimiento están aceptados o corregidos.
 - [ ] Las definiciones de «persona única», «participación», «tiempo activo» y «tiempo transcurrido» están aceptadas.

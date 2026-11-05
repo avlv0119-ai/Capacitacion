@@ -2,7 +2,7 @@
 
 Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuesto · **[P]** pendiente.
 
-Especificación funcional de cada pantalla. Las maquetas visuales de las pantallas marcadas con ◆ están en [05-propuesta-visual.md](05-propuesta-visual.md#8-maquetas).
+Especificación funcional de cada pantalla. Las maquetas visuales de las pantallas marcadas con ◆ están en [05-propuesta-visual.md](05-propuesta-visual.md#6-pantallas).
 
 ## 1. Convenciones
 

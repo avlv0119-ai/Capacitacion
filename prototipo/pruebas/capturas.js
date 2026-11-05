@@ -15,6 +15,7 @@ async function nueva(browser, movil, oscuro) {
   await page.evaluate(() => localStorage.clear());
   await page.reload({ waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
+  await page.waitForSelector('#splash', { state: 'detached', timeout: 6000 });
   await page.keyboard.press('Escape');
   return page;
 }
@@ -34,6 +35,17 @@ async function foto(page, nombre, sel) {
 
 (async () => {
   const browser = await chromium.launch();
+  // ---- Animación de entrada (fotograma a 1.6 s) ----
+  {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+    const pg = await ctx.newPage();
+    await pg.goto(HTML, { waitUntil: 'domcontentloaded' });
+    await pg.evaluate(() => document.fonts.ready);
+    await pg.waitForTimeout(1700);
+    await pg.screenshot({ path: path.join(OUT, 'm00-entrada.png') });
+    console.log('captura m00-entrada');
+    await ctx.close();
+  }
   // ---- Celular, claro ----
   let page = await nueva(browser, true, false);
   await foto(page, 'm01-acceso');

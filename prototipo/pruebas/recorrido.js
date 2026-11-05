@@ -28,6 +28,9 @@ function check(nombre, ok, detalle) {
   await page.goto(HTML, { waitUntil: 'networkidle' });
   await page.evaluate(() => { localStorage.clear(); });
   await page.reload({ waitUntil: 'networkidle' });
+  check('La animación de entrada se muestra al abrir', await page.locator('#splash').count() === 1);
+  await page.waitForSelector('#splash', { state: 'detached', timeout: 6000 });
+  check('La animación de entrada termina sola y deja la app utilizable', await page.locator('#splash').count() === 0);
 
   const ev = (fn, arg) => page.evaluate(fn, arg);
   const como = async id => { await page.selectOption('#ver-como', id); await page.waitForTimeout(80); };

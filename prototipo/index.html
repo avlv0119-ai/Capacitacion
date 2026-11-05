@@ -1,6 +1,6 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
 <!-- Archivo generado por construir.py a partir de app.html. No editar a mano. -->
-<title>Prototipo Oficio</title>
+<title>Nexo</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,40 +9,40 @@
 /* Concepto: app plana y minimalista; «Aprender» en una columna móvil de 520 px con navegación inferior,
    «Administrar» con menú lateral plano y tablas limpias. Barra oscura superior = controles del prototipo. */
 :root{
-  --bg:#F5F6FB; --surface:#FFFFFF; --surface-2:#ECEFF7; --ink:#141A33; --ink-2:#535C77; --line:#E3E7F1; --line-strong:#8B93AB;
-  --primary:#2F4BF0; --on-primary:#FFFFFF; --primary-soft:#E7EBFF; --primary-ink:#2339C9;
+  --bg:#FFFFFF; --surface:#EEEEEE; --surface-2:#E3E3E6; --ink:#313131; --ink-2:#616161; --line:#DADADF; --line-strong:#767676;
+  --primary:#1F2C7A; --on-primary:#FFFFFF; --primary-soft:#E6E8F3; --primary-ink:#1F2C7A; --bright:#3B4CC0; --logo:#312783;
   --coral:#FF6A4D; --coral-soft:#FFE8E1; --coral-ink:#B83A1C;
-  --sun:#FFC53D; --sun-soft:#FFF3D1; --sun-ink:#7A5200;
-  --mint:#2BC37A; --ok-soft:#DCF4E7; --ok-ink:#127547;
-  --warn:#FFB020; --warn-soft:#FFF0C2; --warn-ink:#835400;
-  --danger:#F0484D; --danger-soft:#FDE5E5; --danger-ink:#BF2A2A;
-  --violet:#6B4EFF; --violet-soft:#ECE8FF; --violet-ink:#5537D6;
-  --on-color:#141A33;
-  --bar-bg:#141A33; --bar-ink:#F5F6FB; --bar-soft:#2A3150;
-  --scrim:rgba(20,26,51,.45);
-  --sc-wall:#E7EBFF; --sc-floor:#D5DBEC; --sc-steel:#5B6688; --sc-water:#7CC4FF; --sc-box:#FFC53D; --sc-box-2:#F2A93B;
+  --sun:#F2A900; --sun-soft:#FFF1CC; --sun-ink:#8A5A00;
+  --mint:#2E9E5B; --ok-soft:#DFF1E6; --ok-ink:#1A6B3C; --ok-strong:#1A6B3C; --on-strong:#FFFFFF;
+  --warn:#F2A900; --warn-soft:#FFF1CC; --warn-ink:#8A5A00;
+  --danger:#D92D20; --danger-soft:#FCE6E4; --danger-ink:#B42318; --danger-strong:#B42318;
+  --violet:#6A8695; --violet-soft:#E4ECF0; --violet-ink:#4E6876;
+  --on-color:#313131;
+  --bar-bg:#313131; --bar-ink:#FFFFFF; --bar-soft:#4A4A4A; --splash-bg:#1F2C7A; --splash-ink:#FFFFFF;
+  --scrim:rgba(31,44,122,.45);
+  --sc-wall:#E6E8F3; --sc-floor:#DADADF; --sc-steel:#6A8695; --sc-water:#7FB6E8; --sc-box:#F2C14E; --sc-box-2:#E0A93B;
   --f-display:"Bricolage Grotesque","Plus Jakarta Sans",system-ui,sans-serif;
   --f-body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   --r-lg:22px; --r-md:16px; --r-sm:12px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0F1324; --surface:#181D33; --surface-2:#20263F; --ink:#EEF1FA; --ink-2:#A6AECA; --line:#2A3152; --line-strong:#6B7392;
-  --primary:#7F93FF; --on-primary:#0F1324; --primary-soft:#222B58; --primary-ink:#AEBBFF;
-  --coral:#FF7A5E; --coral-soft:#3A231F; --coral-ink:#FF9E85; --sun:#FFC53D; --sun-soft:#3A3015; --sun-ink:#FFD877;
-  --mint:#2BC37A; --ok-soft:#14352A; --ok-ink:#5ED89D; --warn:#FFB020; --warn-soft:#3A2E12; --warn-ink:#FFC960;
-  --danger:#F0484D; --danger-soft:#3E1D21; --danger-ink:#FF8F8F; --violet:#8D78FF; --violet-soft:#2A2452; --violet-ink:#BBAAFF;
-  --on-color:#0F1324; --bar-bg:#05070F; --bar-ink:#EEF1FA; --bar-soft:#20263F; --scrim:rgba(0,0,0,.6);
-  --sc-wall:#222B58; --sc-floor:#2A3152; --sc-steel:#8F9ABF; --sc-water:#4AA3E8; --sc-box:#E0A92E; --sc-box-2:#C98A22;
+  --bg:#12152B; --surface:#1B2040; --surface-2:#252B52; --ink:#F2F2F2; --ink-2:#B8BCCB; --line:#2E3561; --line-strong:#8A90AE;
+  --primary:#9AA6F5; --on-primary:#12152B; --primary-soft:#262E63; --primary-ink:#C3CAFA; --bright:#7D8CF0; --logo:#FFFFFF;
+  --coral:#FF7A5E; --coral-soft:#3A231F; --coral-ink:#FF9E85; --sun:#F2B630; --sun-soft:#3A2E12; --sun-ink:#FFC960;
+  --mint:#3DBA70; --ok-soft:#16352A; --ok-ink:#6FD39A; --ok-strong:#6FD39A; --on-strong:#12152B; --warn:#F2B630; --warn-soft:#3A2E12; --warn-ink:#FFC960;
+  --danger:#F0484D; --danger-soft:#3E1D21; --danger-ink:#FF8F8F; --danger-strong:#FF8F8F; --violet:#7F9DAD; --violet-soft:#22313A; --violet-ink:#A9C1CE;
+  --on-color:#12152B; --splash-bg:#1F2C7A; --splash-ink:#FFFFFF; --bar-bg:#070914; --bar-ink:#F2F2F2; --bar-soft:#1B2040; --scrim:rgba(0,0,0,.6);
+  --sc-wall:#262E63; --sc-floor:#2E3561; --sc-steel:#8FA6B3; --sc-water:#4A8FCB; --sc-box:#D9A93B; --sc-box-2:#C08A22;
   color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0F1324; --surface:#181D33; --surface-2:#20263F; --ink:#EEF1FA; --ink-2:#A6AECA; --line:#2A3152; --line-strong:#6B7392;
-  --primary:#7F93FF; --on-primary:#0F1324; --primary-soft:#222B58; --primary-ink:#AEBBFF;
-  --coral:#FF7A5E; --coral-soft:#3A231F; --coral-ink:#FF9E85; --sun:#FFC53D; --sun-soft:#3A3015; --sun-ink:#FFD877;
-  --mint:#2BC37A; --ok-soft:#14352A; --ok-ink:#5ED89D; --warn:#FFB020; --warn-soft:#3A2E12; --warn-ink:#FFC960;
-  --danger:#F0484D; --danger-soft:#3E1D21; --danger-ink:#FF8F8F; --violet:#8D78FF; --violet-soft:#2A2452; --violet-ink:#BBAAFF;
-  --on-color:#0F1324; --bar-bg:#05070F; --bar-ink:#EEF1FA; --bar-soft:#20263F; --scrim:rgba(0,0,0,.6);
-  --sc-wall:#222B58; --sc-floor:#2A3152; --sc-steel:#8F9ABF; --sc-water:#4AA3E8; --sc-box:#E0A92E; --sc-box-2:#C98A22;
+  --bg:#12152B; --surface:#1B2040; --surface-2:#252B52; --ink:#F2F2F2; --ink-2:#B8BCCB; --line:#2E3561; --line-strong:#8A90AE;
+  --primary:#9AA6F5; --on-primary:#12152B; --primary-soft:#262E63; --primary-ink:#C3CAFA; --bright:#7D8CF0; --logo:#FFFFFF;
+  --coral:#FF7A5E; --coral-soft:#3A231F; --coral-ink:#FF9E85; --sun:#F2B630; --sun-soft:#3A2E12; --sun-ink:#FFC960;
+  --mint:#3DBA70; --ok-soft:#16352A; --ok-ink:#6FD39A; --ok-strong:#6FD39A; --on-strong:#12152B; --warn:#F2B630; --warn-soft:#3A2E12; --warn-ink:#FFC960;
+  --danger:#F0484D; --danger-soft:#3E1D21; --danger-ink:#FF8F8F; --danger-strong:#FF8F8F; --violet:#7F9DAD; --violet-soft:#22313A; --violet-ink:#A9C1CE;
+  --on-color:#12152B; --splash-bg:#1F2C7A; --splash-ink:#FFFFFF; --bar-bg:#070914; --bar-ink:#F2F2F2; --bar-soft:#1B2040; --scrim:rgba(0,0,0,.6);
+  --sc-wall:#262E63; --sc-floor:#2E3561; --sc-steel:#8FA6B3; --sc-water:#4A8FCB; --sc-box:#D9A93B; --sc-box-2:#C08A22;
   color-scheme:dark}
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -66,13 +66,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .bar-btn.bar-toggle{display:none}
 .bar-who{display:none;font-size:12.5px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .bar-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-block:8px}
-.proto-tag{background:var(--sun);color:#141A33;font:800 11px/1 var(--f-body);letter-spacing:.08em;padding:6px 10px;border-radius:99px;white-space:nowrap}
+.proto-tag{background:var(--sun);color:#313131;font:800 11px/1 var(--f-body);letter-spacing:.08em;padding:6px 10px;border-radius:99px;white-space:nowrap}
 .bar-brand{display:flex;align-items:center;gap:8px;font:800 16px var(--f-display)}
 .bar-grp{display:flex;align-items:center;gap:6px;font-size:13px}
 .bar-grp label{opacity:.8}
 .bar select,#bar select{-webkit-appearance:none;appearance:none;background-color:var(--bar-soft);color:var(--bar-ink);border:0;border-radius:99px;padding:6px 30px 6px 12px;font-size:13px;font-weight:600;max-width:260px;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px;background-repeat:no-repeat}
 .bar-btn{background:var(--bar-soft);color:var(--bar-ink);border:0;border-radius:99px;padding:6px 12px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-.bar-btn.hl{background:var(--sun);color:#141A33}
+.bar-btn.hl{background:var(--sun);color:#313131}
 .bar-date{font-weight:700;font-variant-numeric:tabular-nums}
 .bar-sp{flex:1}
 
@@ -100,7 +100,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .grow{flex:1;min-width:0}
 .tile{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;flex:none;color:var(--on-color)}
 .tile.sm{width:40px;height:40px;border-radius:13px}
-.t-primary{background:var(--primary);color:var(--on-primary)}.t-coral{background:var(--coral)}.t-sun{background:var(--sun)}.t-violet{background:var(--violet);color:#fff}.t-mint{background:var(--mint)}
+.t-primary{background:var(--primary);color:var(--on-primary)}.t-coral{background:var(--coral)}.t-sun{background:var(--sun)}.t-violet{background:var(--violet);color:var(--on-primary)}.t-mint{background:var(--bright);color:var(--on-primary)}
+.brand-logo{color:var(--logo);display:block;flex:none}
+.brand-row{display:flex;align-items:center;gap:10px;color:var(--ink-2);font-weight:700;font-size:13px}
 .bar-p{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
 .bar-p>i{display:block;height:100%;border-radius:99px;background:var(--primary)}
 .field{display:flex;flex-direction:column;gap:6px}
@@ -284,11 +286,11 @@ table.t tfoot td{font-weight:800;background:var(--surface-2)}
 .vrow .grow{min-width:220px}
 .seg{display:inline-flex;gap:6px;flex-wrap:wrap}
 .seg button{border:0;border-radius:99px;min-height:44px;padding:0 16px;font-weight:700;background:var(--surface-2);color:var(--ink-2)}
-.seg button[aria-pressed="true"].y{background:var(--mint);color:var(--on-color)}
-.seg button[aria-pressed="true"].n{background:var(--danger);color:#fff}
+.seg button[aria-pressed="true"].y{background:var(--ok-strong);color:var(--on-strong)}
+.seg button[aria-pressed="true"].n{background:var(--danger-strong);color:var(--on-strong)}
 .seg button[aria-pressed="true"].na{background:var(--ink);color:var(--bg)}
 .empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:36px 18px}
-.empty .shape{width:72px;height:72px;border-radius:22px;background:var(--sun);display:grid;place-items:center;color:#141A33;transform:rotate(-8deg)}
+.empty .shape{width:72px;height:72px;border-radius:22px;background:var(--sun);display:grid;place-items:center;color:#313131;transform:rotate(-8deg)}
 .tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
 .tl li{display:flex;gap:12px}
 .tl .d{width:12px;height:12px;border-radius:50%;background:var(--surface-2);margin-top:5px;flex:none}
@@ -305,16 +307,36 @@ table.t tfoot td{font-weight:800;background:var(--surface-2)}
 .gstep.ok .n{background:var(--mint);color:var(--on-color)}
 .gstep.next{outline:2.5px solid var(--primary)}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:99px;font-weight:700;z-index:70;max-width:calc(100% - 32px);text-align:center}
-.cert{background:#FFFFFF;color:#141A33;border-radius:12px;padding:28px 30px;position:relative;overflow:hidden;font-family:var(--f-body)}
+.cert{background:#FFFFFF;color:#313131;border-radius:12px;padding:28px 30px;position:relative;overflow:hidden;font-family:var(--f-body)}
 .cert .wm{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font:800 38px var(--f-display);color:rgba(255,106,77,.13);transform:rotate(-28deg);white-space:nowrap}
-.cert .top{display:flex;justify-content:space-between;gap:10px;border-bottom:3px solid #2F4BF0;padding-bottom:12px;flex-wrap:wrap}
+.cert .top{display:flex;justify-content:space-between;gap:10px;border-bottom:3px solid #1F2C7A;padding-bottom:12px;flex-wrap:wrap}
 .cert h3{font-size:26px;text-align:center;margin-top:22px}
 .cert .who{text-align:center;font:800 24px var(--f-display);margin:8px 0}
 .cert .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;margin:18px 0;font-size:13.5px}
-.cert .fields span{display:block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#535C77}
-.cert .ph{border:1.5px dashed #8B93AB;border-radius:10px;display:grid;place-items:center;text-align:center;color:#535C77;font-size:12px;padding:12px;min-height:70px}
-.cert .legal{font-size:11px;color:#535C77;border-top:1px solid #E3E7F1;padding-top:10px;margin-top:16px}
+.cert .fields span{display:block;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#616161}
+.cert .ph{border:1.5px dashed #767676;border-radius:10px;display:grid;place-items:center;text-align:center;color:#616161;font-size:12px;padding:12px;min-height:70px}
+.cert .legal{font-size:11px;color:#616161;border-top:1px solid #DADADF;padding-top:10px;margin-top:16px}
 
+/* Animación de entrada */
+#splash{position:fixed;inset:0;z-index:100;background:var(--splash-bg);color:var(--splash-ink);display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));cursor:pointer;animation:nxOut .45s ease-in 2.2s forwards}
+#splash .sp-in{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+#splash .sp-mark{width:116px;height:116px;animation:nxMark .6s cubic-bezier(.2,.9,.3,1.25) both}
+#splash .sp-mark rect{fill:var(--splash-ink)}
+#splash .sp-node{fill:var(--splash-bg);transform-origin:15px 34px;animation:nxPop .3s cubic-bezier(.2,.9,.3,1.4) .3s both}
+#splash .sp-n{fill:none;stroke:var(--splash-bg);stroke-width:4.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:nxDraw .6s ease-out .4s forwards}
+#splash .sp-dot{fill:var(--coral);transform-origin:33px 14px;animation:nxPop .4s cubic-bezier(.2,.9,.3,1.5) .95s both}
+#splash .sp-word{font:800 56px/1 var(--f-display);letter-spacing:-.02em;margin-top:8px;animation:nxRise .5s ease-out 1s both}
+#splash .sp-tag{font-weight:600;font-size:16px;opacity:.9;animation:nxRise .5s ease-out 1.15s both}
+#splash .sp-corp{width:150px;height:56px;color:var(--splash-ink);margin-top:26px;animation:nxRise .6s ease-out 1.3s both}
+#splash .sp-skip{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));background:transparent;color:var(--splash-ink);border:1.5px solid color-mix(in srgb,var(--splash-ink) 45%,transparent);border-radius:99px;padding:8px 16px;font-weight:700}
+@keyframes nxMark{from{transform:scale(.4) rotate(-14deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes nxDraw{to{stroke-dashoffset:0}}
+@keyframes nxPop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes nxRise{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+@keyframes nxOut{to{opacity:0;transform:scale(1.05);visibility:hidden}}
+@media (prefers-reduced-motion: reduce){#splash{display:none}}
+.side-brand{display:flex;align-items:center;gap:10px;padding:2px 8px 14px;font:800 20px var(--f-display)}
+.side-corp{margin-top:auto;padding:14px 8px 4px;display:flex;flex-direction:column;gap:6px;font-size:11.5px;color:var(--ink-2)}
 @media (max-width:1380px){.cols2.dash{grid-template-columns:minmax(0,1fr)}.kpis.six{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:760px){
   .bar-ctrls{display:none;width:100%;flex-wrap:wrap;align-items:center;gap:8px}
@@ -379,9 +401,11 @@ table.t tfoot td{font-weight:800;background:var(--surface-2)}
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
-  <symbol id="logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="12" fill="var(--primary)" stroke="none"/><path d="M9 29h7v-6h7v-6h8" fill="none" stroke="var(--on-primary)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="10.5" r="4" fill="var(--coral)" stroke="none"/></symbol>
+  <symbol id="pigsa" viewBox="0 0 300 112"><path fill="currentColor" fill-rule="evenodd" d="M93.500,3.489 L97.500,3.103 L106.500,3.137 L110.500,3.679 L114.500,3.953 L116.500,4.325 L119.500,5.251 L124.500,7.485 L127.264,9.500 L129.500,11.639 L130.990,13.500 L132.816,16.500 L133.900,19.500 L134.729,23.500 L134.885,27.500 L134.500,29.465 L133.606,32.500 L131.851,35.500 L129.814,38.500 L127.148,41.500 L123.500,45.154 L117.402,50.500 L109.500,56.559 L105.281,59.500 L100.500,62.738 L90.500,69.000 L80.500,74.816 L77.500,76.329 L75.500,77.626 L69.500,80.724 L69.082,80.500 L69.236,79.500 L72.500,74.360 L73.844,71.500 L74.695,68.500 L74.759,66.500 L73.868,62.500 L73.029,60.500 L71.894,58.500 L69.500,55.791 L67.500,54.369 L64.500,53.103 L61.500,52.667 L58.500,52.683 L54.500,53.443 L49.500,55.238 L44.500,58.164 L40.500,61.290 L38.095,63.500 L34.223,67.500 L33.560,68.500 L31.790,70.500 L29.712,73.500 L29.457,74.500 L30.251,81.500 L30.677,83.500 L31.315,90.500 L31.620,91.500 L32.255,98.500 L32.696,100.500 L32.750,101.500 L32.500,102.472 L32.066,101.500 L31.281,100.500 L29.083,95.500 L28.834,94.500 L28.243,93.500 L27.546,91.500 L25.235,86.500 L24.534,84.500 L23.981,83.500 L20.099,74.500 L16.788,66.500 L16.222,65.500 L15.951,64.500 L11.068,53.500 L10.792,52.500 L10.251,51.500 L9.531,49.500 L8.500,47.423 L5.116,39.500 L5.137,38.500 L6.500,37.259 L15.080,31.500 L20.500,28.059 L25.500,25.110 L32.500,21.256 L33.500,20.906 L38.500,18.243 L50.500,13.070 L58.500,10.231 L62.500,9.028 L64.500,8.597 L65.500,8.159 L67.500,7.739 L68.500,7.316 L71.500,6.802 L73.500,6.287 L77.500,5.663 L79.500,5.163 L82.500,4.808 L83.500,4.550 Z M146.500,27.200 L149.500,27.014 L152.500,27.196 L156.500,28.386 L159.500,30.346 L160.500,31.272 L162.807,34.500 L163.084,35.500 L163.039,36.500 L162.500,36.812 L155.500,36.754 L153.500,35.061 L151.500,34.159 L148.500,34.058 L147.500,34.259 L146.500,34.735 L145.500,35.361 L144.369,36.500 L143.239,38.500 L142.929,40.500 L142.976,42.500 L143.471,44.500 L144.077,45.500 L145.500,47.013 L146.153,47.500 L146.500,47.748 L147.500,48.021 L149.500,48.271 L151.500,48.107 L152.500,47.877 L153.500,47.370 L154.500,46.484 L155.209,45.500 L154.500,44.622 L149.500,44.608 L148.500,44.071 L148.256,43.500 L148.242,40.500 L148.500,39.351 L149.500,39.015 L152.500,39.015 L162.500,39.015 L163.500,39.101 L163.931,39.500 L164.073,41.500 L163.784,44.500 L162.833,47.500 L160.927,50.500 L159.500,51.932 L156.500,53.954 L154.500,54.684 L151.500,55.191 L148.500,55.197 L145.500,54.867 L142.500,53.801 L139.500,51.728 L138.340,50.500 L136.424,47.500 L135.321,43.500 L135.126,41.500 L135.239,39.500 L136.161,35.500 L137.117,33.500 L138.711,31.500 L139.713,30.500 L141.500,29.150 L143.500,28.066 Z M261.500,27.401 L262.500,27.165 L264.500,27.047 L268.500,27.220 L271.500,28.093 L273.500,29.098 L276.500,31.500 L277.960,33.500 L278.987,35.500 L279.745,37.500 L280.071,41.500 L279.830,44.500 L278.755,47.500 L277.537,49.500 L276.500,50.866 L273.500,53.224 L270.500,54.602 L268.500,55.033 L265.500,55.255 L262.500,55.080 L260.500,54.737 L257.500,53.500 L254.808,51.500 L253.846,50.500 L251.882,47.500 L251.085,45.500 L250.514,41.500 L250.555,40.500 L251.169,36.500 L252.041,34.500 L254.081,31.500 L255.500,30.276 L258.500,28.378 Z M168.500,27.929 L169.500,27.593 L179.500,27.593 L184.500,28.058 L185.500,28.386 L187.415,29.500 L188.500,30.334 L189.638,31.500 L190.657,33.500 L190.933,34.500 L191.171,37.500 L191.017,39.500 L190.834,40.500 L189.974,42.500 L188.500,44.243 L187.137,45.500 L187.242,46.500 L190.601,52.500 L191.029,53.500 L191.207,54.500 L190.500,54.850 L186.500,54.856 L183.500,54.821 L182.926,54.500 L182.137,53.500 L181.803,52.500 L179.500,48.153 L178.500,47.088 L177.500,47.040 L176.500,47.167 L176.162,47.500 L176.015,48.500 L176.015,53.500 L175.816,54.500 L175.500,54.760 L169.500,54.856 L168.371,54.500 L168.145,53.500 L168.145,28.500 Z M196.500,27.745 L197.500,27.593 L202.500,27.593 L203.500,27.883 L203.889,28.500 L203.892,42.500 L204.015,44.500 L204.212,45.500 L204.846,46.500 L205.500,47.273 L206.500,47.875 L208.500,47.996 L209.500,47.816 L210.500,47.214 L211.704,45.500 L212.000,42.500 L212.000,28.500 L212.500,27.740 L213.500,27.593 L218.500,27.593 L219.500,27.842 L219.909,28.500 L219.909,35.500 L219.785,45.500 L218.996,48.500 L218.004,50.500 L217.500,51.165 L216.500,52.278 L214.500,53.862 L212.500,54.718 L210.500,55.102 L208.500,55.241 L205.500,55.111 L203.500,54.784 L200.831,53.500 L198.500,51.287 L197.249,49.500 L196.236,46.500 L196.017,43.500 L196.010,28.500 Z M226.500,27.593 L236.500,27.597 L239.500,27.845 L241.500,28.179 L243.500,29.094 L245.273,30.500 L246.500,31.793 L247.837,34.500 L248.005,35.500 L248.150,38.500 L247.726,41.500 L246.724,43.500 L245.953,44.500 L244.896,45.500 L243.410,46.500 L240.500,47.733 L238.500,47.988 L234.500,48.063 L233.500,48.407 L233.249,49.500 L233.249,53.500 L233.028,54.500 L232.500,54.844 L226.500,54.856 L225.820,54.500 L225.545,53.500 L225.545,28.500 Z M176.500,34.009 L180.500,34.058 L181.500,34.308 L182.811,35.500 L183.199,36.500 L183.306,37.500 L183.148,38.500 L182.638,39.500 L181.500,40.280 L180.500,40.679 L179.500,40.797 L176.500,40.782 L176.188,40.500 L175.909,39.500 L175.909,35.500 L175.992,34.500 Z M233.500,34.406 L234.500,34.111 L237.500,34.269 L238.500,34.767 L239.500,35.663 L240.042,36.500 L240.239,37.500 L240.195,38.500 L239.931,39.500 L238.500,40.941 L237.500,41.287 L235.500,41.555 L234.500,41.558 L233.500,41.116 L233.199,40.500 L233.178,39.500 L233.178,35.500 Z M263.500,34.406 L264.500,34.240 L266.500,34.289 L268.500,34.993 L270.524,36.500 L271.696,38.500 L271.945,39.500 L272.063,41.500 L271.814,43.500 L271.500,44.225 L270.500,45.874 L269.500,46.739 L267.500,47.851 L264.500,48.031 L262.500,47.626 L260.500,46.206 L259.162,44.500 L258.558,41.500 L258.747,39.500 L259.349,37.500 L260.500,36.085 L261.500,35.355 Z M173.500,61.323 L176.500,61.133 L178.500,61.250 L181.500,62.014 L184.500,63.353 L186.500,64.847 L188.772,67.500 L189.825,69.500 L189.928,70.500 L189.500,70.903 L182.500,70.955 L181.661,70.500 L180.500,69.463 L179.500,68.964 L177.500,68.276 L176.500,68.189 L175.500,68.239 L174.557,68.500 L172.500,69.300 L171.174,70.500 L170.500,71.543 L170.040,72.500 L169.709,74.500 L169.735,76.500 L170.101,78.500 L171.380,80.500 L172.618,81.500 L173.500,81.981 L175.500,82.410 L176.500,82.482 L178.500,82.190 L179.500,81.896 L180.500,81.338 L181.461,80.500 L182.038,79.500 L181.500,78.869 L175.500,78.668 L175.305,78.500 L175.023,77.500 L175.023,74.500 L175.253,73.500 L175.500,73.263 L176.500,73.130 L180.500,73.130 L189.500,73.130 L190.500,73.349 L190.636,73.500 L190.873,74.500 L190.701,77.500 L189.970,80.500 L189.586,81.500 L187.780,84.500 L185.500,86.743 L183.500,87.950 L181.500,88.763 L178.500,89.489 L176.500,89.657 L173.500,89.312 L170.500,88.500 L167.500,86.987 L166.500,86.125 L164.072,83.500 L163.070,81.500 L162.111,78.500 L162.005,77.500 L161.881,75.500 L162.073,72.500 L162.992,69.500 L163.961,67.500 L164.500,66.736 L166.595,64.500 L168.500,63.171 L170.500,62.164 Z M201.500,61.309 L204.500,61.133 L206.500,61.286 L209.500,62.184 L211.500,63.248 L212.911,64.500 L213.689,65.500 L214.656,67.500 L214.881,68.500 L214.974,69.500 L214.500,70.163 L213.500,70.299 L208.500,70.293 L207.583,69.500 L207.021,68.500 L206.500,67.969 L205.500,67.334 L204.500,67.178 L203.500,67.208 L202.724,67.500 L201.669,68.500 L201.344,69.500 L201.859,70.500 L202.500,71.141 L203.500,71.760 L209.500,73.354 L211.500,74.333 L213.151,75.500 L214.120,76.500 L214.767,77.500 L215.102,78.500 L215.464,80.500 L215.458,81.500 L215.142,83.500 L214.881,84.500 L213.643,86.500 L212.347,87.500 L210.500,88.549 L209.500,88.923 L206.741,89.500 L204.500,89.649 L202.500,89.451 L199.500,88.741 L197.500,87.814 L195.944,86.500 L195.119,85.500 L194.449,84.500 L194.029,83.500 L193.689,81.500 L193.917,80.500 L194.500,80.139 L200.500,80.210 L200.866,80.500 L201.415,81.500 L202.500,82.862 L203.500,83.270 L204.500,83.451 L205.500,83.376 L206.500,83.041 L207.188,82.500 L207.767,81.500 L207.547,80.500 L206.500,79.355 L203.500,78.204 L200.500,77.607 L198.500,76.734 L196.512,75.500 L195.459,74.500 L194.183,72.500 L193.948,71.500 L193.804,69.500 L193.953,67.500 L194.196,66.500 L195.421,64.500 L196.500,63.426 L198.500,62.252 Z M255.500,61.382 L257.500,61.152 L260.500,61.239 L261.500,61.406 L264.469,62.500 L265.995,63.500 L267.500,65.128 L268.113,66.500 L268.571,68.500 L268.566,69.500 L267.785,72.500 L266.071,74.500 L266.173,75.500 L267.500,76.522 L268.793,78.500 L269.073,79.500 L269.281,81.500 L269.080,83.500 L268.818,84.500 L267.520,86.500 L265.500,87.965 L263.500,88.846 L260.465,89.500 L258.500,89.657 L256.500,89.528 L253.500,88.913 L251.500,88.054 L249.500,86.625 L248.500,85.313 L248.034,84.500 L247.571,82.500 L247.438,81.500 L248.050,78.500 L249.409,76.500 L250.630,75.500 L250.750,74.500 L249.111,72.500 L248.350,70.500 L248.222,69.500 L248.323,67.500 L249.153,65.500 L249.856,64.500 L250.839,63.500 L251.500,62.988 L253.500,61.995 Z M279.500,61.468 L281.500,61.170 L284.500,61.210 L285.500,61.335 L288.500,62.312 L290.258,63.500 L291.500,64.667 L291.993,65.500 L292.794,67.500 L292.878,69.500 L292.772,70.500 L292.500,71.308 L292.016,72.500 L291.500,73.264 L290.332,74.500 L290.469,75.500 L291.806,76.500 L293.010,78.500 L293.694,81.500 L293.347,83.500 L293.032,84.500 L292.500,85.489 L291.500,86.835 L288.500,88.594 L286.500,89.145 L284.500,89.536 L282.500,89.655 L280.500,89.481 L277.500,88.822 L275.500,87.930 L273.740,86.500 L272.282,84.500 L271.987,83.500 L271.893,80.500 L271.991,79.500 L272.306,78.500 L273.770,76.500 L274.900,75.500 L274.997,74.500 L273.451,72.500 L272.991,71.500 L272.598,69.500 L272.594,68.500 L273.004,66.500 L274.087,64.500 L275.500,63.143 L277.500,62.088 Z M123.500,62.100 L124.500,61.785 L133.500,61.785 L136.500,61.919 L138.500,62.227 L141.500,63.481 L142.500,64.164 L144.547,66.500 L145.760,69.500 L145.944,71.500 L145.772,74.500 L145.022,76.500 L144.594,77.500 L142.500,79.796 L141.500,80.592 L138.500,81.824 L136.500,82.080 L131.500,82.325 L131.308,82.500 L131.015,83.500 L130.916,88.500 L130.500,88.898 L124.500,88.999 L123.500,88.749 L123.257,88.500 L123.145,87.500 L123.145,63.500 L123.208,62.500 Z M150.500,61.879 L156.500,61.785 L157.500,62.100 L157.756,62.500 L157.812,87.500 L157.713,88.500 L157.500,88.749 L156.500,88.999 L151.500,88.999 L150.500,88.925 L150.012,88.500 L149.906,87.500 L149.906,63.500 L149.966,62.500 Z M228.500,61.828 L234.500,61.785 L235.500,62.020 L235.869,62.500 L237.920,67.500 L239.289,71.500 L239.820,72.500 L242.067,78.500 L243.779,82.500 L245.879,88.500 L245.500,88.867 L244.500,88.999 L238.500,88.982 L237.829,88.500 L237.500,87.981 L236.500,85.787 L235.500,85.091 L227.500,85.130 L227.067,85.500 L225.753,88.500 L225.500,88.764 L224.500,88.999 L218.500,88.999 L217.572,88.500 L218.158,86.500 L220.603,80.500 L221.233,78.500 L222.944,74.500 L224.323,70.500 L225.666,67.500 L227.092,63.500 L227.561,62.500 Z M256.500,67.012 L258.500,66.701 L260.500,67.098 L261.057,67.500 L261.826,68.500 L262.005,69.500 L261.880,70.500 L261.500,71.160 L260.500,72.024 L259.500,72.351 L258.500,72.545 L256.500,72.107 L255.640,71.500 L255.015,70.500 L254.889,69.500 L255.076,68.500 L255.831,67.500 Z M280.500,67.143 L282.500,66.713 L284.500,66.985 L285.500,67.592 L286.048,68.500 L286.215,69.500 L286.091,70.500 L285.625,71.500 L284.500,72.132 L283.500,72.429 L282.500,72.528 L280.500,71.993 L279.929,71.500 L279.302,70.500 L279.128,69.500 L279.397,68.500 Z M131.500,68.489 L133.500,68.389 L134.500,68.528 L136.500,69.109 L136.950,69.500 L137.716,70.500 L137.950,71.500 L137.962,72.500 L137.710,73.500 L137.040,74.500 L136.500,74.979 L135.094,75.500 L133.500,75.750 L131.500,75.675 L131.285,75.500 L130.958,74.500 L130.958,69.500 Z M231.500,72.032 L232.035,72.500 L232.716,73.500 L233.266,75.500 L234.469,78.500 L233.500,79.279 L231.500,79.295 L229.500,79.188 L229.021,78.500 L230.380,74.500 L231.154,72.500 Z M256.500,78.104 L257.500,77.898 L259.500,77.927 L260.500,78.187 L261.500,78.939 L261.933,79.500 L262.116,80.500 L262.092,81.500 L261.763,82.500 L260.500,83.615 L259.500,83.945 L257.500,83.974 L256.500,83.737 L255.139,82.500 L254.754,81.500 L254.708,80.500 L254.965,79.500 L255.500,78.873 Z M280.500,78.228 L282.500,77.850 L284.500,78.079 L285.500,78.652 L286.148,79.500 L286.422,80.500 L286.364,81.500 L286.000,82.500 L285.500,83.121 L284.500,83.767 L283.500,83.978 L281.500,83.937 L280.500,83.555 L279.480,82.500 L279.018,81.500 L278.991,80.500 L279.226,79.500 Z M150.500,94.316 L151.500,94.130 L153.500,94.093 L154.500,94.214 L155.282,94.500 L156.500,95.042 L157.500,95.953 L157.963,96.500 L158.500,97.804 L158.716,98.500 L158.500,98.770 L157.500,99.174 L156.500,99.174 L155.500,98.948 L154.471,97.500 L153.500,97.060 L152.500,97.011 L151.500,97.182 L151.096,97.500 L150.539,98.500 L150.891,99.500 L151.500,100.005 L155.500,101.356 L157.500,102.384 L158.452,103.500 L158.916,104.500 L158.965,106.500 L158.694,107.500 L157.500,108.972 L156.500,109.649 L155.500,109.979 L153.500,110.259 L150.500,109.928 L149.500,109.500 L148.123,108.500 L147.368,107.500 L147.016,106.500 L147.015,105.500 L147.500,105.103 L148.500,105.036 L149.500,105.066 L150.217,105.500 L151.500,106.985 L152.500,107.292 L153.500,107.327 L154.500,107.042 L155.059,106.500 L155.273,105.500 L154.500,104.344 L153.500,103.901 L149.500,102.680 L147.992,101.500 L147.332,100.500 L147.008,99.500 L146.967,98.500 L147.067,97.500 L147.500,96.630 L148.500,95.369 Z M172.500,94.383 L174.500,94.312 L175.500,94.786 L177.556,99.500 L179.374,104.500 L180.737,107.500 L181.270,109.500 L180.500,109.999 L178.500,109.975 L177.859,109.500 L176.500,107.461 L174.500,107.290 L171.500,107.309 L171.096,107.500 L170.500,107.865 L169.500,109.771 L168.500,109.999 L167.500,109.999 L166.500,109.882 L166.121,109.500 L166.333,108.500 L166.848,107.500 L167.104,106.500 L168.852,102.500 L171.134,96.500 Z M203.500,93.788 L204.500,93.528 L205.500,93.528 L206.455,94.500 L206.455,108.500 L206.319,109.500 L205.500,109.999 L204.500,109.933 L203.500,109.147 L202.500,109.400 L201.500,109.960 L199.500,110.257 L197.500,110.007 L196.500,109.549 L195.500,108.852 L194.500,107.815 L194.250,107.500 L193.927,106.500 L193.510,104.500 L193.542,103.500 L194.012,101.500 L194.485,100.500 L195.450,99.500 L197.500,98.276 L199.500,98.016 L200.500,98.092 L202.500,98.818 L202.894,98.500 L203.080,97.500 L203.082,94.500 Z M233.500,94.323 L235.500,94.082 L237.500,94.190 L239.500,94.963 L240.488,95.500 L241.739,96.500 L242.540,97.500 L243.532,99.500 L242.500,100.152 L240.500,100.090 L238.500,98.238 L236.500,97.500 L235.500,97.442 L233.500,98.158 L232.163,99.500 L231.489,101.500 L231.423,102.500 L231.960,104.500 L232.657,105.500 L234.500,106.717 L235.500,106.918 L237.500,106.649 L238.500,106.081 L240.500,104.134 L242.500,104.021 L243.500,104.309 L243.674,104.500 L243.410,105.500 L242.885,106.500 L242.148,107.500 L241.136,108.500 L240.500,108.985 L238.500,109.917 L236.500,110.226 L234.500,110.149 L232.500,109.665 L230.500,108.470 L229.500,107.440 L228.398,105.500 L228.044,104.500 L227.823,102.500 L228.154,99.500 L229.090,97.500 L229.934,96.500 L231.500,95.258 Z M249.500,94.490 L251.500,94.312 L252.500,94.522 L253.087,95.500 L255.344,101.500 L256.500,103.965 L257.500,102.500 L257.948,101.500 L260.110,95.500 L260.500,94.824 L261.500,94.318 L263.500,94.386 L263.667,94.500 L263.964,95.500 L262.500,99.233 L261.740,101.500 L261.218,102.500 L258.547,109.500 L257.500,109.989 L255.500,109.958 L254.826,109.500 L254.229,108.500 L253.603,106.500 L251.177,100.500 L249.786,96.500 L249.276,95.500 Z M213.500,98.263 L215.500,98.016 L217.500,98.284 L219.500,99.266 L220.657,100.500 L221.751,103.500 L221.783,104.500 L221.500,104.819 L220.500,105.104 L213.500,105.128 L212.862,105.500 L213.167,106.500 L213.500,106.830 L214.500,107.409 L215.500,107.636 L216.500,107.470 L218.500,106.219 L220.500,106.219 L220.791,106.500 L220.939,107.500 L219.500,108.989 L217.500,109.979 L216.500,110.145 L214.500,110.195 L212.500,109.731 L210.856,108.500 L209.981,107.500 L209.152,105.500 L209.073,103.500 L209.212,102.500 L210.164,100.500 L211.139,99.500 L211.500,99.185 Z M173.500,99.767 L174.500,100.684 L175.559,103.500 L174.937,104.500 L174.500,104.614 L172.500,104.578 L171.975,103.500 L173.066,100.500 Z M198.500,101.334 L199.500,100.999 L200.500,100.997 L201.500,101.233 L202.808,102.500 L203.075,103.500 L203.102,104.500 L202.923,105.500 L202.134,106.500 L201.500,107.019 L200.500,107.263 L199.500,107.257 L198.500,106.946 L197.500,106.086 L197.085,105.500 L196.935,103.500 L197.208,102.500 Z M214.500,100.915 L215.500,100.779 L216.500,100.904 L217.539,101.500 L218.033,102.500 L217.500,102.938 L216.500,102.977 L213.500,102.919 L212.924,102.500 L213.500,101.500 Z M162.500,106.202 L163.500,106.433 L164.327,107.500 L164.531,108.500 L164.016,109.500 L163.500,109.972 L162.500,110.145 L161.500,109.924 L161.066,109.500 L160.649,108.500 L160.795,107.500 L161.500,106.511 Z M184.500,106.213 L185.500,106.345 L186.699,107.500 L186.843,108.500 L186.253,109.500 L185.500,110.027 L184.500,110.132 L183.500,109.722 L182.828,108.500 L182.959,107.500 L183.500,106.784 Z M246.500,106.268 L247.500,106.246 L248.500,106.977 L248.887,107.500 L249.010,108.500 L248.500,109.500 L247.500,110.101 L246.500,110.082 L245.500,109.521 L245.017,108.500 L245.130,107.500 L245.500,106.974 Z M265.500,106.399 L266.500,106.204 L267.374,106.500 L268.169,107.500 L268.304,108.500 L267.905,109.500 L267.500,109.903 L266.500,110.142 L265.500,109.990 L264.950,109.500 L264.409,108.500 L264.623,107.500 Z"/></symbol>
+  <symbol id="logo" viewBox="0 0 48 48"><rect width="48" height="48" rx="14" fill="var(--primary)" stroke="none"/><path d="M15 34V15l18 18V14" fill="none" stroke="var(--on-primary)" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="34" r="3.2" fill="var(--on-primary)" stroke="none"/><circle cx="33" cy="14" r="4.8" fill="var(--coral)" stroke="none"/></symbol>
 </svg>
 
+<div id="splash" data-act="skipSplash"><span class="sr">Nexo · Capacitación · Grupo PIGSA88</span><button class="sp-skip" type="button" data-act="skipSplash">Saltar</button><div class="sp-in" aria-hidden="true"><svg class="sp-mark" viewBox="0 0 48 48"><rect width="48" height="48" rx="14"/><circle class="sp-node" cx="15" cy="34" r="3.2"/><path class="sp-n" pathLength="1" d="M15 34V15l18 18V14"/><circle class="sp-dot" cx="33" cy="14" r="4.8"/></svg><div class="sp-word">Nexo</div><div class="sp-tag">Capacitación · Grupo PIGSA88</div><svg class="sp-corp" viewBox="0 0 300 112"><use href="#pigsa"/></svg></div></div>
 <header id="bar"></header>
 <main id="app"></main>
 <div id="ov"></div>
@@ -393,7 +417,7 @@ table.t tfoot td{font-weight:800;background:var(--surface-2)}
 <script>
 'use strict';
 /* =====================================================================
-   Prototipo Oficio · Etapa 3. DEMO · DATOS FICTICIOS.
+   Prototipo Nexo · Grupo PIGSA88 · Etapa 3. DEMO · DATOS FICTICIOS.
    Real: navegación, actividades, reglas de estado y cumplimiento,
    indicadores, PDF y Excel generados en el navegador.
    Simulado: inicio de sesión, persistencia (solo en este navegador),
@@ -775,6 +799,25 @@ async function huella(k) {
   try { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(datos)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); } catch (e) { return null; }
 }
 
+/* ---------- Logotipo corporativo en PNG para los PDF (se dibuja desde el SVG) ---------- */
+let LOGO_PNG = null;
+(function () {
+  try {
+    const d = document.querySelector('#pigsa path').getAttribute('d');
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="224" viewBox="0 0 300 112"><path fill="#312783" fill-rule="evenodd" d="' + d + '"/></svg>';
+    const img = new Image();
+    img.onload = () => { try { const c = document.createElement('canvas'); c.width = 600; c.height = 224; c.getContext('2d').drawImage(img, 0, 0, 600, 224); LOGO_PNG = c.toDataURL('image/png'); } catch (e) { LOGO_PNG = null; } };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  } catch (e) { LOGO_PNG = null; }
+})();
+function quitarSplash() { const sp = document.getElementById('splash'); if (sp) sp.remove(); }
+(function () {
+  const sp = document.getElementById('splash'); if (!sp) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { quitarSplash(); return; }
+  sp.addEventListener('animationend', e => { if (e.target === sp && e.animationName === 'nxOut') quitarSplash(); });
+  setTimeout(quitarSplash, 3500);
+})();
+
 /* ---------- Descargas: capacidad «downloads» en la página publicada; enlace normal en local ---------- */
 const dlPromise = (window.claude && window.claude.use) ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null);
 async function guardar(nombre, blob) {
@@ -844,7 +887,7 @@ function render() {
 function renderBar() {
   const opts = '<option value="">— Pantalla de acceso —</option>' + CUENTAS.map(c => '<option value="' + c.id + '"' + (U.user === c.id ? ' selected' : '') + '>' + esc(persona(c.persona).nombre + ' · ' + c.etiqueta) + '</option>').join('');
   return '<div class="bar-in wrap">' +
-    '<span class="bar-brand"><svg class="ic" style="width:26px;height:26px"><use href="#logo"/></svg><span>Oficio</span></span><span class="proto-tag">PROTOTIPO · DATOS FICTICIOS</span>' +
+    '<span class="bar-brand"><svg class="ic" style="width:26px;height:26px"><use href="#logo"/></svg><span>Nexo</span></span><span class="proto-tag">PROTOTIPO · DATOS FICTICIOS</span>' +
     '<button class="bar-btn bar-toggle" data-act="barToggle" aria-expanded="' + !!U.barOpen + '" aria-controls="bar-ctrls">' + ic(U.barOpen ? 'x' : 'sliders', 's') + 'Controles</button>' +
     '<span class="bar-who">' + (U.user ? esc(yo().nombre) + ' · ' : '') + fmt(hoy()) + '</span>' +
     '<div class="bar-ctrls' + (U.barOpen ? ' open' : '') + '" id="bar-ctrls">' +
@@ -861,7 +904,7 @@ function renderBar() {
 function renderLogin() {
   const sel = U.loginSel ? CUENTAS.find(c => c.id === U.loginSel) : null;
   return '<div class="login wrap"><form class="login-card" data-submit="entrar" novalidate>' +
-    '<div class="brand-lg"><svg style="width:52px;height:52px"><use href="#logo"/></svg><div><b>Oficio</b><div class="muted">Capacitación · Grupo Demo</div></div></div>' +
+    '<div class="brand-lg"><svg style="width:56px;height:56px"><use href="#logo"/></svg><div><b>Nexo</b><div class="muted">Capacitación</div></div><span class="grow"></span><svg class="brand-logo" viewBox="0 0 300 112" style="width:112px;height:42px" role="img" aria-label="Grupo PIGSA88"><use href="#pigsa"/></svg></div>' +
     (U.loginMsg ? '<div class="notice ok">' + ic('shield') + '<span>' + esc(U.loginMsg) + '</span></div>' : '') +
     '<div class="notice info">' + ic('users') + '<span><b>Equipo compartido.</b> Tu sesión se cerrará si dejas de usarlo.</span></div>' +
     '<h1 style="font-size:30px">Entra a tu cuenta</h1>' +
@@ -1169,13 +1212,13 @@ function renderAdmin() {
   const c = cuenta(); const p = yo(); const m = menu();
   if (!m.some(x => x[0] === U.view) && U.view !== 'persona') U.view = 'tablero';
   const ini = p.nombre.split(' ').map(x => x[0]).slice(0, 2).join('');
-  let side = '<nav class="side" aria-label="Administración"><div class="who"><span class="avatar" style="background:var(--violet);color:#fff">' + esc(ini) + '</span><div><b>' + esc(p.nombre) + '</b><small>' + esc(c.roles.filter(r => r !== 'trabajador').map(r => ROL[r]).join(' · ')) + '</small></div></div>';
+  let side = '<nav class="side" aria-label="Administración"><div class="side-brand"><svg style="width:32px;height:32px"><use href="#logo"/></svg>Nexo</div><div class="who"><span class="avatar" style="background:var(--primary);color:var(--on-primary)">' + esc(ini) + '</span><div><b>' + esc(p.nombre) + '</b><small>' + esc(c.roles.filter(r => r !== 'trabajador').map(r => ROL[r]).join(' · ')) + '</small></div></div>';
   m.forEach(([v, i, t]) => { side += '<button class="navb" data-act="go" data-v="' + v + '"' + (U.view === v || (U.view === 'persona' && v === 'personas') ? ' aria-current="page"' : '') + '>' + ic(i, 's') + t + '</button>'; });
-  side += '<div class="g">Sesión</div>' + (tiene('trabajador') ? '<button class="navb" data-act="space" data-s="aprender">' + ic('book', 's') + 'Ir a Aprender</button>' : '') + '<button class="navb" data-act="salir">' + ic('out', 's') + 'Salir</button></nav>';
+  side += '<div class="g">Sesión</div>' + (tiene('trabajador') ? '<button class="navb" data-act="space" data-s="aprender">' + ic('book', 's') + 'Ir a Aprender</button>' : '') + '<button class="navb" data-act="salir">' + ic('out', 's') + 'Salir</button><div class="side-corp"><svg class="brand-logo" viewBox="0 0 300 112" style="width:96px;height:36px" role="img" aria-label="Grupo PIGSA88"><use href="#pigsa"/></svg></div></nav>';
   const views = { tablero: aTablero, personas: aPersonas, persona: aPersona, reglas: aReglas, matriz: aMatriz, validacion: aValidacion, constancias: aConstancias, reportes: aReportes, bitacora: aBitacora, cursos: aCursos };
   return '<div class="adm">' + side + '<div class="amain wrap">' + (views[U.view] || aTablero)() + '</div></div>';
 }
-function scopeLine(extra) { const al = alcance(); return '<div class="scope"><span class="chip primary">' + ic('grid', 's') + 'Grupo Demo › ' + esc(al.etiqueta) + '</span><span class="chip neutral">' + ic('cal', 's') + 'Corte: ' + fmt(hoy()) + ', fin del día (hora de la planta)</span>' + (soloLectura() ? '<span class="chip warn">' + ic('eye', 's') + 'Solo lectura</span>' : '') + (extra || '') + '</div>'; }
+function scopeLine(extra) { const al = alcance(); return '<div class="scope"><span class="chip primary">' + ic('grid', 's') + 'Grupo PIGSA88 › ' + esc(al.etiqueta) + '</span><span class="chip neutral">' + ic('cal', 's') + 'Corte: ' + fmt(hoy()) + ', fin del día (hora de la planta)</span>' + (soloLectura() ? '<span class="chip warn">' + ic('eye', 's') + 'Solo lectura</span>' : '') + (extra || '') + '</div>'; }
 function kpi(l, v, d, cls) { return '<div class="kpi ' + (cls || '') + '"><div class="l">' + l + '</div><div class="v ' + (cls && cls !== 'main' ? cls : '') + '">' + v + '</div><div class="d">' + d + '</div></div>'; }
 function aTablero() {
   const al = alcance(); const area = U.p.area || ''; const rows = filas(al, a => !area || persona(a.persona).area === area); const I = indicadores(rows);
@@ -1400,11 +1443,11 @@ function xlsxReporte(rep) {
 function pdfBase(orient) { if (!window.jspdf) throw new Error('La librería de PDF no cargó'); return new window.jspdf.jsPDF({ orientation: orient, unit: 'pt', format: 'a4' }); }
 function pdfReporte(rep) {
   const ancho = rep.cols.length > 7; const doc = pdfBase(ancho ? 'landscape' : 'portrait'); const W = doc.internal.pageSize.getWidth(); const H = doc.internal.pageSize.getHeight();
-  const head = () => { doc.setFillColor(47, 75, 240); doc.rect(0, 0, W, 6, 'F'); doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(20, 26, 51); doc.text(rep.titulo, 36, 34); doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(83, 92, 119); doc.text('Generado: ' + generadoTxt(), 36, 50); doc.text('Alcance: ' + rep.alcance + '   ·   ' + rep.periodo + '   ·   Filtros: ' + rep.filtros, 36, 62); doc.setTextColor(184, 58, 28); doc.text('DEMO · DATOS FICTICIOS', W - 36, 34, { align: 'right' }); };
+  const head = () => { doc.setFillColor(31, 44, 122); doc.rect(0, 0, W, 6, 'F'); doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(49, 49, 49); doc.text(rep.titulo, 36, 34); doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(97, 97, 97); doc.text('Generado: ' + generadoTxt(), 36, 50); doc.text('Alcance: ' + rep.alcance + '   ·   ' + rep.periodo + '   ·   Filtros: ' + rep.filtros, 36, 62); if (LOGO_PNG) doc.addImage(LOGO_PNG, 'PNG', W - 36 - 78, 14, 78, 29); doc.setTextColor(184, 58, 28); doc.text('DEMO · DATOS FICTICIOS', W - 36, 58, { align: 'right' }); };
   const body = rep.filas.map(row => row.map((v, c) => { const t = rep.cols[c][1]; if (v === null || v === undefined || v === '') return ''; if (t === 'fecha') return fmt(v); if (t === 'pct') return (v * 100).toFixed(1) + ' %'; return String(v); }));
-  doc.autoTable({ head: [rep.cols.map(c => c[0])], body: body.length ? body : [rep.cols.map((_, i) => i ? '' : 'Sin registros con estos filtros')], startY: 76, margin: { top: 76, left: 36, right: 36, bottom: 40 }, styles: { fontSize: 7.5, cellPadding: 3.5, textColor: [20, 26, 51], lineColor: [227, 231, 241], lineWidth: .5 }, headStyles: { fillColor: [231, 235, 255], textColor: [35, 57, 201], fontStyle: 'bold' }, alternateRowStyles: { fillColor: [247, 248, 252] }, didDrawPage: head });
+  doc.autoTable({ head: [rep.cols.map(c => c[0])], body: body.length ? body : [rep.cols.map((_, i) => i ? '' : 'Sin registros con estos filtros')], startY: 76, margin: { top: 76, left: 36, right: 36, bottom: 40 }, styles: { fontSize: 7.5, cellPadding: 3.5, textColor: [49, 49, 49], lineColor: [218, 218, 223], lineWidth: .5 }, headStyles: { fillColor: [230, 232, 243], textColor: [31, 44, 122], fontStyle: 'bold' }, alternateRowStyles: { fillColor: [247, 247, 248] }, didDrawPage: head });
   const n = doc.internal.getNumberOfPages();
-  for (let i = 1; i <= n; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(83, 92, 119); doc.text('Oficio · Prototipo de la Etapa 3 · Confidencial', 36, H - 20); doc.text('Página ' + i + ' de ' + n, W - 36, H - 20, { align: 'right' }); }
+  for (let i = 1; i <= n; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(97, 97, 97); doc.text('Nexo · Grupo PIGSA88 · Prototipo con datos ficticios · Confidencial', 36, H - 20); doc.text('Página ' + i + ' de ' + n, W - 36, H - 20, { align: 'right' }); }
   return doc.output('blob');
 }
 function pdfConstancia(k) {
@@ -1412,25 +1455,25 @@ function pdfConstancia(k) {
   const p = persona(k.persona); const ac = S.acreds.find(a => a.id === k.acred); const c = CURSOS[k.curso];
   const part = S.parts.find(x => x.id === ac.part); const val = part && part.vals.find(v => v.res === 'competente' && !v.anulada);
   doc.saveGraphicsState(); doc.setGState(new doc.GState({ opacity: 0.1 })); doc.setFont('helvetica', 'bold'); doc.setFontSize(54); doc.setTextColor(255, 106, 77); doc.text('DEMO · CONTENIDO FICTICIO', W / 2, H / 2 + 40, { align: 'center', angle: 32 }); doc.restoreGraphicsState();
-  doc.setFillColor(47, 75, 240); doc.roundedRect(48, 46, 36, 36, 8, 8, 'F'); doc.setFillColor(255, 106, 77); doc.circle(77, 53, 4, 'F');
-  doc.setTextColor(20, 26, 51); doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text('Empresa Demo Norte', 96, 60); doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(83, 92, 119); doc.text('Grupo Demo · Planta Demo 1', 96, 74);
-  doc.setFontSize(8); doc.text('FOLIO', W - 48, 56, { align: 'right' }); doc.setFont('courier', 'bold'); doc.setFontSize(13); doc.setTextColor(20, 26, 51); doc.text(k.folio, W - 48, 72, { align: 'right' });
-  doc.setDrawColor(47, 75, 240); doc.setLineWidth(2.5); doc.line(48, 96, W - 48, 96);
+  if (LOGO_PNG) doc.addImage(LOGO_PNG, 'PNG', 48, 42, 102, 38);
+  doc.setTextColor(49, 49, 49); doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text('Empresa Demo Norte (ficticia)', 162, 60); doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(97, 97, 97); doc.text('Grupo PIGSA88 · Planta Demo 1', 162, 74);
+  doc.setFontSize(8); doc.text('FOLIO', W - 48, 56, { align: 'right' }); doc.setFont('courier', 'bold'); doc.setFontSize(13); doc.setTextColor(49, 49, 49); doc.text(k.folio, W - 48, 72, { align: 'right' });
+  doc.setDrawColor(31, 44, 122); doc.setLineWidth(2.5); doc.line(48, 96, W - 48, 96);
   doc.setFont('helvetica', 'bold'); doc.setFontSize(26); doc.text('Constancia de capacitación', W / 2, 168, { align: 'center' });
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(83, 92, 119); doc.text('Documento interno generado con los datos registrados en la plataforma', W / 2, 188, { align: 'center' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(97, 97, 97); doc.text('Documento interno generado con los datos registrados en la plataforma', W / 2, 188, { align: 'center' });
   doc.setFontSize(12); doc.text('Se hace constar que', W / 2, 240, { align: 'center' });
-  doc.setFont('helvetica', 'bold'); doc.setFontSize(24); doc.setTextColor(20, 26, 51); doc.text(p.nombre, W / 2, 272, { align: 'center' });
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(12); doc.setTextColor(83, 92, 119); doc.text('número de empleado ' + p.num + ', acreditó el curso', W / 2, 296, { align: 'center' });
-  doc.setFont('helvetica', 'bold'); doc.setFontSize(17); doc.setTextColor(20, 26, 51); doc.text(c.nombre + ' · versión ' + k.version, W / 2, 326, { align: 'center' });
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(24); doc.setTextColor(49, 49, 49); doc.text(p.nombre, W / 2, 272, { align: 'center' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(12); doc.setTextColor(97, 97, 97); doc.text('número de empleado ' + p.num + ', acreditó el curso', W / 2, 296, { align: 'center' });
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(17); doc.setTextColor(49, 49, 49); doc.text(c.nombre + ' · versión ' + k.version, W / 2, 326, { align: 'center' });
   const ads = p.adscripciones.filter(a => a.desde <= ac.fecha && (!a.hasta || a.hasta >= ac.fecha)).pop() || p.adscripciones.slice(-1)[0];
   const campos = [['Fecha de acreditación', fmtL(ac.fecha)], ['Fecha de emisión', fmtL(k.emitida)], ['Calificación de la evaluación', ac.calif != null ? Math.round(ac.calif) + ' / 100' : 'No aplica'], ['Validación práctica', val ? 'Competente · ' + fmt(val.fecha) : 'No aplica'], ['Vigencia', ac.vence ? 'Hasta el ' + fmtL(ac.vence) : 'Sin vencimiento'], ['Adscripción al acreditar', AREA[ads.area] + ' · Turno ' + ads.turno.slice(1) + ' · ' + ads.puesto]];
-  campos.forEach(([l, v], i) => { const x = i % 2 ? W / 2 + 10 : 72; const y = 380 + Math.floor(i / 2) * 48; doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(83, 92, 119); doc.text(l.toUpperCase(), x, y); doc.setFontSize(11); doc.setTextColor(20, 26, 51); doc.text(v, x, y + 15); });
-  doc.setLineDashPattern([4, 3], 0); doc.setDrawColor(139, 147, 171); doc.setLineWidth(1);
+  campos.forEach(([l, v], i) => { const x = i % 2 ? W / 2 + 10 : 72; const y = 380 + Math.floor(i / 2) * 48; doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(97, 97, 97); doc.text(l.toUpperCase(), x, y); doc.setFontSize(11); doc.setTextColor(49, 49, 49); doc.text(v, x, y + 15); });
+  doc.setLineDashPattern([4, 3], 0); doc.setDrawColor(118, 118, 118); doc.setLineWidth(1);
   doc.roundedRect(72, 600, 300, 80, 8, 8); doc.roundedRect(W - 72 - 120, 580, 120, 120, 8, 8); doc.setLineDashPattern([], 0);
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(83, 92, 119); doc.text('Firma del responsable', 222, 634, { align: 'center' }); doc.setFont('helvetica', 'bold'); doc.text('Opción por confirmar (D-23)', 222, 650, { align: 'center' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(97, 97, 97); doc.text('Firma del responsable', 222, 634, { align: 'center' }); doc.setFont('helvetica', 'bold'); doc.text('Opción por confirmar (D-23)', 222, 650, { align: 'center' });
   doc.setFont('helvetica', 'normal'); doc.text('Código QR de verificación', W - 132, 632, { align: 'center' }); doc.setFont('helvetica', 'bold'); doc.text('Opción por confirmar', W - 132, 648, { align: 'center' }); doc.text('(D-22)', W - 132, 660, { align: 'center' });
-  doc.setDrawColor(227, 231, 241); doc.line(48, H - 92, W - 48, H - 92);
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(83, 92, 119);
+  doc.setDrawColor(218, 218, 223); doc.line(48, H - 92, W - 48, H - 92);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(97, 97, 97);
   doc.text(doc.splitTextToSize('Documento interno de la empresa. No constituye un documento oficial ante autoridades ni sustituye formatos regulados. [Texto de ejemplo por validar con el área jurídica (D-24)]', W - 220), 48, H - 76);
   doc.text('Plantilla v1 · Página 1 de 1', W - 48, H - 76, { align: 'right' });
   if (k.huella) doc.text('Huella del registro de emisión (SHA-256): ' + k.huella.slice(0, 32) + '…', 48, H - 44);
@@ -1454,8 +1497,8 @@ function modalBody() {
     const k = S.consts.find(x => x.id === M.k); const p = persona(k.persona); const ac = S.acreds.find(a => a.id === k.acred); const c = CURSOS[k.curso];
     const part = S.parts.find(x => x.id === ac.part); const val = part && part.vals.find(v => v.res === 'competente' && !v.anulada);
     return '<div class="row"><h2 class="grow" style="font-size:22px">Constancia ' + chipConst(k) + '</h2><button class="iconbtn" data-act="cerrarModal" aria-label="Cerrar" style="background:var(--surface-2)">' + ic('x') + '</button></div>' +
-      '<div class="cert"><div class="wm">DEMO · CONTENIDO FICTICIO</div><div class="top"><div class="row"><svg style="width:36px;height:36px"><use href="#logo"/></svg><div><b>Empresa Demo Norte</b><div style="font-size:12px;color:#535C77">Grupo Demo · Planta Demo 1</div></div></div><div style="text-align:right"><div style="font-size:10px;font-weight:800;letter-spacing:.08em;color:#535C77">FOLIO</div><div class="mono" style="font-weight:600">' + k.folio + '</div></div></div>' +
-      '<h3>Constancia de capacitación</h3><p style="text-align:center;color:#535C77;margin:4px 0 14px;font-size:13px">Documento interno generado con los datos registrados en la plataforma</p><p style="text-align:center;margin:0;color:#535C77">Se hace constar que</p><div class="who">' + esc(p.nombre) + '</div><p style="text-align:center;margin:0;color:#535C77">número de empleado <span class="mono" style="color:#141A33">' + p.num + '</span>, acreditó el curso</p><p style="text-align:center;font-weight:800;font-size:18px;margin:8px 0 0">' + esc(c.nombre) + ' · versión ' + k.version + '</p>' +
+      '<div class="cert"><div class="wm">DEMO · CONTENIDO FICTICIO</div><div class="top"><div class="row"><svg viewBox="0 0 300 112" style="width:112px;height:42px;color:#312783" role="img" aria-label="Grupo PIGSA88"><use href="#pigsa"/></svg><div><b>Empresa Demo Norte (ficticia)</b><div style="font-size:12px;color:#616161">Grupo PIGSA88 · Planta Demo 1</div></div></div><div style="text-align:right"><div style="font-size:10px;font-weight:800;letter-spacing:.08em;color:#616161">FOLIO</div><div class="mono" style="font-weight:600">' + k.folio + '</div></div></div>' +
+      '<h3>Constancia de capacitación</h3><p style="text-align:center;color:#616161;margin:4px 0 14px;font-size:13px">Documento interno generado con los datos registrados en la plataforma</p><p style="text-align:center;margin:0;color:#616161">Se hace constar que</p><div class="who">' + esc(p.nombre) + '</div><p style="text-align:center;margin:0;color:#616161">número de empleado <span class="mono" style="color:#313131">' + p.num + '</span>, acreditó el curso</p><p style="text-align:center;font-weight:800;font-size:18px;margin:8px 0 0">' + esc(c.nombre) + ' · versión ' + k.version + '</p>' +
       '<div class="fields"><div><span>Fecha de acreditación</span><b>' + fmtL(ac.fecha) + '</b></div><div><span>Fecha de emisión</span><b>' + fmtL(k.emitida) + '</b></div><div><span>Calificación</span><b>' + (ac.calif != null ? Math.round(ac.calif) + ' / 100' : 'No aplica') + '</b></div><div><span>Validación práctica</span><b>' + (val ? 'Competente · ' + fmt(val.fecha) : 'No aplica') + '</b></div><div><span>Vigencia</span><b>' + (ac.vence ? 'Hasta el ' + fmtL(ac.vence) : 'Sin vencimiento') + '</b></div></div>' +
       '<div style="display:grid;grid-template-columns:1fr 130px;gap:14px"><div class="ph">Firma del responsable<br><b>Opción por confirmar (D-23)</b></div><div class="ph" style="min-height:120px">QR de verificación<br><b>Por confirmar (D-22)</b></div></div><div class="legal">Documento interno de la empresa. No constituye un documento oficial ante autoridades. [Texto de ejemplo por validar con el área jurídica (D-24)]</div></div>' +
       '<div class="muted" style="font-size:13px">Registro de emisión: plantilla ' + k.plantilla + ' · emitida ' + fmt(k.emitida) + (k.anterior ? ' · sustituye a ' + S.consts.find(x => x.id === k.anterior).folio : '') + (k.motivo ? ' · motivo: ' + esc(k.motivo) : '') + (k.huella ? '<br>Huella SHA-256: <span class="mono">' + k.huella.slice(0, 24) + '…</span>' : '') + '</div>' +
@@ -1516,6 +1559,7 @@ function entrarComo(id, space, view) {
 /* ---------- Acciones de la interfaz ---------- */
 const A = {
   barToggle: () => { U.barOpen = !U.barOpen; render(); },
+  skipSplash: () => quitarSplash(),
   verComo: (d, el) => { if (!el.value) { U.user = null; U.loginSel = null; render(); return; } entrarComo(el.value); },
   pickAcc: d => { U.loginSel = d.id; U.loginErr = ''; render(); },
   entrar: data => { const c = CUENTAS.find(c => persona(c.persona).num.toLowerCase() === String(data.num || '').trim().toLowerCase()); if (!c || !data.pass) { U.loginErr = 'Revisa tu número de empleado y tu frase de acceso.'; render(); return; } entrarComo(c.id); },
@@ -1647,6 +1691,7 @@ document.addEventListener('submit', e => {
 });
 document.addEventListener('keydown', e => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('hs-hit')) { e.preventDefault(); A.hs(e.target.dataset, e.target, e); }
+  if (e.key === 'Escape' && document.getElementById('splash')) { quitarSplash(); return; }
   if (e.key === 'Escape' && (U.modal || U.guide)) { U.modal = null; U.guide = false; render(); }
 });
 

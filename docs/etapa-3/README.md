@@ -1,4 +1,4 @@
-# Etapa 3 · Prototipo funcional
+# Etapa 3 · Prototipo funcional de Nexo
 
 **Estado:** entregada para revisión · **Fecha:** 5 de noviembre de 2026 · **Siguiente etapa:** desarrollo para operación real (Etapa 4)
 
@@ -8,11 +8,12 @@
 
 | Entregable | Dónde |
 |---|---|
-| Prototipo navegable publicado | https://claude.ai/artifact/WyK8ugJ5isMMT9LU4GJ85p (privado; se comparte desde su menú Compartir) |
+| Prototipo con la marca Nexo y Grupo PIGSA88 | [`prototipo/index.html`](../../prototipo/index.html): se abre en cualquier navegador |
+| Página publicada (versión anterior, sin marca corporativa) | https://claude.ai/artifact/WyK8ugJ5isMMT9LU4GJ85p (privada). Publicar la versión con la marca corporativa depende de que la empresa lo autorice (D-59) |
 | Código fuente y versión local | [`prototipo/`](../../prototipo/README.md) |
 | Prueba automatizada del recorrido completo | [`prototipo/pruebas/recorrido.js`](../../prototipo/pruebas/recorrido.js) |
 | Verificación de los PDF y Excel generados | [`prototipo/pruebas/verificar_archivos.py`](../../prototipo/pruebas/verificar_archivos.py) |
-| Propuesta visual versión 2 (minimalista, plana y juvenil) aplicada | [Etapa 2 · 05](../etapa-2/05-propuesta-visual.md) |
+| Propuesta visual versión 3 (Nexo, identidad Grupo PIGSA88, estilo plano y juvenil) y animación de entrada | [Etapa 2 · 05](../etapa-2/05-propuesta-visual.md) |
 | Capturas en celular y computadora, tema claro y oscuro | [`img/`](img/) |
 
 ## Recorrido de demostración
@@ -50,12 +51,14 @@ También se puede probar:
 | Constancia en PDF y siete reportes en PDF y Excel generados en el navegador | | |
 | Bitácora de acciones | | |
 | Cierre por inactividad en equipo compartido | | |
+| Animación de entrada de Nexo (se puede saltar; respeta el movimiento reducido) | | |
+| Logotipo de Grupo PIGSA88 en la app, la constancia y los reportes PDF | | |
 | Tema claro y oscuro según el dispositivo | | |
 
 ## Datos de demostración
 
 Todo es ficticio:
-- **Organización:** Grupo Demo · Empresa Demo Norte · Planta Demo 1.
+- **Organización:** Grupo PIGSA88 (dato real), con empresa, planta y personas ficticias: Empresa Demo Norte (ficticia) · Planta Demo 1.
 - **Personas:** 128 en siete áreas, incluido un contratista con identificador «C-000123».
 - **Cursos:** cinco cursos ficticios. Solo «Orden y limpieza del área» (versión 3) tiene contenido navegable: 4 lecciones, 5 tipos de actividad y un banco de 7 preguntas.
 - **Historial:** generado por reglas fijas para que las cifras sean coherentes.
@@ -77,9 +80,9 @@ Todo es ficticio:
 
 | Prueba | Resultado | Qué cubre |
 |---|---|---|
-| `recorrido.js` | **53 de 53** correctas | Recorrido completo de los 6 pasos con la interfaz real. Además: una sola asignación por persona y curso; versión ligada al iniciar; los puntos no cambian estados; intento reprobado y aprobado; doble envío sin duplicar; «aprobado» no acredita sin práctica; vigencia de 12 meses; folio y huella SHA-256; emisión idempotente; I-05 igual a un recálculo independiente; 14 exportaciones registradas en bitácora; reemisión y revocación sin borrar; permisos de auditor, supervisora, trabajadora e instructora; «por vencer», vigente el último día y vencida al siguiente; renovaciones al avanzar la fecha; cierre por inactividad; cero errores de JavaScript |
+| `recorrido.js` | **55 de 55** correctas | Animación de entrada que termina sola. Recorrido completo de los 6 pasos con la interfaz real. Además: una sola asignación por persona y curso; versión ligada al iniciar; los puntos no cambian estados; intento reprobado y aprobado; doble envío sin duplicar; «aprobado» no acredita sin práctica; vigencia de 12 meses; folio y huella SHA-256; emisión idempotente; I-05 igual a un recálculo independiente; 14 exportaciones registradas en bitácora; reemisión y revocación sin borrar; permisos de auditor, supervisora, trabajadora e instructora; «por vencer», vigente el último día y vencida al siguiente; renovaciones al avanzar la fecha; cierre por inactividad; cero errores de JavaScript |
 | `verificar_archivos.py` | **35 de 35** correctas | Los 7 Excel tienen hojas «Datos» y «Parámetros», identificadores como texto con ceros a la izquierda, fechas como fechas, números como números, porcentajes con formato y número de registros. Los 7 PDF tienen fecha de generación, usuario, alcance, filtros, «Página X de Y» y la marca DEMO. La constancia tiene todos los campos requeridos, folio y leyenda |
-| Contraste de la paleta | Todos los pares de texto ≥ 4.5 : 1 en ambos temas | Ver [Etapa 2 · 05 §3](../etapa-2/05-propuesta-visual.md#3-color) |
+| Contraste de la paleta | Todos los pares de texto ≥ 4.5 : 1 en ambos temas | Ver [Etapa 2 · 05 §3](../etapa-2/05-propuesta-visual.md#3-color); dos colores corporativos requieren variantes para texto (D-54) |
 
 **No verificado** (corresponde a las Etapas 4 y 5):
 - Seguridad, permisos en el servidor, aislamiento entre empresas y concurrencia.
@@ -112,7 +115,7 @@ Todo es ficticio:
 ## Criterios de aceptación de la Etapa 3
 
 - [ ] Alguien de la empresa completa la guía de la demo sin ayuda técnica.
-- [ ] La empresa confirma que la versión 2 de la propuesta visual corresponde a lo pedido.
+- [ ] La empresa confirma la versión 3 de la propuesta visual (Nexo, identidad corporativa, animación de entrada) y responde D-54 a D-57.
 - [ ] La empresa revisa una constancia PDF y un reporte Excel y confirma sus campos.
 - [ ] La empresa responde o acepta los hallazgos 1 a 5.
 - [ ] Recomendado: 3 a 5 personas de planta prueban el prototipo en celular y en una tableta compartida, y se anotan sus dificultades.

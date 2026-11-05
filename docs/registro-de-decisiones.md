@@ -57,17 +57,23 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | D-37 | El grupo es la unidad máxima de separación de datos; alcance «grupo» para roles corporativos; catálogos compartibles entre empresas | Propuesta (deriva de B-4) | Etapas 2 y 4 | Producto | RNF-SEP-01, RF-ORG-05 |
 | D-38 | Administrador y RH dan de alta a los contratistas | Propuesta | Etapa 2 | Empresa | [Etapa 2 · 03 FD-10](etapa-2/03-flujos-detallados.md#fd-10--alta-de-contratista) |
 | D-39 | El rol Auditor no se combina con Administrador ni con RH en el mismo alcance | Propuesta | Permisos | Producto | SoD-04 |
-| D-40 | Nombre de trabajo «Oficio», sujeto a verificación de marca y dominio | Pendiente | Identidad | Empresa | [Etapa 2 · 05 §1](etapa-2/05-propuesta-visual.md#1-concepto) |
-| D-41 | Tuteo en el espacio del trabajador; trato impersonal en la consola | Propuesta | Textos | RH | [Etapa 2 · 05 §7](etapa-2/05-propuesta-visual.md#9-tono-y-voz) |
-| D-42 | Tema oscuro: el prototipo lo incluye siguiendo la preferencia del dispositivo; se propone mantenerlo en V1 porque cuesta poco con las variables de diseño | Propuesta (revisada en Etapa 3) | Diseño | Producto | [Etapa 2 · 05 §3.3](etapa-2/05-propuesta-visual.md#33-tema-oscuro) |
+| D-40 | La aplicación se llama **Nexo**; verificar marca registrada antes de uso externo | Confirmada por la empresa (5 nov 2026) · verificación de marca pendiente | Identidad | Empresa | [Etapa 2 · 05 §1](etapa-2/05-propuesta-visual.md#1-marca) |
+| D-41 | Tuteo en el espacio del trabajador; trato impersonal en la consola | Propuesta | Textos | RH | [Etapa 2 · 05 §7](etapa-2/05-propuesta-visual.md#7-tono-y-voz) |
+| D-42 | Tema oscuro: el prototipo lo incluye siguiendo la preferencia del dispositivo; se propone mantenerlo en V1 porque cuesta poco con las variables de diseño | Propuesta (revisada en Etapa 3) | Diseño | Producto | [Etapa 2 · 05 §3.3](etapa-2/05-propuesta-visual.md#34-tema-oscuro) |
 | D-43 | La evaluación digital no muestra elementos de juego (puntos, animaciones, sonidos) | Propuesta | Diseño | Producto | FD-05 |
 | D-44 | Exportaciones de hasta 5,000 filas se descargan en el momento; las mayores pasan a la cola | Propuesta | Etapa 4 | Producto | FD-09 |
 | D-45 | Una validación práctica sin confirmación del trabajador en 7 días queda marcada y se avisa al supervisor | Propuesta | Etapa 3 | RH | FD-06 |
 | D-46 | Si revocar acreditaciones o anular validaciones requiere una segunda aprobación | Pendiente | Etapa 4 | RH | SoD-05 |
 | D-47 | Los números de empleado pueden repetirse entre empresas del grupo | Supuesto (confirmar) | Etapa 4 | RH | RNF-SEP-03 |
 | D-48 | Si la plantilla de 2,000 incluye contratistas (se supone que no) | Pendiente | Indicadores y pruebas | RH | I-02 |
-| D-49 | Dirección visual versión 2: minimalista, plana y juvenil; reemplaza a la versión 1 sobria | Confirmada por la empresa (5 nov 2026); validar en pruebas con usuarios | Diseño | Empresa | [Etapa 2 · 05](etapa-2/05-propuesta-visual.md) |
+| D-49 | Estilo minimalista, plano y juvenil, con la identidad corporativa de Grupo PIGSA88 (versión 3) | Confirmada por la empresa (5 nov 2026); validar en pruebas con usuarios | Diseño | Empresa | [Etapa 2 · 05](etapa-2/05-propuesta-visual.md) |
 | D-50 | Tipografías: Bricolage Grotesque (títulos), Plus Jakarta Sans (texto), JetBrains Mono (identificadores) | Propuesta; confirmar legibilidad en pruebas | Diseño | Producto | idem §4 |
 | D-51 | Al revocar una acreditación se crea una nueva participación con fecha límite a 30 días | Propuesta | Reglas | RH | [Etapa 3 · hallazgos](etapa-3/README.md#hallazgos-para-validar-con-la-empresa) |
 | D-52 | Tope diario de 200 puntos por persona | Propuesta | Motivación | RH | idem |
 | D-53 | El trabajador puede descargar su propio reporte individual | Propuesta | Permisos | RH | idem |
+| D-54 | Variantes solo para texto: `#616161` (del gris medio) y `#4E6876` (del azul grisáceo), para cumplir el contraste mínimo | Propuesta | Diseño | Empresa (marca) | [Etapa 2 · 05 §3.2](etapa-2/05-propuesta-visual.md#32-ajustes-de-accesibilidad-por-aprobar) |
+| D-55 | Azul oficial: `#1F2C7A` (paleta) o `#312783` (logotipo) | Pendiente | Diseño | Empresa (marca) | idem |
+| D-56 | Versión en blanco del logotipo para fondos oscuros (tema oscuro, animación de entrada) | Pendiente | Diseño | Empresa (marca) | [Etapa 2 · 05 §3.4](etapa-2/05-propuesta-visual.md#34-tema-oscuro) |
+| D-57 | Coral como acento de logros fuera de la paleta corporativa | Pendiente | Diseño | Empresa (marca) | [Etapa 2 · 05 §3.3](etapa-2/05-propuesta-visual.md#33-colores-que-no-están-en-la-paleta-corporativa) |
+| D-58 | Animación de entrada de menos de 3 s, que se puede saltar, solo al abrir y desactivada con movimiento reducido | Confirmada (pedida por la empresa) · detalles propuestos | Diseño | Empresa | [Etapa 2 · 05 §2](etapa-2/05-propuesta-visual.md#2-animación-de-entrada) |
+| D-59 | Publicar la página del prototipo con la marca corporativa | Pendiente: decide la empresa | Etapa 3 | Empresa | [Etapa 3](etapa-3/README.md) |

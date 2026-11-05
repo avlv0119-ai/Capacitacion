@@ -1,6 +1,6 @@
 # Etapa 2 · Diseño funcional y visual
 
-**Estado:** entregada; propuesta visual actualizada a la versión 2 (minimalista, plana y juvenil) a petición de la empresa · **Fecha:** 5 de noviembre de 2026 · **Siguiente etapa:** [prototipo funcional (Etapa 3)](../etapa-3/README.md), entregado
+**Estado:** entregada; propuesta visual actualizada a la versión 3 (Nexo, identidad Grupo PIGSA88, estilo plano y juvenil) a petición de la empresa · **Fecha:** 5 de noviembre de 2026 · **Siguiente etapa:** [prototipo funcional (Etapa 3)](../etapa-3/README.md), entregado
 
 Etiquetas: **[H]** hecho confirmado · **[R]** recomendación · **[S]** supuesto · **[P]** pendiente.
 
@@ -23,7 +23,7 @@ Los documentos de la [Etapa 1](../etapa-1/README.md) quedaron actualizados con e
 | [02 · Matriz de permisos](02-matriz-de-permisos.md) | 31 recursos × 6 roles con acciones (consultar, crear, modificar, aprobar, exportar) y alcance; permisos especiales; separación de funciones; evaluación del permiso en el servidor |
 | [03 · Flujos detallados](03-flujos-detallados.md) | 10 flujos pantalla por pantalla, con casos de error |
 | [04 · Pantallas](04-pantallas.md) | 17 pantallas del trabajador y 17 de administración; estados vacío, cargando, error, sin conexión y sin permiso; lista de verificación para equipos compartidos |
-| [05 · Propuesta visual](05-propuesta-visual.md) | **Versión 2, minimalista, plana y juvenil** (solicitada el 5 nov 2026): concepto, paleta con contraste verificado en tema claro y oscuro, tipografía, reglas de forma, tono y capturas del prototipo |
+| [05 · Propuesta visual](05-propuesta-visual.md) | **Versión 3** (5 nov 2026): marca Nexo e identidad Grupo PIGSA88, estilo plano y juvenil, animación de entrada, paleta corporativa con ajustes de accesibilidad, tipografía y capturas del prototipo |
 
 ## Decisiones de esta etapa
 
@@ -44,13 +44,13 @@ Ninguna bloquea la Etapa 3.
 - [ ] El mapa de navegación y las pantallas cubren el recorrido completo: asignación → aprendizaje → evaluación → validación práctica → acreditación → constancia → reporte.
 - [ ] Cada pantalla define sus estados vacío, error y sin conexión; el uso en equipos compartidos está cubierto.
 - [ ] La experiencia del trabajador (lúdica) y la administración (precisa) se distinguen visualmente, y la evaluación no tiene elementos de juego.
-- [ ] La propuesta visual (versión 2) es propia, minimalista, plana y juvenil, y no recuerda a Duolingo.
+- [ ] La propuesta visual (versión 3) aplica la identidad de Grupo PIGSA88, es minimalista, plana y juvenil, y no recuerda a Duolingo.
 - [ ] Se responden D-36, D-41, D-47 y D-48, o se aceptan sus propuestas.
 
 **Verificado por el equipo en esta etapa:**
 
 - Contraste de la paleta calculado: todos los pares de texto ≥ 4.5 : 1 y bordes de controles ≥ 3 : 1.
-- La versión 2 de la propuesta visual se verificó directamente en el prototipo de la Etapa 3, con capturas en celular y computadora, tema claro y oscuro.
+- La versión 3 de la propuesta visual se verificó directamente en el prototipo de la Etapa 3, con capturas en celular y computadora, tema claro y oscuro.
 - Todos los enlaces internos de la documentación y los diagramas se verificaron automáticamente.
 
 **No verificado todavía:** usabilidad con personas reales, accesibilidad con lectores de pantalla y teclado, y rendimiento. Corresponden a las Etapas 3 a 5.

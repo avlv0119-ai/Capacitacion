@@ -13,7 +13,7 @@ Web app de capacitación para operadores de producción, mantenimiento, supervis
 | 1. Definición del producto | [`docs/etapa-1/`](docs/etapa-1/README.md) | **Entregada.** Preguntas bloqueantes B-1 a B-4 respondidas el 5 nov 2026 e incorporadas. |
 | 2. Diseño funcional y visual | [`docs/etapa-2/`](docs/etapa-2/README.md): mapa de navegación, matriz de permisos, flujos, pantallas y propuesta visual (versión 3: Nexo con identidad Grupo PIGSA88, plana y juvenil) | **Entregada.** |
 | 3. Prototipo funcional | [`docs/etapa-3/`](docs/etapa-3/README.md) y [`prototipo/`](prototipo/README.md) | **Entregada para revisión.** 55 + 35 comprobaciones automáticas correctas. La página publicada muestra la versión anterior a la marca corporativa (ver Etapa 3). |
-| 4. Desarrollo para operación real | Módulos con persistencia, autenticación, permisos, trazabilidad, PDF y Excel | Por iniciar |
+| 4. Desarrollo para operación real | [`docs/etapa-4/`](docs/etapa-4/README.md) y [`app/`](app/db/README.md) | **En curso.** Entrega 1: arquitectura propuesta y núcleo de datos en PostgreSQL (50 de 50 comprobaciones). |
 | 5. Validación y preparación de lanzamiento | Pruebas de recorridos, permisos, aislamiento, indicadores, documentos y carga | Por iniciar |
 
 ## Convenciones de los documentos
@@ -58,4 +58,7 @@ docs/
   etapa-3/                    Prototipo funcional: guía, verificación, hallazgos y capturas
   registro-de-decisiones.md   Decisiones tomadas, propuestas y pendientes (todas las etapas)
 prototipo/                    Prototipo navegable (datos ficticios) y sus pruebas automatizadas
+app/db/                       Núcleo de datos de la aplicación real (PostgreSQL): migraciones y pruebas
+docs/etapa-4/                 Arquitectura propuesta, modelo de datos y plan de módulos
+docs/identidad/               Logotipo de Grupo PIGSA88
 ```

@@ -50,7 +50,7 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | D-30 | Plazos de conservación de datos por categoría | Pendiente | Etapa 4 | Jurídico | [04 §12](etapa-1/04-requisitos-no-funcionales.md#12-conservación-de-datos) |
 | D-31 | Objetivos de disponibilidad, RPO y RTO | Pendiente (candidatos propuestos) | Etapa 4 | TI | RNF-DIS |
 | D-32 | Navegadores y dispositivos mínimos | Pendiente (requiere inventario) | Etapas 2 y 5 | TI | RNF-COM-01 |
-| D-33 | Tecnología e infraestructura | Pendiente (comparación antes de la Etapa 4) | Etapa 4 | TI | B-5 |
+| D-33 | Tecnología e infraestructura. Propuesta: desarrollo a la medida; TypeScript en web y servidor; PostgreSQL 16 con seguridad por fila; almacenamiento compatible con S3; contenedores portátiles entre nube y servidores propios | Propuesta (Etapa 4, entrega 1); pendiente de TI | Etapa 4 | TI | [Etapa 4 · 01](etapa-4/01-arquitectura.md) |
 | D-34 | El prototipo de la Etapa 3 es una aplicación web navegable con datos ficticios en el navegador, sin servidor ni persistencia real, marcada como prototipo | Confirmada (implementada el 5 nov 2026) | Etapa 3 | Producto | [Etapa 3](etapa-3/README.md) |
 | D-35 | Objetivo de prueba de carga: 400 sesiones activas simultáneas, 2,000 cuentas y un año de datos simulados | Propuesta | Etapa 5 | TI | [04 §1](etapa-1/04-requisitos-no-funcionales.md#1-capacidad-y-rendimiento) |
 | D-36 | El Administrador puede delegar el permiso «Restablecer acceso» a personas designadas por planta y turno | Pendiente | Etapa 3 | Empresa | [Etapa 2 · 02 §3](etapa-2/02-matriz-de-permisos.md#3-permisos-especiales-por-curso-o-tema) |
@@ -77,3 +77,6 @@ Registro único de decisiones del proyecto, para todas las etapas. Cuando una de
 | D-57 | Coral como acento de logros fuera de la paleta corporativa | Pendiente | Diseño | Empresa (marca) | [Etapa 2 · 05 §3.3](etapa-2/05-propuesta-visual.md#33-colores-que-no-están-en-la-paleta-corporativa) |
 | D-58 | Animación de entrada de menos de 3 s, que se puede saltar, solo al abrir y desactivada con movimiento reducido | Confirmada (pedida por la empresa) · detalles propuestos | Diseño | Empresa | [Etapa 2 · 05 §2](etapa-2/05-propuesta-visual.md#2-animación-de-entrada) |
 | D-59 | Publicar la página del prototipo con la marca corporativa | Pendiente: decide la empresa | Etapa 3 | Empresa | [Etapa 3](etapa-3/README.md) |
+| D-60 | La base aísla por grupo y empresa; los alcances finos (planta, área y turno, cursos) y los permisos por acción se aplican en el servicio de aplicación | Propuesta | Etapa 4 | Producto y TI | [Etapa 4 · 02 §4](etapa-4/02-modelo-de-datos.md#4-cómo-funciona-el-aislamiento) |
+| D-61 | La aplicación indica solo el usuario en cada transacción; el grupo y las empresas permitidas se calculan en la base a partir de sus roles vigentes | Propuesta (implementada en M1) | Etapa 4 | TI | idem |
+| D-62 | El acceso de superusuario a la base se restringe al equipo de operación y se registra fuera de la base | Propuesta | Operación | TI | [Etapa 4 · 02 §5](etapa-4/02-modelo-de-datos.md#5-verificación) |
